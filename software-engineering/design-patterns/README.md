@@ -46,6 +46,7 @@ Deal with communication and responsibility between objects.
 |---|---|
 | [Chain of Responsibility](behavioral/chain-of-responsibility.md) | Pass a request along a chain of handlers until one processes it |
 | [Command](behavioral/command.md) | Encapsulate a request as an object, enabling undo, queuing, and logging |
+| [Interpreter](behavioral/interpreter.md) | Define a grammar and an interpreter for sentences in a language |
 | [Iterator](behavioral/iterator.md) | Provide a way to sequentially access elements without exposing the underlying structure |
 | [Mediator](behavioral/mediator.md) | Define an object that encapsulates how a set of objects interact |
 | [Memento](behavioral/memento.md) | Capture and restore an object's internal state without violating encapsulation |
