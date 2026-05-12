@@ -19,4 +19,12 @@ Architectural styles define how a system is organized at a high level — how re
 
 ---
 
+## Mobile
+
+| Article | Description |
+|---|---|
+| [Mobile Architecture](mobile/README.md) | MVC, MVP, MVVM, MVI, VIPER, Clean Architecture, and Modular Architecture for mobile apps |
+
+---
+
 > These styles are not mutually exclusive. A microservices system can use Hexagonal Architecture inside each service. CQRS and Event Sourcing are frequently combined.
