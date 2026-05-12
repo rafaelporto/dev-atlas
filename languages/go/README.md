@@ -42,8 +42,19 @@
 
 ---
 
-## Toolchain
+## Getting Started
+
+| Article | Description |
+|---|---|
+| [Installation](installation.md) | Install Go, set PATH, manage multiple versions with `asdf` |
+| [Project Setup](project-setup.md) | `go mod init`, recommended directory layout, internal packages |
+| [IDEs and Editors](ides.md) | VS Code, GoLand, and Neovim compared — pros, cons, and when to use each |
+
+---
+
+## Toolchain & Deploy
 
 | Article | Description |
 |---|---|
 | [Toolchain](toolchain.md) | `go build`, `go test`, `go vet`, `gofmt`, race detector, `pprof` |
+| [Deploy](deploy.md) | Production builds, cross-compilation, Docker multi-stage, env config, build metadata |
