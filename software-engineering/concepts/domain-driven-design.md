@@ -93,21 +93,9 @@ class Customer:
 
 ### Value Object
 
-An object defined entirely by its **attributes**. It has no identity and is immutable. Two value objects with the same attributes are equal.
+An object defined entirely by its **attributes**. It has no identity and is immutable. Two value objects with the same attributes are equal. Used for prices, coordinates, date ranges, email addresses, colors, and measurements.
 
-```python
-class Money:
-    def __init__(self, amount: Decimal, currency: str):
-        self.amount = amount
-        self.currency = currency
-
-    def __eq__(self, other):
-        return self.amount == other.amount and self.currency == other.currency
-
-# Money(10, "USD") == Money(10, "USD") → True
-```
-
-Use value objects for: prices, coordinates, date ranges, email addresses, colors, measurements.
+See [Value Object](value-object.md) for a full treatment, including immutability, self-validation, side-effect-free behavior, and replaceability.
 
 ### Aggregate
 
