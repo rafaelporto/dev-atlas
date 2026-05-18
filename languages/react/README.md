@@ -20,4 +20,26 @@
 | [Components and Props](components-and-props.md) | Function components, composition, `children`, and avoiding prop drilling |
 | [State and Events](state-and-events.md) | `useState`, event handling, controlled inputs, and state batching |
 | [Effects](effects.md) | `useEffect`, dependencies, cleanup, and "You Might Not Need an Effect" |
+| [Refs](refs.md) | `useRef`, `forwardRef`, `useImperativeHandle`, and escape hatches |
+| [Context](context.md) | `useContext`, when it solves prop drilling, and performance pitfalls |
+| [`useReducer`](reducer.md) | Centralised state transitions, when to prefer it over `useState` |
 | [Rules of Hooks and Custom Hooks](rules-of-hooks-and-custom-hooks.md) | Hook rules, why they exist, and how to extract custom hooks |
+
+---
+
+## Rendering and Lists
+
+| Article | Description |
+|---|---|
+| [Rendering and Reconciliation](rendering-and-reconciliation.md) | Render/commit phases, reconciliation, identity, and Strict Mode |
+| [Lists and Keys](lists-and-keys.md) | Stable keys, why index-as-key breaks lists, and using keys to reset state |
+| [Conditional Rendering](conditional-rendering.md) | Ternaries, `&&` pitfalls, early returns, and rendering nothing |
+
+---
+
+## Forms and Errors
+
+| Article | Description |
+|---|---|
+| [Forms](forms.md) | Controlled vs uncontrolled inputs, React Hook Form, Zod, and React 19 actions |
+| [Error Boundaries](error-boundaries.md) | Class boundaries, `react-error-boundary`, what they don't catch, and Suspense pairing |
