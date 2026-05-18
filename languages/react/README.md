@@ -43,3 +43,22 @@
 |---|---|
 | [Forms](forms.md) | Controlled vs uncontrolled inputs, React Hook Form, Zod, and React 19 actions |
 | [Error Boundaries](error-boundaries.md) | Class boundaries, `react-error-boundary`, what they don't catch, and Suspense pairing |
+
+---
+
+## Advanced
+
+| Article | Description |
+|---|---|
+| [Memoization](memoization.md) | `memo`, `useMemo`, `useCallback` — when they help, when they don't, the React Compiler |
+| [Composition Patterns](composition-patterns.md) | `children`, slots, compound components, render props, and the `as` prop |
+| [Server Components](server-components.md) | RSC model, client/server boundary, Server Actions, `use()` |
+| [Suspense and Concurrent](suspense-and-concurrent.md) | `<Suspense>`, `lazy()`, `useTransition`, `useDeferredValue`, streaming |
+
+---
+
+## TypeScript
+
+| Article | Description |
+|---|---|
+| [TypeScript with React](typescript-with-react.md) | Typing props, hooks, events, refs, reducers, generics, and discriminated unions |
