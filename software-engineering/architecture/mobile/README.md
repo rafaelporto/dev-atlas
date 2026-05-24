@@ -15,7 +15,8 @@ Architectural patterns for mobile applications define how responsibilities are s
 | [VIPER](viper.md) | Five-layer iOS architecture with explicit routing |
 | [Clean Architecture](clean-architecture-mobile.md) | Domain-isolated layers applied to mobile apps |
 | [Modular Architecture](modular-architecture.md) | Feature modules for team scale and build-time performance |
+| [Comparison](comparison.md) | Side-by-side comparison and decision matrix for choosing between patterns |
 
 ---
 
-> These patterns are not mutually exclusive. Clean Architecture defines the layer boundaries; MVVM or MVI organize the presentation layer inside them. Modular Architecture determines how those layers are packaged and owned by teams.
+> These patterns are not mutually exclusive. Clean Architecture defines the layer boundaries; MVVM or MVI organize the presentation layer inside them. Modular Architecture determines how those layers are packaged and owned by teams. For a structured way to choose, see the [comparison and decision matrix](comparison.md).
