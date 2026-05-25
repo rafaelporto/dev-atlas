@@ -18,7 +18,7 @@ Each section has its own `README.md` that lists its articles. Use GitHub's file 
 |---|---|
 | [Software Engineering](software-engineering/README.md) | Core concepts, architecture, databases, design patterns, and more |
 | [Languages](languages/README.md) | Language-specific notes and idioms |
-| [Tools](tools/README.md) | CI/CD, containerization, observability, orchestration, IaC, and other engineering tooling |
+| [Tools](tools/README.md) | Version control, CI/CD, containerization, observability, orchestration, IaC, and other engineering tooling |
 
 > Sections are added on demand. If a topic doesn't exist yet, it will when it becomes relevant.
 
