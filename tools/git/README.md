@@ -15,3 +15,15 @@ Distributed version control system — concepts and how-tos.
 | [Conventional Commits](conventional-commits.md) | Structured commit messages for automated changelogs and SemVer |
 | [Submodules](submodules.md) | Embedding one Git repo inside another by reference |
 | [Tags and Releases](tags-and-releases.md) | Immutable named pointers, annotated vs lightweight, signing |
+
+## How-tos
+
+| Article | Description |
+|---|---|
+| [Interactive Rebase](interactive-rebase.md) | Reorder, squash, edit, drop, or amend commits before they're shared |
+| [Bisect](bisect.md) | Binary-search history to pinpoint the commit that introduced a regression |
+| [Reflog Recovery](reflog-recovery.md) | Recover lost commits, reverted resets, and deleted branches |
+| [Worktrees](worktrees.md) | Check out multiple branches in parallel without re-cloning |
+| [Hooks](hooks.md) | Run scripts at well-defined points in the Git lifecycle |
+| [Signing Commits](signing-commits.md) | Cryptographically sign commits and tags with GPG or SSH |
+| [Stash](stash.md) | Set uncommitted work aside temporarily and restore it later |
