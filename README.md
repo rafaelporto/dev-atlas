@@ -18,7 +18,7 @@ Each section has its own `README.md` that lists its articles. Use GitHub's file 
 |---|---|
 | [Software Engineering](software-engineering/README.md) | Core concepts, architecture, databases, design patterns, and more |
 | [Languages](languages/README.md) | Language-specific notes and idioms |
-| [Tools](tools/README.md) | Git, Docker, and other essential tools |
+| [Tools](tools/README.md) | CI/CD, containerization, observability, orchestration, IaC, and other engineering tooling |
 
 > Sections are added on demand. If a topic doesn't exist yet, it will when it becomes relevant.
 
@@ -26,7 +26,9 @@ Each section has its own `README.md` that lists its articles. Use GitHub's file 
 
 ## Article structure
 
-Every article follows the same template:
+Articles use one of two templates depending on the topic.
+
+**Concept articles** (most of the repo — patterns, principles, architectural styles) follow:
 
 - **What is it?** — a clear definition
 - **Why does it matter?** — the motivation
@@ -34,6 +36,8 @@ Every article follows the same template:
 - **Examples** — concrete illustrations
 - **When to use / When NOT to use** — trade-offs
 - **References** — sources and further reading
+
+**How-to articles** (step-by-step procedural guides) follow: Prerequisites → Steps → Verification → Common issues → References.
 
 ---
 

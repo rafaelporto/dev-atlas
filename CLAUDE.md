@@ -12,7 +12,8 @@ There is no build system, no package manager, and no runtime. The only artefacts
 
 - All content (article text, headings, code comments, identifiers) must be in **English**.
 - Code examples follow these rules by topic:
-  - **Mobile articles** (anything under `architecture/mobile/` or explicitly about mobile development) — provide examples in **Swift**, **Kotlin**, and **Flutter (Dart)**, one block per language.
+  - **Language articles** (anything under `languages/<lang>/`) — write all examples in the directory's language. E.g. articles under `languages/go/` use Go, `languages/swift/` uses Swift, `languages/dart/` and `languages/flutter/` use Dart, `languages/react/` uses TypeScript with JSX (unless the article is specifically about plain JavaScript).
+  - **Mobile architecture articles** (anything under `software-engineering/architecture/mobile/` or explicitly about mobile development) — provide examples in **Swift**, **Kotlin**, and **Flutter (Dart)**, one block per language.
   - **All other articles** — ask the user which language to use before writing any code example.
 
 ---
@@ -21,21 +22,42 @@ There is no build system, no package manager, and no runtime. The only artefacts
 
 ```
 dev-atlas/
-├── README.md                  # Root index — navigation table for all sections
-├── _templates/                # Article templates — NOT content, never link from README
+├── README.md                       # Root index — navigation table for all sections
+├── _templates/                     # Article templates — NOT content, never link from README
 │   ├── concept.md
 │   └── how-to.md
-└── software-engineering/      # Primary section (only section currently populated)
-    ├── README.md              # Section index
-    ├── architecture/
-    ├── concepts/
-    └── design-patterns/
-        ├── behavioral/
-        ├── creational/
-        └── structural/
+├── software-engineering/
+│   ├── README.md                   # Section index
+│   ├── architecture/
+│   │   └── mobile/                 # Mobile-specific architectural patterns (MVC, MVP, MVVM, MVI, VIPER, Clean, Modular)
+│   ├── concepts/
+│   │   ├── solid/                  # The five SOLID principles
+│   │   └── pragmatic-principles/   # DRY, KISS, YAGNI
+│   ├── databases/
+│   │   ├── concepts/
+│   │   ├── engines/
+│   │   └── types/                  # Relational, document, key-value, graph, time-series, etc.
+│   └── design-patterns/
+│       ├── behavioral/
+│       ├── creational/
+│       └── structural/
+├── languages/
+│   ├── dart/
+│   ├── flutter/
+│   ├── go/
+│   ├── react/
+│   └── swift/
+└── tools/
+    ├── ci-cd/
+    ├── code-quality/
+    ├── containerization/
+    ├── iac/
+    ├── local-dev/
+    ├── observability/
+    └── orchestration/
 ```
 
-**Planned but not yet created:** `languages/` and `tools/` — these exist in the root `README.md` navigation table but have no files. Do not create them unless the user explicitly asks to add an article there.
+All three top-level content sections (`software-engineering/`, `languages/`, `tools/`) exist and are actively populated. Do not create a fourth top-level section without explicit user request.
 
 ---
 
@@ -87,7 +109,7 @@ Every directory that contains articles must have a `README.md` that:
 - Contains a table listing each article: `| [Title](filename.md) | One-line description |`
 - Does **not** contain full article content — only navigation
 
-When adding a new article, always update the parent `README.md` to include it.
+When adding a new article, always update the parent `README.md` to include it. Then evaluate whether any ancestor `README.md` (including the root) also needs updating — see "Keeping READMEs in sync" below.
 
 ---
 
@@ -118,17 +140,39 @@ When adding a new article, always update the parent `README.md` to include it.
 3. Fill in all sections.
 4. Add an entry to the section's `README.md`.
 
-### New subsection (e.g., a new category under `design-patterns/`)
+### New subsection (e.g., a new category under `design-patterns/`, a new language under `languages/`, a new tool category under `tools/`)
 
 1. Create the directory.
-2. Create `README.md` inside it.
+2. Create `README.md` inside it with a navigation table.
 3. Add a reference to it from the parent `README.md`.
 
-### New top-level section (e.g., `languages/`, `tools/`)
+This rule applies to nested subsections too. Examples already in the repo: `concepts/solid/`, `concepts/pragmatic-principles/`, `architecture/mobile/`, `databases/types/`. Each nested subsection has its own `README.md`, and the parent links to that — not directly to the leaf articles.
+
+### Overview articles inside a subsection
+
+Several subsections start with an introductory article that summarizes the whole topic before the deep dives. Existing examples:
+
+- `languages/<lang>/overview.md` (history, paradigms, ecosystem fit) — present in every language directory
+- `concepts/pragmatic-principles/overview.md`
+- `concepts/solid/solid.md`
+
+The naming is intentionally not standardized (`overview.md` vs. the topic's own name) — use whichever reads better in the parent `README.md` navigation table. An overview article is a regular article and must follow the `concept.md` template.
+
+### New top-level section
+
+The three top-level content sections (`software-engineering/`, `languages/`, `tools/`) already exist and are populated. Do not add another top-level section without explicit user request. If asked:
 
 1. Create the directory and its `README.md`.
 2. Update the root `README.md` navigation table.
-3. The `languages/` and `tools/` rows already exist in the root table — only add files, do not change the table structure.
+
+### Keeping READMEs in sync
+
+Every new article, subsection, doc, or piece of information triggers this check: walk up the tree and ask, at each `README.md`, "does this still accurately describe what's underneath it?"
+
+- **Immediate parent `README.md`** — must always be updated to include the new entry.
+- **Ancestor `README.md` files and the root `README.md`** — update when the new content expands the scope, adds a new subsection, or makes an existing description inaccurate.
+
+Stop walking up the tree as soon as you reach a `README.md` that already describes the new content accurately. This rule applies equally to new articles, new subsections, and edits that change the scope of existing content.
 
 ---
 
