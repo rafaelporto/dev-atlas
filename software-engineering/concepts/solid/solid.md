@@ -116,7 +116,7 @@ SOLID is widely taught, but it is not above criticism. Engineers who have worked
 ### Alternatives and complements
 
 - **CUPID** — Dan North proposes five properties (*Composable, Unix-philosophy, Predictable, Idiomatic, Domain-based*) framed as a positive vision rather than principles. CUPID describes what *joyful code* looks like, where SOLID describes how to avoid *painful code*. See [CUPID — for joyful coding](https://dannorth.net/cupid-for-joyful-coding/).
-- **[DRY, KISS, YAGNI](../pragmatic-principles/README.md)** — older heuristics that still hold their ground. They overlap with SOLID but emphasize *not writing code* (KISS, YAGNI) where SOLID emphasizes *structuring code well*. See the [Pragmatic Principles overview](../pragmatic-principles/overview.md) for the tensions between these heuristics and SOLID's pull toward abstraction.
+- **[DRY, KISS, YAGNI, Fail Fast](../pragmatic-principles/README.md)** — older heuristics that still hold their ground. They overlap with SOLID but emphasize *not writing code* (KISS, YAGNI), *not duplicating knowledge* (DRY), and *not hiding failures* (Fail Fast), where SOLID emphasizes *structuring code well*. See the [Pragmatic Principles overview](../pragmatic-principles/overview.md) for the tensions between these heuristics and SOLID's pull toward abstraction.
 - **Tell, Don't Ask** and the **Law of Demeter** — narrower object-design rules that often surface the same problems SOLID catches, but at the call-site level.
 - **Functional core, imperative shell** — a structural alternative for systems where state and IO can be clearly separated. Often satisfies DIP and SRP as a side effect.
 
