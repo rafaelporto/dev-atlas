@@ -1,3 +1,11 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
+# Jenkins
+
 > Jenkins is an open-source, self-hosted automation server that orchestrates CI/CD pipelines through a Groovy-based pipeline-as-code model and a plugin ecosystem of over 1,800 integrations.
 
 ## What is it?

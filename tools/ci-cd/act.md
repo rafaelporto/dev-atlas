@@ -1,3 +1,11 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
+# Act
+
 > Act is a command-line tool that runs GitHub Actions workflows locally using Docker, giving you immediate feedback without pushing to GitHub.
 
 ## What is it?

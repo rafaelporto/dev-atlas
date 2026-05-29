@@ -1,3 +1,11 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
+# Dagger
+
 > Dagger is a programmable CI/CD engine that lets you write pipelines as typed functions in Go, Python, or TypeScript, and run them identically on your local machine and in any CI environment.
 
 ## What is it?

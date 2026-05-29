@@ -1,3 +1,11 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
+# GitHub Actions
+
 > GitHub Actions is GitHub's built-in CI/CD and automation platform that runs event-driven workflows defined as YAML files directly inside a repository.
 
 ## What is it?

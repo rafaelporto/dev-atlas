@@ -1,3 +1,11 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
+# GitLab CI
+
 > GitLab CI is GitLab's built-in continuous integration and delivery system, configured through a single YAML file and executed by GitLab Runner on any machine you control.
 
 ## What is it?
