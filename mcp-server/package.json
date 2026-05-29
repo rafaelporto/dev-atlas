@@ -1,0 +1,37 @@
+{
+  "name": "dev-atlas-mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local MCP server that exposes the dev-atlas knowledge base to AI agents.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "dev-atlas-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "inspect": "npx @modelcontextprotocol/inspector tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "audit-links": "tsx scripts/audit-links.ts",
+    "backfill": "tsx scripts/backfill-frontmatter.ts",
+    "validate": "npm run build && npm run test && npm run audit-links -- --strict",
+    "prepare": "cd .. && husky mcp-server/.husky"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.20.0",
+    "gray-matter": "4.0.3",
+    "zod": "3.25.76",
+    "zod-to-json-schema": "3.24.6"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "0.18.0",
+    "@types/node": "22.10.5",
+    "husky": "9.1.7",
+    "tsx": "4.20.4",
+    "typescript": "5.9.2",
+    "vitest": "3.2.4"
+  }
+}

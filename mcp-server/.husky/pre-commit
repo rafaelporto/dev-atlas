@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+# Pre-commit hook installed by husky from mcp-server/.
+# Runs the dev-atlas link auditor in strict mode against the wiki.
+# Fails the commit if any inline link or `related` entry points to a missing file.
+
+cd "$(git rev-parse --show-toplevel)/mcp-server" || exit 1
+npm run --silent audit-links -- --strict
