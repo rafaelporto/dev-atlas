@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Closures and Memory
 
 > Closures capture references to the values they use, and ARC manages their lifetime — together they produce most of the "retain cycle" bugs in Swift, and most of the patterns to avoid them.

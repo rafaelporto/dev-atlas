@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Swift Paradigms
 
 > Swift is a multi-paradigm language built around protocol-oriented programming, value semantics, and first-class support for both OOP and functional styles.

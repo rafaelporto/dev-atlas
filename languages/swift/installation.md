@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "swift"
+---
 # How to Install Swift
 
 > Install Swift and the Apple development toolchain on macOS, with notes on managing multiple Swift versions.

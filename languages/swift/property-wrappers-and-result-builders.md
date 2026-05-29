@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Property Wrappers and Result Builders
 
 > Two Swift-native metaprogramming features that power SwiftUI, SwiftData, and most modern declarative APIs on Apple platforms.

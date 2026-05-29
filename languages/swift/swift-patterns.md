@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Swift Patterns
 
 > GoF design patterns adapted to Swift, plus the idioms that emerge naturally from value types, protocols, and modern concurrency.

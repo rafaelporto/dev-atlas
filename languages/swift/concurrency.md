@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Concurrency
 
 > Swift's modern concurrency model is built on `async`/`await`, structured tasks, and a strict separation between concurrent and isolated state.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Error Handling
 
 > Swift handles errors through `throws`/`try`/`catch` with typed `Error` values, and complements them with `Result` and — in Swift 6 — typed throws for compile-time precision.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Swift Package Manager
 
 > SPM is Swift's official dependency manager and build system — it manages packages, builds binaries, and powers modular project structure on Apple platforms.

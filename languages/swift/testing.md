@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Testing
 
 > Swift has two test frameworks: XCTest is the long-standing default, and Swift Testing is the modern macro-based replacement Apple recommends for new code.

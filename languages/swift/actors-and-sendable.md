@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Actors and Sendable
 
 > Actors isolate mutable state, `Sendable` types are safe to send across concurrency domains, and together they let the Swift 6 compiler prove your code is free of data races.

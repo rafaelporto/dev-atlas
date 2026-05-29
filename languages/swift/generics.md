@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Generics
 
 > Generics let you write code that works for any type while preserving full type safety — the foundation of Swift's standard library and most of its idioms.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Swift Overview
 
 > Swift is a statically typed, compiled language designed by Apple for building safe, fast, and expressive software across all Apple platforms.

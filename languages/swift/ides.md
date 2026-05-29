@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # IDEs and Editors
 
 > Xcode is the canonical Swift IDE on macOS; VS Code with `sourcekit-lsp` covers most non-app workflows; Cursor extends VS Code with AI assistance.

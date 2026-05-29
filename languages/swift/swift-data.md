@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # SwiftData
 
 > SwiftData is Apple's modern persistence framework — a Swift-first wrapper over Core Data that integrates natively with SwiftUI.

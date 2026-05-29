@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Async Sequences
 
 > `AsyncSequence` brings `for-await-in` iteration to streams of values produced over time — the async analog of `Sequence`.

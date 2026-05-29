@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Protocols and Extensions
 
 > Protocols define contracts, extensions add behavior, and together they are the backbone of Swift's preferred style: protocol-oriented programming.

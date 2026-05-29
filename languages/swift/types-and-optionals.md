@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # Types and Optionals
 
 > Swift's type system is built around value types, optionals as first-class citizens, and a strict distinction between absence and emptiness.

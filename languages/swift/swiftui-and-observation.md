@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "swift"
+---
 # SwiftUI and Observation
 
 > SwiftUI is Apple's declarative UI framework across all platforms; the Observation framework is the modern reactivity layer that drives it.
