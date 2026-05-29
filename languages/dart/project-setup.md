@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "dart"
+---
 # Dart Project Setup
 
 > How to create and structure a Dart project using `dart create` and the standard layout conventions.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Types and Null Safety in Dart
 
 > Dart's sound type system and built-in null safety eliminate entire categories of runtime errors at compile time.

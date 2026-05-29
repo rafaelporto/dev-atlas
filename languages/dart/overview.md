@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Dart Overview
 
 > Dart is a client-optimised, statically typed language designed by Google for building fast apps on any platform — mobile, web, desktop, and server.

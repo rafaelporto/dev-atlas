@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Packages and pub in Dart
 
 > `pub` is Dart's package manager: it resolves dependencies, fetches packages from pub.dev, and manages the full lifecycle of both application and library packages.

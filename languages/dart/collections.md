@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Collections in Dart
 
 > Dart's core collection types — `List`, `Set`, and `Map` — are generics-first, iterable, and support expressive functional-style operations out of the box.

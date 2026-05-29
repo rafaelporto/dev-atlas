@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Async Programming in Dart
 
 > Dart's `async`/`await`, `Future`, and `Stream` provide a structured, composable model for handling asynchronous operations without callback pyramids.

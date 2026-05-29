@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Classes and Mixins in Dart
 
 > Dart uses class-based OOP with single inheritance, mixins for horizontal code sharing, and extension methods for adding behaviour to existing types.

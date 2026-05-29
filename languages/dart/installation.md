@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "dart"
+---
 # Installing Dart
 
 > How to install the Dart SDK on your machine and manage multiple versions using `asdf`.

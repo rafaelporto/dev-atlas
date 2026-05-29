@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Error Handling in Dart
 
 > Dart distinguishes between recoverable exceptions and unrecoverable errors, and encourages explicit handling at call sites rather than propagating unknown failures.

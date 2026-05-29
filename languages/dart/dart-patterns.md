@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Dart Patterns
 
 > Common design patterns adapted to Dart idioms, including Dart 3 sealed classes, pattern matching, and streams as the idiomatic observer.

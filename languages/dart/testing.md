@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Testing in Dart
 
 > Dart's `package:test` provides a full testing framework — unit tests, grouped suites, matchers, and first-class async support — all runnable with a single command.

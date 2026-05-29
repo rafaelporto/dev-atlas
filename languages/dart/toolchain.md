@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Dart Toolchain
 
 > The `dart` CLI is the single entry point for building, formatting, analysing, testing, and running Dart code.

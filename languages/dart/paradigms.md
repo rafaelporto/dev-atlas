@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "dart"
+---
 # Dart Paradigms
 
 > Dart is a multi-paradigm language — primarily object-oriented, with strong support for functional style and reactive/async programming.
