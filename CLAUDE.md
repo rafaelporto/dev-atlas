@@ -4,7 +4,9 @@
 
 **dev-atlas** is a personal, open-source knowledge base for software engineering. It is a structured Markdown wiki — not a blog, not a course, not a project with runnable code. Its purpose is to document core concepts, architectural patterns, design patterns, and tools in a consistent, linkable format.
 
-There is no build system, no package manager, and no runtime. The only artefacts are Markdown files.
+There is no build system, no package manager, and no runtime **for the content itself**. The only content artefacts are Markdown files.
+
+The repository **also includes a local TypeScript MCP server in `mcp-server/`** that exposes this knowledge base to AI agents (Claude Code and other MCP clients). The MCP server is tooling, not content — it has its own build system and runtime, isolated to its subdirectory. See `mcp-server/README.md`.
 
 ---
 
@@ -25,7 +27,9 @@ dev-atlas/
 ├── README.md                       # Root index — navigation table for all sections
 ├── _templates/                     # Article templates — NOT content, never link from README
 │   ├── concept.md
-│   └── how-to.md
+│   ├── how-to.md
+│   └── tags.md                     # Tag vocabulary — validated by the MCP server at startup
+├── mcp-server/                     # Tooling — TypeScript MCP server (see mcp-server/README.md)
 ├── software-engineering/
 │   ├── README.md                   # Section index
 │   ├── architecture/
@@ -57,7 +61,9 @@ dev-atlas/
     └── orchestration/
 ```
 
-All three top-level content sections (`software-engineering/`, `languages/`, `tools/`) exist and are actively populated. Do not create a fourth top-level section without explicit user request.
+All three top-level content sections (`software-engineering/`, `languages/`, `tools/`) exist and are actively populated. Do not create a fourth top-level **content** section without explicit user request.
+
+The `mcp-server/` directory is **tooling**, not content. It contains the local MCP server that exposes the wiki to AI agents. `mcp-server/node_modules/`, `mcp-server/dist/`, `mcp-server/package-lock.json`, `mcp-server/audit-report.md`, and any local `.npmrc` files are in `.gitignore`. The lock file is ignored on purpose: it would expose the npm registry where dependencies were downloaded; in a public repo, we do not share that information. Reviews focus on `mcp-server/src/`. (Trade-off: future installs may resolve transitive versions differently — acceptable in this personal-tooling context.)
 
 ---
 
@@ -77,6 +83,20 @@ Never use `PascalCase`, `camelCase`, or underscores in file or directory names (
 ## Article Templates
 
 There are two templates in `_templates/`. Always use the right one:
+
+### Front matter
+
+Every article requires YAML front matter at the top with these fields:
+
+- `type`: `concept` or `how-to`
+- `tags`: list of tags from `_templates/tags.md`
+- `related`: list of paths to related articles (full repo path, no `.md` extension)
+- `language`: language slug (e.g., `go`, `swift`) or `null` if language-agnostic
+
+`README.md` files (section indexes) do **not** carry front matter.
+
+The MCP server validates this at startup; unknown tags, broken `related` paths, or missing `# Title`/blockquote in the body fail the server boot with a clear error (Fail Fast).
+
 
 ### `concept.md` — for explaining a concept, pattern, or architectural style
 
@@ -137,14 +157,16 @@ When adding a new article, always update the parent `README.md` to include it. T
 
 1. Create the file following the naming convention.
 2. Copy the appropriate template from `_templates/`.
-3. Fill in all sections.
-4. Add an entry to the section's `README.md`.
+3. Fill in the front matter (see **Front matter** subsection above and `_templates/tags.md`).
+4. Fill in all sections.
+5. Add an entry to the section's `README.md`.
 
 ### New subsection (e.g., a new category under `design-patterns/`, a new language under `languages/`, a new tool category under `tools/`)
 
 1. Create the directory.
 2. Create `README.md` inside it with a navigation table.
-3. Add a reference to it from the parent `README.md`.
+3. If new tags are needed for the section, update `_templates/tags.md` first (see its "Adding a new tag" workflow).
+4. Add a reference to it from the parent `README.md`.
 
 This rule applies to nested subsections too. Examples already in the repo: `concepts/solid/`, `concepts/pragmatic-principles/`, `architecture/mobile/`, `databases/types/`. Each nested subsection has its own `README.md`, and the parent links to that — not directly to the leaf articles.
 
@@ -178,7 +200,7 @@ Stop walking up the tree as soon as you reach a `README.md` that already describ
 
 ## What NOT to Do
 
-- Do not add runnable projects, `package.json`, `pyproject.toml`, or any dependency files.
+- Do not add runnable projects, `package.json`, `pyproject.toml`, or any dependency files, **with one exception: the `mcp-server/` directory contains the TypeScript MCP server that exposes this knowledge base to AI agents. See `mcp-server/README.md` for details.**
 - Do not create articles without following the full template structure.
 - Do not write articles in the `_templates/` directory.
 - Do not hardcode email addresses, phone numbers, or any personal data in any file.
