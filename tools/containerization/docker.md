@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Docker
 
 > Docker is a platform for building, shipping, and running applications in isolated containers that carry their own dependencies.

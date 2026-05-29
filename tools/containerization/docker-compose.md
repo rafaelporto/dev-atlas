@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Docker Compose
 
 > Docker Compose lets you define and run a multi-container application from a single YAML file, replacing long chains of `docker run` commands with one command that brings an entire stack up.

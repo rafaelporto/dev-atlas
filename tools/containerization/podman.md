@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Podman
 
 > Podman is a daemonless, rootless container engine that is API-compatible with Docker and runs OCI containers without requiring a privileged background service.
