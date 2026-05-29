@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Conventional Commits
 
 > A small, agreed-upon vocabulary for commit messages that makes history machine-readable and enables automated changelogs, version bumps, and release tooling.

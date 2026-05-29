@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Git
 
 > A distributed version control system that tracks changes to files as a content-addressable graph of immutable snapshots, designed for speed, integrity, and non-linear collaboration.

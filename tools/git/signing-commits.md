@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Sign Git Commits and Tags
 
 > Add a cryptographic signature to commits and tags so anyone can verify they came from you and have not been altered.

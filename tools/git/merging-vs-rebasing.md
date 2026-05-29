@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Merging vs Rebasing
 
 > Two ways to combine branches: merge preserves the true topology of who-did-what-when; rebase rewrites history to look like a clean, linear sequence.

@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Find a Regression with git bisect
 
 > Binary-search through commit history to pinpoint the exact commit that introduced a bug.

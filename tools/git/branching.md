@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Branching
 
 > A Git branch is a movable pointer to a single commit — that one fact explains creating, switching, merging, and recovering branches.

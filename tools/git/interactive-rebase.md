@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Rewrite Commits with Interactive Rebase
 
 > Reorder, squash, edit, drop, or amend a series of commits before they leave your machine.

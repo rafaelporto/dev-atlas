@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # The Staging Area
 
 > Git's three-stage model — working tree, index, repository — gives you a sandbox to compose the next commit before it becomes history.

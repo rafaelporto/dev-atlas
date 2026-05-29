@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Work in Parallel with git worktree
 
 > Check out multiple branches of the same repository into separate directories — no need to stash, switch, or clone twice.

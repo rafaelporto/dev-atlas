@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Remotes
 
 > A remote is another Git repository — usually on a server — that your local repo can fetch from and push to; everything else about distributed Git follows from that.

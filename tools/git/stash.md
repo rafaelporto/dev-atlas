@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Set Changes Aside with git stash
 
 > Save uncommitted work, return your tree to a clean state, then restore the work later — without making a commit.

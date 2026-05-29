@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Use Git Hooks
 
 > Run scripts automatically at well-defined points in the Git lifecycle — to enforce commit message format, run linters, prevent bad pushes, or trigger anything else.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Tags and Releases
 
 > Tags are immutable, human-meaningful names for specific commits — usually a release; annotated tags add author, date, message, and an optional cryptographic signature.

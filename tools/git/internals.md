@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Git Internals
 
 > Underneath the porcelain commands, Git is a small content-addressable object store and a set of named pointers into it — understanding both makes every other Git operation obvious.

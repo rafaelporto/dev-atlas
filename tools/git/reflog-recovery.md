@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Recover Lost Commits with the Reflog
 
 > The reflog records every move of HEAD and branch tips on your machine — making commits that look "gone" almost always recoverable.

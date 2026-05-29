@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Submodules
 
 > A way to embed one Git repository inside another by reference — the parent records *which commit* of the child to use, not the child's files themselves.
