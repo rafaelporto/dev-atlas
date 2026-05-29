@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # CQRS — Command Query Responsibility Segregation
 
 > Separate the model used to update data (Commands) from the model used to read data (Queries). Each side is optimized for its own purpose.

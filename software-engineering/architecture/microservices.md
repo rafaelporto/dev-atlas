@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Microservices Architecture
 
 > Decompose an application into a set of small, independently deployable services, each owning its own data and communicating over well-defined interfaces.

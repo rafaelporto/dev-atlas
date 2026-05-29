@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # VIPER
 
 > Five strictly separated roles — View, Interactor, Presenter, Entity, Router — each with a single responsibility and no direct knowledge of the others' implementations.

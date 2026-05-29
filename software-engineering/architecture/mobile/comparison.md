@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Mobile Architecture Comparison
 
 > A side-by-side comparison of mobile architectural patterns — MVC, MVP, MVVM, MVI, VIPER, Clean, and Modular — with a decision matrix for choosing one.

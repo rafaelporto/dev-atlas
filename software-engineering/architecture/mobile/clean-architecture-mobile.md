@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Clean Architecture (Mobile)
 
 > Organize the app into concentric layers where the dependency rule is absolute: inner layers know nothing about outer layers — not the UI framework, not the network library, not the database.

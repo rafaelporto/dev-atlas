@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Event Sourcing
 
 > Instead of storing the current state of an entity, store the full sequence of events that led to that state. The current state is derived by replaying the events.

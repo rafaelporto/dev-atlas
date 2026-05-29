@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Layered Architecture
 
 > Organize the application into horizontal layers, each with a specific responsibility. Each layer communicates only with the layer directly below it.

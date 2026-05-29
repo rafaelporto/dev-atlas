@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # MVVM — Model-View-ViewModel (Mobile)
 
 > The ViewModel exposes observable state; the View subscribes and re-renders automatically — no explicit commands, no View interface to maintain.

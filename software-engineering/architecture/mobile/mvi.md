@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # MVI — Model-View-Intent (Mobile)
 
 > A single, immutable state object flows in one direction through the system — user actions produce new states, never mutate existing ones.

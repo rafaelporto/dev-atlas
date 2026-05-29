@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Clean Architecture
 
 > Organize the system around use cases. All source code dependencies must point inward — from outer circles toward the innermost circle. Nothing in the inner circle knows anything about the outer circles.

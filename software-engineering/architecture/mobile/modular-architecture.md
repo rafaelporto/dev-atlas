@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Modular Architecture (Mobile)
 
 > Split the app into independently compilable modules — one per feature or concern — so that teams work in parallel, builds stay fast, and ownership is explicit.

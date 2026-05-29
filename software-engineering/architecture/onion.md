@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Onion Architecture
 
 > Organize the system as concentric rings, with the domain model at the center and infrastructure at the outermost ring. All dependencies point inward.

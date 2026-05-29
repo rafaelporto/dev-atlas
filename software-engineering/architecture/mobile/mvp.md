@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # MVP — Model-View-Presenter (Mobile)
 
 > Extract all presentation logic into a Presenter that has no dependency on the UI framework, making it fully testable without a device or emulator.

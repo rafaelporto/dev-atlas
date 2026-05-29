@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Hexagonal Architecture
 
 > Isolate the application core from the outside world through ports and adapters, so the core can be tested and used independently of any external system.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Event-Driven Architecture
 
 > Components communicate by producing and consuming events asynchronously. Producers do not know about consumers; consumers do not know about each other.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # MVC — Model-View-Controller (Mobile)
 
 > The original architectural pattern for iOS — simple to start, notorious for accumulating logic in the Controller as apps grow.
