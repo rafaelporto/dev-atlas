@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Jaeger
 
 > An open-source distributed tracing system that tracks the full path of a request across microservices, enabling engineers to visualize latency, identify bottlenecks, and pinpoint failures in a flame graph.

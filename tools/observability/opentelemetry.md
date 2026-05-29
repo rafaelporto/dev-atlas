@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # OpenTelemetry
 
 > A vendor-neutral, open standard for instrumenting applications to produce traces, metrics, and logs, allowing telemetry data to be exported to any compatible backend without changing instrumentation code.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Prometheus
 
 > An open-source monitoring system that collects metrics by scraping HTTP endpoints on a schedule and stores them in a time-series database, providing a powerful query language and alerting engine.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # ELK Stack
 
 > A log aggregation platform composed of Elasticsearch, Logstash, and Kibana that centralizes logs from any source into a single, full-text-searchable store with rich visualization and alerting capabilities.

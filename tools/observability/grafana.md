@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Grafana
 
 > An open-source visualization and analytics platform that connects to any observability data source and renders metrics, logs, and traces as interactive dashboards in a single unified interface.
