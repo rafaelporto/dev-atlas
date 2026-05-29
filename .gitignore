@@ -1,0 +1,14 @@
+# MCP server local artifacts
+mcp-server/node_modules/
+mcp-server/dist/
+mcp-server/package-lock.json
+mcp-server/audit-report.md
+
+# npm registry config (may expose private registry URL)
+.npmrc
+**/.npmrc
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*.swo
