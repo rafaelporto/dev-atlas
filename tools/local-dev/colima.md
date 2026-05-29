@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Run Docker on macOS with Colima
 
 > Set up Colima as a lightweight, free alternative to Docker Desktop on macOS, providing a Docker-compatible socket without requiring a Docker Desktop license.

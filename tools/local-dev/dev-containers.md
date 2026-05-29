@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Dev Containers
 
 > A specification and tooling that lets you define a complete, reproducible development environment inside a Docker container using a single config file.

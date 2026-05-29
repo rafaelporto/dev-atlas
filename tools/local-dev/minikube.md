@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: null
+---
 # How to Run a Local Kubernetes Cluster with Minikube
 
 > Set up a single-node Kubernetes cluster on your local machine using Minikube, suitable for development and testing without a cloud provider.
