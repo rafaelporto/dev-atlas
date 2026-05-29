@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Error Handling in Go
 
 > In Go, errors are values returned from functions — not exceptions thrown and caught — making error handling explicit, local, and composable.

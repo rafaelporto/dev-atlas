@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Context in Go
 
 > The `context` package provides a standard way to carry deadlines, cancellation signals, and request-scoped values across API boundaries and goroutines.

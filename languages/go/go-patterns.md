@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Go Patterns
 
 > Go code converges on a set of recurring patterns — some adapted from GoF, others unique to the language — that experienced Go developers recognize on sight.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Functional Options
 
 > Functional Options is a Go pattern for building flexible, extensible constructors without breaking API compatibility or requiring large configuration structs.

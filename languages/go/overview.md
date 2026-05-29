@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Go Overview
 
 > Go is a statically typed, compiled language designed at Google for building reliable, efficient, and simple software at scale.

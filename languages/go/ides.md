@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # IDEs and Editors for Go
 
 > A comparison of the most popular development environments for Go, with guidance on when each one fits best.

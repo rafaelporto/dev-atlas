@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Packages and Modules in Go
 
 > Go organizes code into packages for encapsulation and modules for versioned dependency management — the two systems work together to define what code exists and who can use it.

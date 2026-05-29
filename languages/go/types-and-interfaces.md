@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Types and Interfaces in Go
 
 > Go's type system is statically typed, structurally typed for interfaces, and built around composition rather than inheritance.

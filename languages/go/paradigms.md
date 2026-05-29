@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Paradigms in Go
 
 > Go is a multi-paradigm language that supports procedural, object-oriented, functional, and concurrent programming — each with different levels of idiomatic support and trade-offs.

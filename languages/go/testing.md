@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Testing in Go
 
 > Go ships a complete testing framework in its standard library — no third-party test runner required — with a strong convention of table-driven tests that makes cases easy to add and maintain.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "go"
+---
 # Concurrency in Go
 
 > Go makes concurrent programming accessible through goroutines and channels, following the CSP model: "Don't communicate by sharing memory; share memory by communicating."

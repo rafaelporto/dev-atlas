@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "go"
+---
 # Go Toolchain
 
 > A practical guide to the tools that ship with Go — building, testing, formatting, and profiling without third-party dependencies.

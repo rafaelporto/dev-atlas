@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "go"
+---
 # Installing Go
 
 > How to install Go on your machine and manage multiple versions using `asdf`.

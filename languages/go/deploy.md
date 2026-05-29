@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "go"
+---
 # Deploying a Go Application
 
 > How to build a production-ready Go binary, containerise it with Docker, and pass configuration through environment variables.

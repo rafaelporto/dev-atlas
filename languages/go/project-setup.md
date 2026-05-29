@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "go"
+---
 # Go Project Setup
 
 > How to initialise a Go module, structure a project, and add the first dependencies.
