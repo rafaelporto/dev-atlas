@@ -1,3 +1,11 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
+# Kubernetes
+
 > Kubernetes is an open-source platform for automating the deployment, scaling, and management of containerized applications across clusters of machines.
 
 ## What is it?
