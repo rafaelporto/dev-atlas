@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Error Boundaries
 
 > Error boundaries catch rendering errors in their subtree and show a fallback UI. They are React's safety net for unexpected exceptions in components.

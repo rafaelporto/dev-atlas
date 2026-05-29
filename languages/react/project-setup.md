@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Project Setup
 
 > The mainstream choices for scaffolding a React project: **Vite** (SPA), **Next.js** (fullstack with RSC), **React Router v7+** (fullstack with route-based loaders), and **TanStack Start** (type-safety-first SSR). Pick by what the app needs to do, not by popularity.

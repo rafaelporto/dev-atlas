@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Components and Props
 
 > Components are functions that return UI; props are the inputs they receive from their parent. Composition is the primary way to reuse UI in React.

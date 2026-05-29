@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Toolchain
 
 > The non-negotiable parts of a React toolchain: TypeScript, ESLint (with the React hooks and a11y plugins), Prettier or Biome, and a typed test runner. Storybook for component-level work; the React DevTools and Profiler always.

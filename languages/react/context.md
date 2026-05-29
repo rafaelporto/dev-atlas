@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Context
 
 > Context lets you broadcast a value to any descendant in the tree without passing it through every intermediate prop. Useful for cross-cutting data, dangerous as a state-management substitute.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Testing
 
 > Test components the way users use them: with React Testing Library (queries by role, label, text), Vitest or Jest as the runner, and Playwright for true end-to-end coverage.

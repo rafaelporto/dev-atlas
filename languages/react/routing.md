@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Routing
 
 > React has no built-in router. The mature options are React Router (general purpose), TanStack Router (type-safe, search-param-first), and Next.js App Router (file-based, integrated with RSC).

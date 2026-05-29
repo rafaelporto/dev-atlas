@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Styling
 
 > Three mainstream approaches: CSS Modules (locally scoped CSS), Tailwind CSS (utility-first), and CSS-in-JS (styled-components, Emotion). Pick by the team's preference and the framework's constraints — there is no universal best.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # JSX
 
 > JSX is a syntax extension to JavaScript that lets you write HTML-like markup inside JS/TS code; it compiles to plain function calls that produce React elements.

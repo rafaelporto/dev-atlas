@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # React
 
 > React is a declarative JavaScript library for building user interfaces from composable, reusable components.

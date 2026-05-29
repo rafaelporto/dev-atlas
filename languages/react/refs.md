@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Refs
 
 > Refs let you reach outside React's declarative model — to read a DOM node, hold a mutable value across renders, or expose an imperative API. Use sparingly.

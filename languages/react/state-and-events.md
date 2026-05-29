@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # State and Events
 
 > State is data a component remembers between renders; events are how the user interacts with the UI. `useState` connects the two.

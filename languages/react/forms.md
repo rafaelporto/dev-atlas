@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Forms
 
 > Most React forms benefit from a dedicated library (React Hook Form). Hand-rolling controlled inputs is fine for tiny forms; it doesn't scale.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Rendering and Reconciliation
 
 > Rendering is the act of calling a component function to get UI; reconciliation is React deciding what changed and updating the DOM accordingly.

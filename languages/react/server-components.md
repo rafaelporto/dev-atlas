@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Server Components
 
 > React Server Components (RSC) render on the server, never ship JavaScript to the client, and can directly access servers and databases. They redraw how you split client and server code in a React app.

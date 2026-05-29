@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Data Fetching
 
 > Server data is not local state. Use a query library (TanStack Query, SWR) to handle caching, revalidation, deduping, and loading states — or fetch on the server with RSC.

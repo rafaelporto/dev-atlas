@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Rules of Hooks and Custom Hooks
 
 > Hooks must be called in the same order on every render, and only from React functions. Custom hooks are how you reuse stateful logic across components.

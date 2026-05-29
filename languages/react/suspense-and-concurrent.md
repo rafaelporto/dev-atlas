@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Suspense and Concurrent Features
 
 > Suspense lets components "wait" for something (data, code, an image) and show a fallback in the meantime. Concurrent features (`useTransition`, `useDeferredValue`) keep the UI responsive during slow updates.

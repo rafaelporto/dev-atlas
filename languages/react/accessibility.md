@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Accessibility
 
 > Use semantic HTML first. Most accessibility comes from `<button>`, `<label>`, `<nav>`, proper heading order, and managing focus — not from ARIA attributes.

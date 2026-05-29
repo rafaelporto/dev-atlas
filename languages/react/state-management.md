@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # State Management
 
 > The React ecosystem offers many state libraries. Pick by *what kind* of state you're managing: server state (TanStack Query), client state (Zustand/Jotai/Redux Toolkit), URL state (router), local state (`useState`).

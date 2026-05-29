@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Memoization
 
 > `memo`, `useMemo`, and `useCallback` skip work when inputs haven't changed. They are *optimisations*, not correctness fixes — apply them when you've measured a problem, not preemptively.

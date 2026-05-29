@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Folder Structure
 
 > Two viable starting points: **layer-based** (separate folders for components, hooks, services) and **feature-based** (each folder owns everything for one feature). Feature-based scales better.

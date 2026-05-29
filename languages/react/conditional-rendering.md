@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Conditional Rendering
 
 > Show different UI based on conditions using JavaScript expressions inside JSX: ternaries, `&&`, early returns, and guard variables. Each has trade-offs.

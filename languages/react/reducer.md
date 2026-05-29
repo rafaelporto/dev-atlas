@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # `useReducer`
 
 > `useReducer` centralises complex state transitions into a single pure function. Prefer it when state has many fields that change together, or when transitions are non-trivial.

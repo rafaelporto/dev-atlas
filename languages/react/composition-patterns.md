@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Composition Patterns
 
 > React's superpower is composition: small components combined into bigger ones. A few recurring patterns — `children`, slots, compound components, render props, and `as` — cover most reuse needs without inheritance.

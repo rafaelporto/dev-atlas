@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Lists and Keys
 
 > Keys identify list items across renders so React can preserve state, animations, and DOM nodes correctly. Use stable, unique IDs — not array indices.

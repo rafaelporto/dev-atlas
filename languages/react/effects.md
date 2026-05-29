@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # Effects
 
 > `useEffect` runs code as a side effect of rendering — but most code you might put in an Effect doesn't belong there.

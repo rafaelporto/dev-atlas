@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "react"
+---
 # TypeScript with React
 
 > TypeScript pairs well with React: typed props, typed hooks, generics for reuse, and discriminated unions for safer rendering. A few idioms cover most situations.
