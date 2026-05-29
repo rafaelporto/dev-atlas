@@ -1,3 +1,10 @@
+---
+type: how-to
+tags: []                                    # see _templates/tags.md (at least one Domain tag)
+related: []                                 # full repo paths to related articles, without .md
+language: null                              # e.g., "go", "swift", or null if language-agnostic
+---
+
 # How to [Do Something]
 
 > One-line description of what this guide achieves.

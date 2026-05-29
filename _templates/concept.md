@@ -1,3 +1,10 @@
+---
+type: concept
+tags: []                                    # see _templates/tags.md (at least one Domain tag)
+related: []                                 # full repo paths to related articles, without .md
+language: null                              # e.g., "go", "swift", or null if language-agnostic
+---
+
 # [Topic Title]
 
 > One-line summary of what this is.
