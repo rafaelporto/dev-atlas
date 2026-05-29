@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Ansible
 
 > Ansible is an open-source, agentless automation tool that enforces the desired state of systems — packages, files, services, users — by connecting over SSH and executing declarative YAML playbooks.

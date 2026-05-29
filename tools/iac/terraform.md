@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Terraform
 
 > Terraform is an open-source Infrastructure as Code tool that lets you define and provision cloud and on-premises infrastructure using a declarative configuration language, then converge the real world to that declaration with a single command.
