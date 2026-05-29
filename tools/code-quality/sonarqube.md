@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # SonarQube
 
 > An open-source platform that continuously inspects code quality by running static analysis to detect bugs, vulnerabilities, and code smells across many languages.
