@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Adapter
 
 > Convert the interface of a class into another interface that clients expect.

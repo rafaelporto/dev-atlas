@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Prototype
 
 > Create new objects by copying an existing object (the prototype).

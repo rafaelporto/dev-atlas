@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Abstract Factory
 
 > Provide an interface for creating families of related objects without specifying their concrete classes.

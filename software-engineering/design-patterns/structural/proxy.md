@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Proxy
 
 > Provide a surrogate or placeholder for another object to control access to it.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Memento
 
 > Capture and externalize an object's internal state so that it can be restored later, without violating encapsulation.

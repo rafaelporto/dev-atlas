@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Chain of Responsibility
 
 > Pass a request along a chain of handlers. Each handler decides to process the request or pass it to the next handler in the chain.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Composite
 
 > Compose objects into tree structures to represent part-whole hierarchies. Let clients treat individual objects and compositions uniformly.

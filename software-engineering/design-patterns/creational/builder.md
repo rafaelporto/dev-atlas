@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Builder
 
 > Construct complex objects step by step, separating the construction process from the final representation.

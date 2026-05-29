@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Singleton
 
 > Ensure a class has only one instance and provide a global access point to it.

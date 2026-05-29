@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Command
 
 > Encapsulate a request as an object, allowing you to parameterize clients with different requests, queue or log requests, and support undoable operations.

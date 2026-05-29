@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Iterator
 
 > Provide a way to sequentially access elements of a collection without exposing its underlying representation.

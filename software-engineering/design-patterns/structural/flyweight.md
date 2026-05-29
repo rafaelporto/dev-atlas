@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Flyweight
 
 > Use sharing to support a large number of fine-grained objects efficiently.

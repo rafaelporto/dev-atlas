@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Facade
 
 > Provide a simplified interface to a complex subsystem.

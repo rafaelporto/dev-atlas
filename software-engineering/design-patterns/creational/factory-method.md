@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Factory Method
 
 > Define an interface for creating an object, but let subclasses decide which class to instantiate.
