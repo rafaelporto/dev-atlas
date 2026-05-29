@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # In-Memory Databases
 
 > The data lives in RAM, not on disk. Reads and writes happen in microseconds. Disk, when used at all, is for durability — not for serving queries.

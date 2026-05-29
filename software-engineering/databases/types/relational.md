@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Relational Databases
 
 > The default database for structured, transactional data: tables linked by foreign keys and queried with SQL.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Document Databases
 
 > Stores self-contained documents (usually JSON or BSON) instead of rows in tables. Schema is flexible; the document is the unit of read, write, and consistency.

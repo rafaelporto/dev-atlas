@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Wide-Column Stores
 
 > Tables where each row can have millions of columns grouped into families. Built for massive write throughput across a cluster, not for ad-hoc queries.

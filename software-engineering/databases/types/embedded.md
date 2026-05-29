@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Embedded Databases
 
 > The database runs inside your application process. No server, no network — just a library that reads and writes a local file.

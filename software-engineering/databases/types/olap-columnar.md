@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # OLAP / Columnar Databases
 
 > Stores data by column instead of by row. The opposite shape from OLTP. Queries that scan billions of rows but touch only a few columns run an order of magnitude faster.

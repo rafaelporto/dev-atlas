@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Object Databases
 
 > Persists application objects directly, with their identity, references, and class hierarchy preserved. No relational mapping in between. A niche category today, but the historical answer to the object-relational impedance mismatch.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # NewSQL
 
 > Relational databases that scale horizontally without giving up SQL or ACID. The promise: Postgres ergonomics, Cassandra scale.

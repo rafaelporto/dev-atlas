@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Graph Databases
 
 > Data is stored as nodes connected by edges, both carrying properties. The queries are traversals: starting from a node, walk the connections.

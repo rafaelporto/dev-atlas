@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Vector Databases
 
 > Stores high-dimensional numeric vectors and answers "what is most similar to this one?" in milliseconds. The backbone of semantic search and retrieval-augmented generation.

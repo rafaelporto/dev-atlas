@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Time-Series Databases
 
 > Optimized for an append-only flood of timestamped events. Every row knows when it happened, queries are almost always over time ranges, and old data is compressed or thrown away.

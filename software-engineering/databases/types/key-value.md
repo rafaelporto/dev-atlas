@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Key-Value Stores
 
 > A hash map at internet scale: one value per key, retrieved in constant time. Anything beyond "lookup by key" is out of scope.

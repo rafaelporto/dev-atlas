@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Search Engines
 
 > Databases built around the inverted index. Optimized for "given these words, find the most relevant documents" — full-text, ranked, sub-second.
