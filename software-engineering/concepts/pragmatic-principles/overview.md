@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Pragmatic Principles — Overview
 
 > Four heuristics that broadly aim in the same direction — code that survives change — but disagree, sharply, on *how* to get there.

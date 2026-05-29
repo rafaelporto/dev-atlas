@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Don't Repeat Yourself (DRY)
 
 > Every piece of knowledge in a system should have a single, unambiguous representation — but not every line of code that looks like another is repeated knowledge.

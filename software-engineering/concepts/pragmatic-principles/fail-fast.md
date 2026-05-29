@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Fail Fast
 
 > When something is wrong, halt and report it as close to the cause as possible — don't propagate, don't paper over, don't guess a recovery.

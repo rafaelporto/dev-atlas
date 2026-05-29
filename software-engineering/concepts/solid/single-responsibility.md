@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Single Responsibility Principle (SRP)
 
 > A module should have one, and only one, reason to change — and that reason should come from one stakeholder.

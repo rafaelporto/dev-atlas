@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Liskov Substitution Principle (LSP)
 
 > A subtype must be usable anywhere its supertype is expected, without surprising the caller.

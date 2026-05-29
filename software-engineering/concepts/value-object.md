@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Value Object
 
 > An immutable domain object whose equality is defined by its attributes, not by an identifier.

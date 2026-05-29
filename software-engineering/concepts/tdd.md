@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Test-Driven Development (TDD)
 
 > A development discipline where tests are written before the code that makes them pass, guiding design through small, verified increments.

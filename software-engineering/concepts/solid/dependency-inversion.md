@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Dependency Inversion Principle (DIP)
 
 > High-level policy and low-level details should both depend on the same abstraction — and that abstraction belongs to the policy.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Domain-Driven Design (DDD)
 
 > An approach to software development that centers the design around the business domain, using a shared language between developers and domain experts.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # SOLID
 
 > Five design principles that, together, describe how to structure code so that it stays cheap to change as it grows.

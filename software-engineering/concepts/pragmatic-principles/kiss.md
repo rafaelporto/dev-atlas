@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Keep It Simple, Stupid (KISS)
 
 > Of two designs that meet today's requirements, the simpler one is almost always the better one.

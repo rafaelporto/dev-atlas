@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # Open/Closed Principle (OCP)
 
 > Software entities should be open for extension, but closed for modification.

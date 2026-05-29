@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: null
+---
 # You Aren't Gonna Need It (YAGNI)
 
 > Don't build a feature, an abstraction, or an extension point until a present requirement demands it.
