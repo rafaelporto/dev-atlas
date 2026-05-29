@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "flutter"
+---
 # Installing Flutter
 
 > How to install the Flutter SDK, configure the Android and iOS toolchains, and verify your setup with `flutter doctor`.

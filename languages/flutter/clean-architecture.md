@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Clean Architecture in Flutter
 
 > Clean Architecture separates a Flutter app into three independent layers — UI, domain, and data — so that business logic can be tested without the framework and data sources can be swapped without touching the UI.

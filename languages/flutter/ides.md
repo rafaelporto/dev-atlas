@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # IDEs and Editors for Flutter
 
 > VS Code and Android Studio are the two officially supported editors for Flutter — each with dedicated extensions, hot reload integration, and widget inspection tools.

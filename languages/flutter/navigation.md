@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Navigation in Flutter
 
 > Flutter's Navigator manages a stack of routes; GoRouter builds on top of it to add URL-based routing, deep links, and declarative route definitions.

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # State Management in Flutter
 
 > Flutter has no single official state management solution — the ecosystem offers Provider, Riverpod, and Bloc/Cubit, each with different trade-offs in complexity, testability, and scalability.

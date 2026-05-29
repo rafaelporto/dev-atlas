@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Async in Flutter
 
 > Flutter provides `FutureBuilder` and `StreamBuilder` to bridge Dart's async model with the widget tree — turning a `Future` or `Stream` into reactive UI that handles loading and error states declaratively.

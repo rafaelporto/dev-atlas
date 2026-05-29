@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Dependency Injection in Flutter
 
 > Flutter apps use a service locator (GetIt) or annotation-based code generation (Injectable) to wire dependencies without passing them through the widget tree manually.

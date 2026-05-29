@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # The Flutter Widget Model
 
 > In Flutter, everything on screen is a widget — an immutable description of part of the UI that the framework reconciles into a live element tree and ultimately paints through a render tree.

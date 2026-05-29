@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Testing in Flutter
 
 > Flutter's testing pyramid has three levels — unit tests (pure Dart), widget tests (Flutter engine, no device), and integration tests (full app on a device) — each with a different speed/fidelity trade-off.

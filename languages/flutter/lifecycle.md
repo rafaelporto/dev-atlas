@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Lifecycle in Flutter
 
 > Flutter has two overlapping lifecycle models: the app lifecycle (foreground, background, paused) and the widget lifecycle (init, build, update, dispose) — both must be understood to manage resources correctly.

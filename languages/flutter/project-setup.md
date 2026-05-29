@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "flutter"
+---
 # Flutter Project Setup
 
 > How to create, structure, and configure a Flutter project using `flutter create` and standard conventions.

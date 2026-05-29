@@ -1,3 +1,9 @@
+---
+type: how-to
+tags: []
+related: []
+language: "flutter"
+---
 # Deploying Flutter Apps
 
 > Building a release-ready Flutter app requires signing configuration, platform-specific build commands, and submission to the Play Store (Android) or App Store (iOS).

@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Flutter Toolchain
 
 > The `flutter` CLI is the single entry point for running, building, testing, analysing, and managing dependencies in a Flutter project.

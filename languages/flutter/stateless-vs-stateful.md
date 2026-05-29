@@ -1,3 +1,9 @@
+---
+type: concept
+tags: []
+related: []
+language: "flutter"
+---
 # Stateless vs Stateful Widgets
 
 > `StatelessWidget` describes UI that depends only on its configuration; `StatefulWidget` pairs with a `State` object that can change over time and trigger rebuilds.
