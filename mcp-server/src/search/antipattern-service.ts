@@ -1,4 +1,5 @@
 import type { Article } from "../articles/types.js";
+import { extractH2Section } from "../articles/sections.js";
 import type { Index } from "./indexer.js";
 import { tokenize } from "./indexer.js";
 import { SearchService } from "./search-service.js";
@@ -12,7 +13,7 @@ export interface AntipatternHit {
   score: number;
 }
 
-const SNIPPET_RADIUS = 100;
+const SNIPPET_RADIUS = 60;
 const FALLBACK_THRESHOLD = 3;
 
 // Surfaces antipatterns relevant to a free-form topic. Two-tier strategy:
@@ -66,7 +67,7 @@ export class AntipatternService {
 
     for (const article of this.index.byId.values()) {
       if (skip.has(article.id)) continue;
-      const section = extractWhenNotToUseSection(article.body);
+      const section = extractH2Section(article.body, "When NOT to use");
       if (!section) continue;
       const sectionLower = section.toLowerCase();
       let score = 0;
@@ -106,18 +107,6 @@ function countOccurrences(haystack: string, needle: string): number {
     from += needle.length;
   }
   return count;
-}
-
-// Pulls the body region under "## When NOT to use" up to the next H2 heading.
-// Returns null if the section is not present (e.g., how-to articles).
-function extractWhenNotToUseSection(body: string): string | null {
-  const match = /^##\s+When\s+NOT\s+to\s+use[^\n]*$/im.exec(body);
-  if (!match) return null;
-  const start = match.index + match[0].length;
-  const tail = body.slice(start);
-  const nextHeading = /^##\s+/m.exec(tail);
-  const end = nextHeading ? nextHeading.index : tail.length;
-  return tail.slice(0, end).trim();
 }
 
 function truncate(text: string, max: number): string {

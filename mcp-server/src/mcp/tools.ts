@@ -7,12 +7,13 @@ import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
 import type { ArticleRepository } from "../articles/repository.js";
+import { extractH2Section } from "../articles/sections.js";
 import type { Article } from "../articles/types.js";
 import type { TagVocabulary, TagCategory } from "../lib/tags.js";
 import type { SearchService } from "../search/search-service.js";
 import type { RelatedService } from "../search/related-service.js";
 import type { AntipatternService } from "../search/antipattern-service.js";
-import { idFromArticleRef, uriForArticle, uriForSection } from "./resources.js";
+import { idFromArticleRef } from "./resources.js";
 
 export interface ToolContext {
   tags: TagVocabulary;
@@ -31,10 +32,15 @@ const SearchArticlesInput = z.object({
   section: z.string().optional(),
   language: z.string().optional(),
   limit: z.number().int().positive().max(100).optional(),
+  verbose: z.boolean().optional().default(false),
 });
 
 const GetArticleInput = z.object({
   id: z.string().min(1),
+  include: z
+    .enum(["body", "sections", "when-not", "meta"])
+    .optional()
+    .default("body"),
 });
 
 const FindRelatedInput = z.object({
@@ -57,11 +63,9 @@ const ListTagsInput = z.object({
 
 function summarize(article: Article) {
   return {
-    uri: uriForArticle(article.id),
     id: article.id,
     title: article.title,
     summary: article.summary,
-    path: article.id,
     section: article.section,
     type: article.frontMatter.type,
     tags: article.frontMatter.tags,
@@ -69,15 +73,32 @@ function summarize(article: Article) {
   };
 }
 
+// Slimmer shape used when `summarize` would be overkill — currently the
+// `related` expansion in `get_article`, where the caller already has the
+// parent's full metadata and only needs to know which neighbours exist.
+function slimSummarize(article: Article) {
+  return {
+    id: article.id,
+    title: article.title,
+    summary: article.summary,
+  };
+}
+
 interface SectionNode {
   path: string;
   title: string;
-  description: string | null;
+  // Description is included only at depths 0 and 1 — at deeper levels the
+  // title alone disambiguates and the description is mostly redundant.
+  description?: string | null;
   articleCount: number;
   totalArticles: number;
-  sectionIndexUri: string | null;
   subsections: SectionNode[];
 }
+
+// Beyond this depth, `description` is omitted from the tree node. Depth 0 is
+// the top-level section (e.g., "software-engineering"); depth 1 is its
+// immediate children (e.g., "design-patterns").
+const SECTION_DESCRIPTION_MAX_DEPTH = 1;
 
 function buildSectionTree(ctx: ToolContext): SectionNode[] {
   const sections = new Map<
@@ -121,20 +142,22 @@ function buildSectionTree(ctx: ToolContext): SectionNode[] {
     }
   }
 
-  function materialize(path: string): SectionNode {
+  function materialize(path: string, depth: number): SectionNode {
     const data = sections.get(path)!;
     const indexEntry = ctx.repo.sectionIndexByPath(path);
-    return {
+    const node: SectionNode = {
       path,
       title: indexEntry?.title ?? path,
-      description: indexEntry?.description ?? null,
       articleCount: data.directArticles,
       totalArticles: data.totalArticles,
-      sectionIndexUri: indexEntry ? uriForSection(path) : null,
       subsections: [...data.children]
         .sort((a, b) => a.localeCompare(b))
-        .map(materialize),
+        .map((child) => materialize(child, depth + 1)),
     };
+    if (depth <= SECTION_DESCRIPTION_MAX_DEPTH) {
+      node.description = indexEntry?.description ?? null;
+    }
+    return node;
   }
 
   // Top-level sections = paths with exactly one segment.
@@ -142,7 +165,7 @@ function buildSectionTree(ctx: ToolContext): SectionNode[] {
     .filter((p) => !p.includes("/"))
     .sort((a, b) => a.localeCompare(b));
 
-  return topLevel.map(materialize);
+  return topLevel.map((path) => materialize(path, 0));
 }
 
 function asJson(value: unknown) {
@@ -150,7 +173,7 @@ function asJson(value: unknown) {
     content: [
       {
         type: "text" as const,
-        text: JSON.stringify(value, null, 2),
+        text: JSON.stringify(value),
       },
     ],
   };
@@ -169,7 +192,7 @@ const TOOLS: ToolDefinition[] = [
   {
     name: "search_articles",
     description:
-      "Search dev-atlas articles by query and/or filters. Tags combine with AND. Section filter is prefix-match. Language filter unifies the dedicated `language` field with the tag of the same name (so multilingual mobile articles surface when filtering by `swift`). Pass an empty query for filter-only listings.",
+      "Search by query and filters (tags=AND, section=prefix, language). Empty query → filter-only. Returns slim hits {id, title, summary, score}; pass verbose=true for {section, type, tags, language}.",
     schema: SearchArticlesInput,
     handle: (ctx, raw) => {
       const input = SearchArticlesInput.parse(raw);
@@ -177,7 +200,7 @@ const TOOLS: ToolDefinition[] = [
       return {
         total: result.total,
         results: result.hits.map((hit) => ({
-          ...summarize(hit.article),
+          ...(input.verbose ? summarize(hit.article) : slimSummarize(hit.article)),
           score: hit.score,
         })),
       };
@@ -186,7 +209,7 @@ const TOOLS: ToolDefinition[] = [
   {
     name: "get_article",
     description:
-      "Fetch a single article with expanded metadata and the full Markdown body. Accepts either the article id (path without .md) or its `atlas://article/...` URI.",
+      "Fetch one article by id or atlas://article URI. `include`: body (default, full markdown) | sections (headings only) | when-not (only \"When NOT to use\") | meta (no body).",
     schema: GetArticleInput,
     handle: (ctx, raw) => {
       const input = GetArticleInput.parse(raw);
@@ -198,18 +221,31 @@ const TOOLS: ToolDefinition[] = [
       const relatedExpanded = article.frontMatter.related
         .map((relId) => ctx.repo.articleById(relId))
         .filter((a): a is Article => a !== undefined)
-        .map(summarize);
-      return {
+        .map(slimSummarize);
+      const base = {
         ...summarize(article),
         related: relatedExpanded,
-        body: article.body,
       };
+      switch (input.include) {
+        case "meta":
+          return base;
+        case "sections":
+          return { ...base, headings: article.headings };
+        case "when-not":
+          return {
+            ...base,
+            whenNot: extractH2Section(article.body, "When NOT to use"),
+          };
+        case "body":
+        default:
+          return { ...base, body: article.body };
+      }
     },
   },
   {
     name: "find_related",
     description:
-      "Find articles related to a given article. Returns explicit `related` entries first (bidirectional), then articles sharing at least 2 tags. Ordered by overlap descending.",
+      "Articles related to id. Explicit related[] first (bidirectional), then ≥2 shared tags, ordered by overlap desc.",
     schema: FindRelatedInput,
     handle: (ctx, raw) => {
       const input = FindRelatedInput.parse(raw);
@@ -230,14 +266,15 @@ const TOOLS: ToolDefinition[] = [
   {
     name: "find_antipatterns",
     description:
-      "Search for antipatterns relevant to a topic. First tier: articles tagged `antipattern`. Fallback (if tier 1 is sparse): 'When NOT to use' sections of related articles. Each hit carries a ~200-char snippet so the agent can cite without an extra get_article call.",
+      "Antipatterns for a topic. Tier 1: articles tagged `antipattern`. Tier 2 fallback: \"When NOT to use\" sections. Hits include a ~120-char snippet for citation; use get_article for full metadata.",
     schema: FindAntipatternsInput,
     handle: (ctx, raw) => {
       const input = FindAntipatternsInput.parse(raw);
       const hits = ctx.antipatterns.find(input.topic, input.limit ?? 10);
       return {
         results: hits.map((hit) => ({
-          ...summarize(hit.article),
+          id: hit.article.id,
+          title: hit.article.title,
           source: hit.source,
           snippet: hit.snippet,
           score: hit.score,
@@ -248,7 +285,7 @@ const TOOLS: ToolDefinition[] = [
   {
     name: "list_sections",
     description:
-      "Returns the navigation tree of the wiki: each section's title, description (from its README), direct and recursive article counts, and the URI of its section-index resource.",
+      "Wiki navigation tree with direct + recursive article counts. Descriptions included at top two depths only.",
     schema: ListSectionsInput,
     handle: (ctx, raw) => {
       ListSectionsInput.parse(raw);
@@ -258,7 +295,7 @@ const TOOLS: ToolDefinition[] = [
   {
     name: "list_tags",
     description:
-      "Returns the tag vocabulary with article counts. Optional `category` filter ('domain', 'topic', 'language', etc.). Includes tags that exist in the vocabulary but are not yet used by any article (count: 0).",
+      "Tag vocabulary with article counts. Optional `category` filter. Includes unused tags (count 0).",
     schema: ListTagsInput,
     handle: (ctx, raw) => {
       const input = ListTagsInput.parse(raw);
@@ -288,12 +325,23 @@ const TOOLS: ToolDefinition[] = [
   },
 ];
 
+// `zodToJsonSchema` injects a top-level `$schema` URL into every emitted
+// schema. The MCP client never uses that hint, and it costs ~50 bytes per
+// tool in the `tools/list` payload — pure boot-time waste. Stripping it
+// keeps the rest of the schema (which IS draft-2020-12-compatible — see
+// commit b8f2b17) intact.
+function toInputSchema(schema: z.ZodType): object {
+  const result = zodToJsonSchema(schema) as Record<string, unknown>;
+  delete result.$schema;
+  return result;
+}
+
 export function registerTools(server: Server, ctx: ToolContext): void {
   server.setRequestHandler(ListToolsRequestSchema, async () => ({
     tools: TOOLS.map((t) => ({
       name: t.name,
       description: t.description,
-      inputSchema: zodToJsonSchema(t.schema) as object,
+      inputSchema: toInputSchema(t.schema),
     })),
   }));
 

@@ -34,7 +34,6 @@ export function registerResources(
     const resources: Array<{
       uri: string;
       name: string;
-      description: string;
       mimeType: string;
     }> = [];
 
@@ -42,7 +41,6 @@ export function registerResources(
       resources.push({
         uri: uriForArticle(article.id),
         name: article.title,
-        description: article.summary,
         mimeType: "text/markdown",
       });
     }
@@ -51,7 +49,6 @@ export function registerResources(
       resources.push({
         uri: uriForSection(index.path),
         name: index.title,
-        description: index.description ?? `Section index: ${index.path}`,
         mimeType: "text/markdown",
       });
     }
