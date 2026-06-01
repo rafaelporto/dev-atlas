@@ -1,6 +1,8 @@
 ---
 type: concept
-tags: []
+tags:
+  - concept
+  - immutability
 related: []
 language: null
 ---

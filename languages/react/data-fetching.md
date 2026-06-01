@@ -1,6 +1,11 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - react
+  - typescript
+  - async
+  - frontend
 related: []
 language: "react"
 ---

@@ -1,6 +1,7 @@
 ---
 type: concept
-tags: []
+tags:
+  - principle
 related: []
 language: null
 ---

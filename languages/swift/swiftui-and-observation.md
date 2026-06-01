@@ -1,6 +1,10 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - swift
+  - mobile
+  - state-management
 related: []
 language: "swift"
 ---

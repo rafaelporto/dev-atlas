@@ -1,6 +1,7 @@
 ---
 type: concept
-tags: []
+tags:
+  - database
 related: []
 language: null
 ---

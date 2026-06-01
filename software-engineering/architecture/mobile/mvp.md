@@ -1,6 +1,9 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
+  - mobile
+  - mvp
 related: []
 language: null
 ---

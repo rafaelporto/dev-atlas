@@ -1,6 +1,10 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - go
+  - backend
+  - concurrency
 related: []
 language: "go"
 ---

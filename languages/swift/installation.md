@@ -1,6 +1,9 @@
 ---
 type: how-to
-tags: []
+tags:
+  - language
+  - swift
+  - mobile
 related: []
 language: "swift"
 ---

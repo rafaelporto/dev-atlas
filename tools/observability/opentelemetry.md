@@ -1,6 +1,8 @@
 ---
 type: concept
-tags: []
+tags:
+  - tool
+  - observability
 related: []
 language: null
 ---

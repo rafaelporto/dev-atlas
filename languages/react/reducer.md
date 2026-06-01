@@ -1,6 +1,11 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - react
+  - typescript
+  - state-management
+  - frontend
 related: []
 language: "react"
 ---

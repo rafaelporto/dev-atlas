@@ -1,6 +1,9 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
+  - mobile
+  - viper
 related: []
 language: null
 ---

@@ -1,6 +1,10 @@
 ---
 type: how-to
-tags: []
+tags:
+  - language
+  - flutter
+  - dart
+  - mobile
 related: []
 language: "flutter"
 ---

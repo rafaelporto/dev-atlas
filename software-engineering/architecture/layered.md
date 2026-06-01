@@ -1,6 +1,7 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
 related: []
 language: null
 ---

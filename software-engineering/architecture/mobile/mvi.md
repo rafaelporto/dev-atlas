@@ -1,6 +1,9 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
+  - mobile
+  - mvi
 related: []
 language: null
 ---

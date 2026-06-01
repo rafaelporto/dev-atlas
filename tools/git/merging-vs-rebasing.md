@@ -1,6 +1,9 @@
 ---
 type: concept
-tags: []
+tags:
+  - tool
+  - comparison
+  - decision-support
 related: []
 language: null
 ---

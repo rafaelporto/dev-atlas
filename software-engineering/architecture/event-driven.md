@@ -1,6 +1,9 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
+  - async
+  - backend
 related: []
 language: null
 ---

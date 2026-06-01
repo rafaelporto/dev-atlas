@@ -1,6 +1,9 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
+  - mobile
+  - modular
 related: []
 language: null
 ---

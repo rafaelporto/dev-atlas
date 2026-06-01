@@ -1,6 +1,9 @@
 ---
 type: how-to
-tags: []
+tags:
+  - language
+  - go
+  - backend
 related: []
 language: "go"
 ---

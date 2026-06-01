@@ -1,6 +1,8 @@
 ---
 type: concept
-tags: []
+tags:
+  - design-pattern
+  - behavioral
 related: []
 language: null
 ---

@@ -1,6 +1,10 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
+  - mobile
+  - comparison
+  - decision-support
 related: []
 language: null
 ---

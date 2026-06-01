@@ -1,6 +1,8 @@
 ---
 type: concept
-tags: []
+tags:
+  - architecture
+  - clean-architecture
 related: []
 language: null
 ---

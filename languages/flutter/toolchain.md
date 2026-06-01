@@ -1,6 +1,10 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - flutter
+  - dart
+  - mobile
 related: []
 language: "flutter"
 ---

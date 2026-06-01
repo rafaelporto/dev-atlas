@@ -1,6 +1,11 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - react
+  - typescript
+  - frontend
+  - error-handling
 related: []
 language: "react"
 ---

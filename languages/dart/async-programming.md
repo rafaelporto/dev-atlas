@@ -1,6 +1,10 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - dart
+  - async
+  - concurrency
 related: []
 language: "dart"
 ---

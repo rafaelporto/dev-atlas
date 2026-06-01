@@ -1,6 +1,8 @@
 ---
 type: concept
-tags: []
+tags:
+  - design-pattern
+  - structural
 related: []
 language: null
 ---

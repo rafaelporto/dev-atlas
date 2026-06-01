@@ -1,6 +1,7 @@
 ---
 type: how-to
-tags: []
+tags:
+  - tool
 related: []
 language: null
 ---

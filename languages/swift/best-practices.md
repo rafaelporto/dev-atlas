@@ -1,6 +1,10 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - swift
+  - mobile
+  - best-practice
 related: []
 language: "swift"
 ---

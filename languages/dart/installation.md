@@ -1,6 +1,8 @@
 ---
 type: how-to
-tags: []
+tags:
+  - language
+  - dart
 related: []
 language: "dart"
 ---

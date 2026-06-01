@@ -1,6 +1,11 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - flutter
+  - dart
+  - mobile
+  - async
 related: []
 language: "flutter"
 ---

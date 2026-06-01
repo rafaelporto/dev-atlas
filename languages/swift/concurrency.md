@@ -1,6 +1,10 @@
 ---
 type: concept
-tags: []
+tags:
+  - language
+  - swift
+  - mobile
+  - concurrency
 related: []
 language: "swift"
 ---
