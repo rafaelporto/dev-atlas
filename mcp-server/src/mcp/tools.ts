@@ -57,6 +57,7 @@ const ListSectionsInput = z.object({}).strict();
 
 const ListTagsInput = z.object({
   category: z.string().optional(),
+  include_unused: z.boolean().optional().default(false),
 });
 
 // ---------- serialization helpers ----------
@@ -181,14 +182,14 @@ function asJson(value: unknown) {
 
 // ---------- tool registration ----------
 
-interface ToolDefinition {
+export interface ToolDefinition {
   name: string;
   description: string;
   schema: z.ZodType;
   handle: (ctx: ToolContext, input: unknown) => unknown;
 }
 
-const TOOLS: ToolDefinition[] = [
+export const TOOLS: ToolDefinition[] = [
   {
     name: "search_articles",
     description:
@@ -295,7 +296,7 @@ const TOOLS: ToolDefinition[] = [
   {
     name: "list_tags",
     description:
-      "Tag vocabulary with article counts. Optional `category` filter. Includes unused tags (count 0).",
+      "Tag vocabulary with article counts. Optional `category` filter. Unused tags (count 0) are hidden by default; pass `include_unused: true` to see the full vocabulary.",
     schema: ListTagsInput,
     handle: (ctx, raw) => {
       const input = ListTagsInput.parse(raw);
@@ -306,20 +307,22 @@ const TOOLS: ToolDefinition[] = [
         }
       }
       const all = ctx.tags.all();
-      const filtered = input.category
+      const byCategory = input.category
         ? all.filter((t) => t.category === (input.category as TagCategory))
         : all;
+      const withCounts = byCategory.map((t) => ({
+        name: t.name,
+        category: t.category,
+        count: counts.get(t.name) ?? 0,
+      }));
+      const visible = input.include_unused
+        ? withCounts
+        : withCounts.filter((t) => t.count > 0);
       return {
-        tags: filtered
-          .map((t) => ({
-            name: t.name,
-            category: t.category,
-            count: counts.get(t.name) ?? 0,
-          }))
-          .sort((a, b) => {
-            if (a.category !== b.category) return a.category.localeCompare(b.category);
-            return a.name.localeCompare(b.name);
-          }),
+        tags: visible.sort((a, b) => {
+          if (a.category !== b.category) return a.category.localeCompare(b.category);
+          return a.name.localeCompare(b.name);
+        }),
       };
     },
   },

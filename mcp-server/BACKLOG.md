@@ -4,63 +4,24 @@ Itens pendentes referentes ao trabalho de redução de tokens e às próximas it
 
 ---
 
-## Validação pendente
-
-### Smoke test manual do `search_articles` (Fase 3)
-
-A Fase 3 mudou o **default** do `search_articles` para um shape slim (`{id, title, summary, score}`). Testes unitários verificam conteúdo, mas não capturam como o agente **raciocina** sobre o shape novo. Vale rodar um smoke real em sessão do Claude Code.
-
-**Pré-requisitos:**
-
-1. Reabrir o Claude Code após `npm run build` — o cliente mantém o processo MCP pela sessão; só reinício carrega o binário novo.
-2. Confirmar `/mcp` mostra `dev-atlas` como `connected`.
-
-**Prompt sugerido:**
-
-```
-Use o servidor dev-atlas. Que padrões GoF eu uso quando preciso criar
-famílias de objetos relacionados sem amarrar o cliente às classes concretas?
-Compare 2-3 opções e me diga quando NÃO usar cada uma.
-```
-
-**Sinais a observar:**
-
-| Sinal | Significa |
-|---|---|
-| Chama `search_articles` sem `verbose: true` | ✅ Default slim funciona |
-| Cita `id`/`title`/`summary` corretamente | ✅ Slim cobre o suficiente |
-| Chama `get_article(include: "when-not")` por candidato | ✅ Item 4 fluindo |
-| Chama `get_article` sem `include` (body completo) | ⚠️ Descrição precisa de polish (revisar no item 7) |
-| Pede `verbose: true` direto | ⚠️ Slim talvez restritivo demais |
-| Não acha artigos que existem | ❌ Bug — investigar |
-
-**Prompt alternativo (stress test):**
-
-```
-Use o dev-atlas. Liste todos os padrões de criação disponíveis no wiki
-e classifique cada um pelo tipo de problema que resolve.
-```
-
-Esse força a decisão entre `verbose: true` (precisa de `section`) vs. `get_article(meta)` por hit.
-
----
-
-## Itens adiados do plano de tokens
-
-### Item 9 — `list_tags` esconder count 0 por default
-
-Adiado até o backfill de tags nos artigos ser feito. Hoje 100% das tags do vocabulário aparecem como `count: 0` porque os artigos foram populados com `tags: []`. Aplicar o filtro agora retornaria lista vazia.
-
-**Disparador para retomar:** quando uma fração relevante dos 195 artigos tiver pelo menos uma tag preenchida.
-
----
-
 ## Outras ideias surgidas durante o trabalho
 
 ### Truncar a descrição de `list_sections` em níveis 0–1 também
 
 A Fase 4 (item 6) mantém `description` nos níveis 0 e 1 do tree. Se a economia ainda não bastar, considerar truncar essas descrições para ~120 chars no nível 1 (top-level fica intacto).
 
-### Suprimir `$schema` do JSON Schema gerado por `zodToJsonSchema`
+---
 
-Investigar opções da lib na Fase 5 (item 7). Se não houver flag, considerar escrever os schemas à mão para as 6 tools — escopo pequeno, controle total, sem overhead.
+## Concluído
+
+- **Suprimir `$schema` do JSON Schema gerado por `zodToJsonSchema`** — implementado em `c3c8f86` (função `toInputSchema` em `src/mcp/tools.ts` remove o campo após a conversão).
+- **Smoke test manual do `search_articles` (Fase 3)** — validado em sessão real do Claude Code com o prompt sugerido sobre famílias GoF.
+  - ✅ Default slim funciona: 3 chamadas a `search_articles`, todas sem `verbose: true`; agente citou `id`/`title`/`summary` corretamente.
+  - ✅ `get_article(include: "when-not")` usado nos candidatos comparativos (Factory Method, Builder).
+  - ⚠️ Body completo foi puxado **uma vez** no candidato primário (Abstract Factory), por necessidade real — tabela comparativa e "Why does it matter?" não estão em `when-not`. Padrão observado foi "body no primário, when-not nos comparativos", que é uso saudável, não exagero. Antes de polir a descrição do `get_article`, confirmar se o sintoma-alvo é "body em *todos* os candidatos" — esta sessão não reproduziu o problema.
+- **Backfill de tags nos 195 artigos** — 100% dos artigos passaram de `tags: []` para listas populadas.
+  - **Phase A (mecânica, path-derived):** Domain (`concept`, `principle`, `design-pattern`, `architecture`, `database`, `language`, `tool`) + Pattern category (`creational`/`structural`/`behavioral`) + Architectural style (`mvc`/`mvp`/`mvvm`/`mvi`/`viper`/`modular`/`clean-architecture`/`hexagonal`/`onion`) + Language (`go`/`swift`/`dart`/`flutter`/`react`/`typescript`) + Topic correspondente a `tools/<cat>` (`ci-cd`, `containerization`, `iac`, `observability`, `orchestration`). Field `language:` preenchido onde estava `null` em dirs de linguagem.
+  - **Phase B (filename + path overrides):** Topic (`async`, `concurrency`, `error-handling`, `testing`, `state-management`, `dependency-injection`, `null-safety`, `immutability`, `frontend`, `backend`) e Cross-cutting (`overview`, `comparison`, `decision-support`, `best-practice`).
+  - **Cobertura final:** 45/49 tags do vocabulário com ≥1 artigo. Validação completa: `npm run validate` (40 testes + audit-links strict) passa.
+  - **Tags que sobraram em zero:** `antipattern`, `migration`, `java`, `kotlin` — todas dependem de conteúdo novo, não de retro-tagging.
+- **Item 9 — `list_tags` esconder `count: 0` por default** — `ListTagsInput` ganhou `include_unused: z.boolean().optional().default(false)` e o handler filtra tags com `count: 0` quando esse flag é `false`. Descrição da tool atualizada para refletir o novo default. Resposta padrão agora tem 45 entradas (antes: 49); `include_unused: true` mantém a vocabulary completa para introspecção. `TOOLS` exportado de `src/mcp/tools.ts` para permitir smoke test direto do handler (3 testes novos em `test/smoke.test.ts`: default sem zero, include_unused retorna full, category filter combina com o filtro de count).

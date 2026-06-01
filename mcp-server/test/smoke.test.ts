@@ -9,12 +9,14 @@ import { buildIndex } from "../src/search/indexer.js";
 import { SearchService } from "../src/search/search-service.js";
 import { RelatedService } from "../src/search/related-service.js";
 import { AntipatternService } from "../src/search/antipattern-service.js";
+import { TOOLS, type ToolContext } from "../src/mcp/tools.js";
 
 let tags: TagVocabulary;
 let repo: ArticleRepository;
 let search: SearchService;
 let related: RelatedService;
 let antipatterns: AntipatternService;
+let ctx: ToolContext;
 
 beforeAll(() => {
   tags = TagVocabulary.load();
@@ -23,6 +25,7 @@ beforeAll(() => {
   search = new SearchService(index);
   related = new RelatedService(index);
   antipatterns = new AntipatternService(index, search);
+  ctx = { tags, repo, search, related, antipatterns };
 });
 
 describe("repository loads the real wiki", () => {
@@ -88,5 +91,40 @@ describe("tools surface meaningful results on the real wiki", () => {
   it("find_antipatterns does not throw and returns array", () => {
     const hits = antipatterns.find("god object", 5);
     expect(Array.isArray(hits)).toBe(true);
+  });
+});
+
+describe("list_tags filter behavior", () => {
+  function callListTags(input: unknown): { name: string; category: string; count: number }[] {
+    const tool = TOOLS.find((t) => t.name === "list_tags");
+    if (!tool) throw new Error("list_tags tool not registered");
+    const result = tool.handle(ctx, input) as { tags: { name: string; category: string; count: number }[] };
+    return result.tags;
+  }
+
+  it("hides count:0 tags by default", () => {
+    const result = callListTags({});
+    expect(result.length).toBeGreaterThan(0);
+    for (const t of result) {
+      expect(t.count).toBeGreaterThan(0);
+    }
+  });
+
+  it("include_unused: true returns the full vocabulary", () => {
+    const visible = callListTags({});
+    const all = callListTags({ include_unused: true });
+    expect(all.length).toBeGreaterThan(visible.length);
+    // Sanity: the vocabulary defines tags that are legitimately unused (e.g. java/kotlin
+    // — no language subdir for them). They must appear in the full list.
+    expect(all.some((t) => t.count === 0)).toBe(true);
+  });
+
+  it("category filter combines with the default count filter", () => {
+    const langs = callListTags({ category: "language" });
+    expect(langs.length).toBeGreaterThan(0);
+    for (const t of langs) {
+      expect(t.category).toBe("language");
+      expect(t.count).toBeGreaterThan(0);
+    }
   });
 });
