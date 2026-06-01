@@ -1,0 +1,46 @@
+{
+  "capturedAt": "2026-06-01T18:30:29.452Z",
+  "totalBytes": 103510,
+  "probes": [
+    {
+      "label": "tools/list",
+      "bytes": 2920
+    },
+    {
+      "label": "resources/list",
+      "bytes": 60685
+    },
+    {
+      "label": "prompts/list",
+      "bytes": 600
+    },
+    {
+      "label": "search_articles (query=factory, limit=10)",
+      "bytes": 5809
+    },
+    {
+      "label": "search_articles (filter-only, limit=10)",
+      "bytes": 5709
+    },
+    {
+      "label": "get_article (factory-method)",
+      "bytes": 3762
+    },
+    {
+      "label": "list_sections",
+      "bytes": 10573
+    },
+    {
+      "label": "list_tags",
+      "bytes": 5172
+    },
+    {
+      "label": "find_antipatterns (topic=god object)",
+      "bytes": 8182
+    },
+    {
+      "label": "find_related (factory-method)",
+      "bytes": 98
+    }
+  ]
+}
