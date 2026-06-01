@@ -293,7 +293,7 @@ export function registerTools(server: Server, ctx: ToolContext): void {
     tools: TOOLS.map((t) => ({
       name: t.name,
       description: t.description,
-      inputSchema: zodToJsonSchema(t.schema, { target: "openApi3" }) as object,
+      inputSchema: zodToJsonSchema(t.schema) as object,
     })),
   }));
 
