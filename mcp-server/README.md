@@ -99,6 +99,10 @@ Reading an article resource returns the Markdown body only (no YAML front matter
 
 - `pick-pattern-for` — recommends applicable patterns + antipattern callouts for a stated problem.
 - `find-antipattern-risks` — audits a code snippet or description, citing dev-atlas articles.
+- `principles-pre-flight` — pre-feature checklist grounded in SOLID + Pragmatic Principles + DDD; cites language-specific articles when applicable.
+- `compose-design-patterns` — composes a feature design from 1–3 GoF patterns, justifying the combination and flagging one antipattern risk.
+- `pre-implementation-briefing` — full greenfield briefing (principles + DDD + patterns + antipatterns + TDD) followed by failing tests; stops and asks before writing production code.
+- `refactor-briefing` — plans a behavior-preserving refactor: identifies current antipatterns, picks target principles + patterns, emits a small-step plan; characterization tests are mandatory before structural changes.
 
 ## Architecture
 

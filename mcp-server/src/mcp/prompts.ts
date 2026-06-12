@@ -249,6 +249,131 @@ const PROMPTS: PromptDefinition[] = [
       return lines.join("\n");
     },
   },
+  {
+    name: "refactor-briefing",
+    description:
+      "Plan a behavior-preserving refactor: identify current antipatterns, choose target principles + patterns, and emit a small-step refactoring plan. Test safety net is non-negotiable.",
+    arguments: [
+      {
+        name: "code_or_description",
+        description:
+          "The existing code, snippet, or description of the design to refactor.",
+        required: true,
+      },
+      {
+        name: "goal",
+        description:
+          "What the refactor should achieve (e.g., 'improve testability', 'decouple persistence', 'split god object'). If omitted, the agent infers it from the smells.",
+        required: false,
+      },
+      {
+        name: "language",
+        description:
+          "Target language/stack (e.g., 'go', 'swift'). If a dev-atlas section exists for it, its articles will be cited.",
+        required: false,
+      },
+    ],
+    render: ({ code_or_description, goal, language }) => {
+      const phases: Array<{ title: string; steps: string[] } | null> = [
+        {
+          title: "PHASE 1 — Smell inventory (current state)",
+          steps: [
+            'Extract 3–5 candidate topic keywords from the input (e.g., "god object", "feature envy", "primitive obsession", "long method", "shotgun surgery", "magic numbers", "duplicate code").',
+            "Call `find_antipatterns` for each keyword and aggregate the findings.",
+            'For each top hit, call `get_article` and read "What is it?" and "When NOT to use" — these become the evidence in the briefing.',
+          ],
+        },
+        {
+          title: "PHASE 2 — Principles to honor (target state)",
+          steps: [
+            'Call `search_articles` with { tags: ["principle"] } to list SOLID + Pragmatic Principles.',
+            "Identify which principles are being violated by the smells from PHASE 1.",
+            'For each selected principle, call `get_article` and read "What is it?" and "When to use".',
+          ],
+        },
+        {
+          title: "PHASE 3 — Patterns to introduce (target shape)",
+          steps: [
+            'Call `search_articles` with { tags: ["design-pattern"] }.',
+            "Select 0–3 patterns. Choose 0 when the smell dissolves with simple cleanup (extract method, rename, inline). Choose 1–3 only when a structural change is justified (e.g., Strategy to remove conditional sprawl, Adapter to isolate legacy code, Repository to centralize data access).",
+            'For each chosen pattern, call `get_article` and read "When to use" and "When NOT to use".',
+          ],
+        },
+        {
+          title: "PHASE 4 — Safety net (TDD primer)",
+          steps: [
+            'Call `search_articles` with { query: "tdd" } and `get_article` on the TDD article. Refactoring is the "refactor" leg of red-green-refactor — tests must already be green before any structural move.',
+          ],
+        },
+        language
+          ? {
+              title: "PHASE 5 — Language reference",
+              steps: [
+                `Call \`list_sections\` to confirm whether \`languages/${language}/\` exists.`,
+                `If it does, call \`search_articles\` with { language: "${language}" } and read articles relevant to the refactor (idioms, error-handling, refactor-friendly constructs).`,
+              ],
+            }
+          : null,
+      ];
+      const activePhases = phases.filter(
+        (p): p is { title: string; steps: string[] } => p !== null,
+      );
+      const lines: string[] = [
+        `You are about to refactor this code/design:`,
+        ``,
+        `${code_or_description}`,
+      ];
+      if (goal) {
+        lines.push(``, `Goal: ${goal}.`);
+      }
+      if (language) {
+        lines.push(``, `Target language/stack: ${language}.`);
+      }
+      lines.push(
+        "",
+        "Ground the refactor in dev-atlas before proposing any change. Deliver the briefing first, the plan last.",
+      );
+      let counter = 0;
+      for (const phase of activePhases) {
+        lines.push("", `**${phase.title}**`);
+        for (const step of phase.steps) {
+          counter += 1;
+          lines.push(`${counter}. ${step}`);
+        }
+      }
+      const letters = "ABCDEFGH".split("");
+      const outputItems = [
+        "Smell inventory — current antipatterns and violated principles, each cited by dev-atlas article id with concrete evidence from the input",
+        "Target principles — which principles to honor and the one concrete design choice that restores each",
+        "Target patterns — for each chosen pattern: responsibility in the refactored code, key collaborator, trade-off accepted (if zero patterns are chosen, say so explicitly and justify)",
+        language
+          ? `Language-specific notes — idioms or constraints relevant to ${language}`
+          : null,
+        "Refactoring plan — ordered, small, reversible steps; each step states precondition (which tests must be green), the transformation, and the verification (which tests must still be green after)",
+        "Risks & rollback — what could regress silently, how to detect it, how to revert if a step fails",
+      ].filter((s): s is string => s !== null);
+      lines.push(
+        "",
+        "OUTPUT — Deliver IN THIS ORDER (briefing first, plan last):",
+        ...outputItems.map((item, i) => `${letters[i]}) ${item}`),
+      );
+      const rules: Array<string | null> = [
+        "Behavior preservation is non-negotiable. The refactor must not change observable behavior — public API, side effects, or error semantics.",
+        'No structural change without a green test covering the target area. If such tests do not exist, the FIRST step of the plan MUST be "add characterization tests" before any other transformation.',
+        "Each step must be small, atomic, independently committable, and verified (tests green) before moving to the next.",
+        'After delivering the plan, STOP and ask the user: "Should I execute this refactoring plan step by step, or will you?" Do NOT start editing without this confirmation.',
+        language
+          ? null
+          : "Language was not provided. If the plan requires writing concrete code (e.g., for the characterization tests step), ask the user for the target language/stack BEFORE producing code.",
+      ];
+      lines.push(
+        "",
+        "ABSOLUTE RULES:",
+        ...rules.filter((r): r is string => r !== null).map((r) => `- ${r}`),
+      );
+      return lines.join("\n");
+    },
+  },
 ];
 
 export function registerPrompts(server: Server): void {
