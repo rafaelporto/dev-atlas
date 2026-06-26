@@ -97,6 +97,8 @@ Reading an article resource returns the Markdown body only (no YAML front matter
 
 ### Prompts
 
+> **After adding or changing any prompt, run `npm run build` and restart the MCP server** (via `/mcp` → Restart in Claude Code). `dist/` is gitignored, so the compiled output is not shared — each machine must build locally.
+
 - `pick-pattern-for` — recommends applicable patterns + antipattern callouts for a stated problem.
 - `find-antipattern-risks` — audits a code snippet or description, citing dev-atlas articles.
 - `principles-pre-flight` — pre-feature checklist grounded in SOLID + Pragmatic Principles + DDD; cites language-specific articles when applicable.
