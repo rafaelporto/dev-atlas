@@ -16,6 +16,8 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `antipattern`: use **only** when the article's primary subject is an antipattern. Having a "When NOT to use" section in the standard template does not qualify.
 - `best-practice`: use **only** for specific guidelines (e.g., "prefer composition over inheritance"). Do **not** apply to named patterns/principles/concepts — those already carry `design-pattern`, `principle`, or `concept`.
 - `overview`: exclusive to section-summary articles (e.g., `pragmatic-principles/overview.md`, `solid/solid.md`).
+- `dotnet`: use as a secondary tag for C# articles about the .NET ecosystem/runtime (NuGet, deployment, runtime); it complements — never replaces — the `csharp` language tag. Do not apply it to plain-language articles that are not .NET-specific.
+- **Paradigm** tags: apply when the paradigm is a real subject of the article (typically `paradigms.md`, patterns, or concurrency/immutability articles), not to every article written in a language that happens to support that paradigm.
 
 ---
 
@@ -71,6 +73,21 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `nextjs`
 - `java`
 - `kotlin`
+- `csharp`
+- `dotnet`
+- `clojure`
+- `lua`
+
+### Paradigm — the programming model an article deals with
+
+- `functional`
+- `object-oriented`
+- `imperative`
+- `procedural`
+- `declarative`
+- `reactive`
+- `prototype-based`
+- `data-oriented`
 
 ### Topic
 

@@ -7,6 +7,7 @@ export type TagCategory =
   | "architectural-style"
   | "cross-cutting"
   | "language"
+  | "paradigm"
   | "topic";
 
 export interface TagDefinition {
@@ -20,6 +21,7 @@ const CATEGORY_HEADING_TO_KEY: Record<string, TagCategory> = {
   "architectural style": "architectural-style",
   "cross-cutting": "cross-cutting",
   "language": "language",
+  "paradigm": "paradigm",
   "topic": "topic",
 };
 
