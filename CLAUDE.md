@@ -203,6 +203,22 @@ Stop walking up the tree as soon as you reach a `README.md` that already describ
 - Do not add runnable projects, `package.json`, `pyproject.toml`, or any dependency files, **with one exception: the `mcp-server/` directory contains the TypeScript MCP server that exposes this knowledge base to AI agents. See `mcp-server/README.md` for details.**
 - Do not create articles without following the full template structure.
 - Do not write articles in the `_templates/` directory.
-- Do not hardcode email addresses, phone numbers, or any personal data in any file.
+- Do not write email addresses anywhere in this repository — see **No Email Addresses** below. Also do not hardcode phone numbers or any other personal data.
 - Do not reference or import anything from Nubank internal projects or `~/dev/nu/`.
 - Do not create a `.claude/CLAUDE.md` for this project — this root `CLAUDE.md` is the single source of instructions.
+
+---
+
+## No Email Addresses — Use Placeholders
+
+**Never write an email address anywhere in this repository.** This is a hard rule for all Claude agents, with no exceptions — it applies to article prose, code examples, code comments, sample data (database rows, JSON, config), front matter, READMEs, and the `mcp-server/` source.
+
+A global DLP hook on this machine blocks commits containing anything it classifies as an email address — **including example and public ones** such as `user@example.com`. So even `example.com` placeholders are not allowed.
+
+When an example needs to reference the *concept* of an email:
+
+- Prefer illustrating with a **different field** (e.g. use a `name` column with values like `"Ada"` instead of an `email` column).
+- If a field named `email` genuinely aids the example, keep the **field/column name** (`email` is just an identifier) but never give it an address-shaped **value**. Use a non-email placeholder such as `"<email>"`, `"[redacted]"`, or a comment like `-- email value omitted`.
+- Never write any string matching `local-part@domain.tld`, regardless of the domain.
+
+If a task seems to require a real email address in a file, do not add it — stop and tell the user instead.
