@@ -66,6 +66,9 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `flutter`
 - `react`
 - `typescript`
+- `javascript`
+- `nodejs`
+- `nextjs`
 - `java`
 - `kotlin`
 
@@ -87,6 +90,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `mobile`
 - `frontend`
 - `backend`
+- `full-stack`
 
 ---
 
