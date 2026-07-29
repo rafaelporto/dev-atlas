@@ -50,6 +50,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `mvi`
 - `viper`
 - `modular`
+- `micro-frontends`
 
 ### Cross-cutting
 
@@ -108,6 +109,8 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `frontend`
 - `backend`
 - `full-stack`
+- `rendering`
+- `component-driven`
 
 ---
 

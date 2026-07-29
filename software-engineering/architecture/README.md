@@ -27,4 +27,12 @@ Architectural styles define how a system is organized at a high level — how re
 
 ---
 
+## Frontend
+
+| Article | Description |
+|---|---|
+| [Frontend Architecture](frontend/README.md) | Component-driven architecture, rendering patterns, state management, micro-frontends, design systems, WebAssembly, and a stacks/tooling reference — framework-agnostic |
+
+---
+
 > These styles are not mutually exclusive. A microservices system can use Hexagonal Architecture inside each service. CQRS and Event Sourcing are frequently combined.
