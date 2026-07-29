@@ -68,6 +68,9 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `dart`
 - `flutter`
 - `react`
+- `angular`
+- `vue`
+- `svelte`
 - `typescript`
 - `javascript`
 - `nodejs`
@@ -111,6 +114,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `full-stack`
 - `rendering`
 - `component-driven`
+- `webassembly`
 
 ---
 

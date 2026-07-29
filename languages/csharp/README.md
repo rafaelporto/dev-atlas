@@ -58,3 +58,11 @@
 |---|---|
 | [Toolchain](toolchain.md) | The `dotnet` CLI, MSBuild, `dotnet format`, and Roslyn analyzers |
 | [Deploy](deploy.md) | Framework-dependent, self-contained, and Native AOT publishing plus container images |
+
+---
+
+## WebAssembly
+
+| Article | Description |
+|---|---|
+| [C# and WebAssembly](webassembly.md) | Running C# in the browser with Blazor WebAssembly, JS interop, and AOT |

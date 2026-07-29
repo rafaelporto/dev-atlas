@@ -58,3 +58,11 @@
 |---|---|
 | [Toolchain](toolchain.md) | `go build`, `go test`, `go vet`, `gofmt`, race detector, `pprof` |
 | [Deploy](deploy.md) | Production builds, cross-compilation, Docker multi-stage, env config, build metadata |
+
+---
+
+## WebAssembly
+
+| Article | Description |
+|---|---|
+| [Go and WebAssembly](webassembly.md) | Compiling Go to Wasm — `GOOS=js`, `syscall/js`, `wasm_exec.js`, and TinyGo/WASI |

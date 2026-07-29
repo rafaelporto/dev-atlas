@@ -62,9 +62,9 @@ For anything past a small script, TypeScript is the mainstream choice; plain Jav
 | Framework | Positioning | Read more |
 |---|---|---|
 | **React** | The most widely adopted library; huge ecosystem, component + hooks model, backed by Meta. Pairs with a meta-framework for full apps. | [React](../../../languages/react/overview.md) |
-| **Vue** | Approachable, batteries-included; single-file components and a gentle learning curve. Strong in Asia and among progressive-enhancement teams. | — |
-| **Angular** | Full, opinionated framework (DI, router, forms, RxJS) maintained by Google; suits large enterprise apps that want batteries included and strong conventions. | — |
-| **Svelte** | Compiler-first: components compile to minimal JS, no virtual DOM. Small bundles, terse syntax. | — |
+| **Vue** | Approachable, batteries-included; single-file components and a gentle learning curve. Strong in Asia and among progressive-enhancement teams. | [Vue](../../../languages/vue/overview.md) |
+| **Angular** | Full, opinionated framework (DI, router, forms, RxJS) maintained by Google; suits large enterprise apps that want batteries included and strong conventions. | [Angular](../../../languages/angular/overview.md) |
+| **Svelte** | Compiler-first: components compile to minimal JS, no virtual DOM. Small bundles, terse syntax. | [Svelte](../../../languages/svelte/overview.md) |
 | **SolidJS** | Fine-grained reactivity with a React-like API; very high performance, no virtual DOM. | — |
 | **Flutter (web)** | Dart-based; renders its own UI to canvas. Best when sharing a codebase with Flutter mobile, less so as a standalone web choice. | [Flutter](../../../languages/flutter/overview.md) |
 

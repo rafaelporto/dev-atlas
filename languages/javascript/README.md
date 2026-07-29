@@ -43,3 +43,11 @@
 | [Toolchain Setup](toolchain.md) | npm/pnpm, module type, Vite, ESLint, Prettier/Biome, npm scripts |
 | [Testing](testing.md) | The test pyramid, Vitest/Jest/`node:test`, async tests, test doubles, E2E |
 | [Best Practices](best-practices.md) | Consolidated everyday guidelines and idioms |
+
+---
+
+## WebAssembly
+
+| Article | Description |
+|---|---|
+| [JavaScript, TypeScript, and WebAssembly](webassembly.md) | JS as the Wasm host, the interop boundary, and AssemblyScript for TS |
