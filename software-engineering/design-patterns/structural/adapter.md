@@ -34,8 +34,7 @@ There are two forms:
 - **Object Adapter** — wraps an instance of the Adaptee (composition). More flexible, works across class hierarchies.
 - **Class Adapter** — inherits from both Target and Adaptee (multiple inheritance). Tighter coupling.
 
-## Pseudo-code
-
+## Examples
 ```python
 # Target interface — what the client expects
 class PaymentProcessor:

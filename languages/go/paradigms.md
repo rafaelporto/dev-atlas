@@ -27,6 +27,19 @@ Go was designed by people who had strong opinions about what makes software main
 
 ---
 
+## How it works
+
+Go does not privilege one paradigm with special syntax; instead a few orthogonal features let each style emerge:
+
+- **Functions and packages** give the procedural core — the default way code is organized.
+- **Structs, methods, and implicit interfaces** provide object-oriented composition and polymorphism without classes or inheritance.
+- **First-class functions, closures, and generics (1.18+)** enable functional techniques such as higher-order functions and reusable `Map`/`Filter`.
+- **Goroutines, channels, and `select`** implement the CSP concurrency model as a language feature.
+
+The sections below examine each paradigm, how well Go supports it, and its trade-offs.
+
+---
+
 ## Paradigms supported
 
 ### 1. Procedural (primary paradigm)
@@ -246,6 +259,74 @@ func main() {
 | Concurrent (CSP) | First-class | Yes — Go's defining feature |
 
 The idiomatic Go approach is to **default to procedural**, **reach for interfaces when polymorphism is needed**, **use closures and higher-order functions selectively**, and **embrace goroutines and channels for concurrency**.
+
+---
+
+## Examples
+
+A short program blending all four paradigms: a procedural driver, an interface for polymorphism (OO), a higher-order transform (functional), and a goroutine + channel (concurrent).
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+// OO: polymorphism via an implicit interface.
+type Priced interface{ Price() float64 }
+
+type Book struct{ Cost float64 }
+
+func (b Book) Price() float64 { return b.Cost }
+
+// Functional: higher-order function.
+func mapPrices(items []Priced, f func(float64) float64) []float64 {
+	out := make([]float64, len(items))
+	for i, it := range items {
+		out[i] = f(it.Price())
+	}
+	return out
+}
+
+func main() { // Procedural driver.
+	items := []Priced{Book{Cost: 10}, Book{Cost: 20}}
+	withTax := mapPrices(items, func(p float64) float64 { return p * 1.1 })
+
+	// Concurrent: sum the prices in a goroutine, deliver via a channel.
+	total := make(chan float64)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		sum := 0.0
+		for _, p := range withTax {
+			sum += p
+		}
+		total <- sum
+	}()
+	go func() { wg.Wait(); close(total) }()
+
+	fmt.Printf("total with tax: %.2f\n", <-total) // 33.00
+}
+```
+
+---
+
+## When to use
+
+- Default to the **procedural** style — plain functions over data — for most code.
+- Reach for **interfaces** (OO) when behavior must vary by type or be swapped for testing.
+- Use **functional** techniques (closures, higher-order functions, options) for callbacks, middleware, and small reusable transforms.
+- Use the **concurrent** paradigm (goroutines, channels) whenever work can proceed independently.
+
+## When NOT to use
+
+- Do not simulate class inheritance or deep hierarchies — Go has no inheritance by design.
+- Do not build deeply recursive functional pipelines; without tail-call optimization they risk stack overflow and read less clearly than a loop.
+- Do not reach for goroutines and channels when a single sequential function is simpler — concurrency adds failure modes (leaks, races, deadlocks).
+- Do not force one paradigm everywhere; idiomatic Go mixes them per problem.
 
 ---
 

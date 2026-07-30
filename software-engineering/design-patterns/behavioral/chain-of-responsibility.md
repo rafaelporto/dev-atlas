@@ -30,8 +30,7 @@ Sender → Handler1 → Handler2 → Handler3 → (no handler / end)
 2. Each **Concrete Handler** processes the request if it can, or forwards it to `next`.
 3. The sender calls the first handler in the chain without knowing which one will process it.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 from typing import Optional

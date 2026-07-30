@@ -103,8 +103,8 @@ git cat-file -p HEAD
 # Output (truncated):
 #   tree 4b825dc642cb6eb9a060e54bf8d69288fbee4904
 #   parent <hash>
-#   author Jane Doe <jane@example.com> 1700000000 +0000
-#   committer Jane Doe <jane@example.com> 1700000000 +0000
+#   author Jane Doe <email> 1700000000 +0000
+#   committer Jane Doe <email> 1700000000 +0000
 #
 #   Extend README
 

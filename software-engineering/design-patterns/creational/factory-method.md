@@ -26,8 +26,7 @@ When a class cannot anticipate the type of object it needs to create, or when su
 2. Each subclass overrides `create()` to instantiate the specific concrete type it needs.
 3. The base class calls `create()` in its workflow without knowing the concrete type.
 
-## Pseudo-code
-
+## Examples
 ```python
 # Product interface
 class Notification:

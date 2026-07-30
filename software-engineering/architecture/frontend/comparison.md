@@ -167,7 +167,11 @@ Real apps combine choices across the three axes. Common stacks:
 
 ---
 
-## When NOT to over-architect
+## When to use
+
+Reach for this comparison whenever you are choosing — or reconsidering — a frontend architecture. Work top-down: use the decision matrix to narrow candidates, the recommended pairings to combine them, and the scenarios above as worked examples. Let the team size, the product's complexity, and SEO/performance needs drive the pick rather than novelty.
+
+## When NOT to use
 
 Red flags that you've reached for too much:
 

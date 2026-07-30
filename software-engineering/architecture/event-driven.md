@@ -23,6 +23,14 @@ Producer ──► [Event Bus / Message Broker] ──► Consumer A
                                          ──► Consumer C
 ```
 
+## Why does it matter?
+
+When services call each other directly they become tightly coupled and fail together: the caller must know every consumer and wait for each one. Publishing events instead lets producers stay ignorant of who reacts, so new consumers can be added without touching the producer and a slow consumer cannot block it.
+
+## How it works
+
+Producers emit events to a broker (a topic or stream); consumers subscribe independently. The broker decouples them in time and space. Delivery guarantees, ordering (via partition keys), and the choice between choreography and orchestration determine how reliably and in what sequence consumers observe those events.
+
 ## Core concepts
 
 ### Event
@@ -168,6 +176,22 @@ SagaOrchestrator
 
 - Pro: flow is explicit and visible in one place.
 - Con: the orchestrator becomes a central coupling point.
+
+## Examples
+
+One producer, several independent consumers — each reacts on its own, and adding another later requires no change to the producer:
+
+```python
+# Producer — fire and forget
+broker.publish("user.registered", {"user_id": "u-1", "plan": "free"})
+
+# Independent consumers
+@subscribe("user.registered")
+def send_welcome(evt): mailer.welcome(evt["user_id"])
+
+@subscribe("user.registered")
+def provision_workspace(evt): workspaces.create(evt["user_id"])
+```
 
 ## When to use
 

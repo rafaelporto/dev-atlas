@@ -108,6 +108,21 @@ For monorepos and large dependency trees, pnpm is the common modern pick; npm is
 
 ---
 
+## Examples
+
+A typical modern React stack, assembled from the categories above — each slot chosen independently:
+
+```text
+Framework   → Next.js (App Router)
+Language    → TypeScript
+Styling     → Tailwind CSS + CSS Modules for scoped styles
+Data        → TanStack Query (server cache) + Zustand (UI state)
+Testing     → Vitest + Testing Library + Playwright (e2e)
+Tooling     → Vite / Turbopack, ESLint, Prettier, pnpm
+```
+
+The slots are orthogonal — swap Zustand for Redux Toolkit, or Vitest for Jest — because each tool occupies a different responsibility.
+
 ## When to use
 
 - As an orientation when starting a project and choosing a stack, or when evaluating whether to adopt a new tool.

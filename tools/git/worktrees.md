@@ -133,7 +133,7 @@ git worktree move ../project-feature ~/other-location/project-feature
 Some workflows skip the "primary worktree" entirely: clone bare, then add worktrees for each branch.
 
 ```bash
-git clone --bare git@github.com:user/repo.git project.git
+git clone --bare git@<host>:user/repo.git project.git
 cd project.git
 git worktree add ../project-main main
 git worktree add ../project-feature feature

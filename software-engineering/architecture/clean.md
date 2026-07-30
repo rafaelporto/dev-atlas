@@ -38,6 +38,14 @@ Clean Architecture is a synthesis of several earlier architectural ideas (Hexago
          All arrows point inward ←
 ```
 
+## Why does it matter?
+
+Delivery mechanisms — web frameworks, databases, UI toolkits — change far more often than core business rules. Clean Architecture keeps those rules independent of all of them, so the parts that change fastest live at the edges and the parts that must stay stable live at the center, testable without a database or a browser.
+
+## How it works
+
+Concentric circles surround the domain, and one rule governs everything: source-code dependencies may only point inward, toward higher-level policy. A boundary is crossed outward through interfaces (ports) that the inner circle declares and the outer circle implements — so the flow of control can move outward while dependencies never do.
+
 ## The Dependency Rule
 
 > Source code dependencies can only point inward. Nothing in an inner circle can know anything at all about something in an outer circle.
@@ -192,6 +200,20 @@ class RegisterUserResponse:
 | Data transfer objects | Optional | Optional | Explicit, between every boundary |
 
 Clean Architecture is the most prescriptive of the three: it explicitly separates Entities from Use Cases, mandates DTOs at boundaries, and gives Use Cases their own input/output port interfaces.
+
+## Examples
+
+Wiring the circles at the composition root — the outermost circle injects concrete implementations into the ports the inner circles declare:
+
+```python
+# Frameworks & Drivers — the composition root wires outer to inner
+gateway = PostgresOrderGateway(db)      # implements the output port
+use_case = PlaceOrder(gateway)          # depends only on the port interface
+controller = OrderController(use_case)  # driving adapter calls the input port
+
+# Dependencies point inward; data crosses boundaries as plain DTOs:
+#   HTTP → OrderController → PlaceOrder → Entities
+```
 
 ## When to use
 

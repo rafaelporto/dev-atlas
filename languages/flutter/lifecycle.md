@@ -159,6 +159,53 @@ class _MyScreenState extends State<MyScreen> with WidgetsBindingObserver {
 
 ---
 
+## Examples
+
+A single widget that exercises the full lifecycle end to end: it acquires resources in `initState`, reacts to config changes in `didUpdateWidget`, responds to app backgrounding, and releases everything in `dispose`:
+
+```dart
+class LiveClock extends StatefulWidget {
+  final String label;
+  const LiveClock({super.key, required this.label});
+
+  @override
+  State<LiveClock> createState() => _LiveClockState();
+}
+
+class _LiveClockState extends State<LiveClock> with WidgetsBindingObserver {
+  late Timer _timer;
+  DateTime _now = DateTime.now();
+  bool _paused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted && !_paused) setState(() => _now = DateTime.now());
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _paused = state != AppLifecycleState.resumed; // pause ticking in background
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      Text('${widget.label}: ${_now.second}s');
+}
+```
+
+---
+
 ## When to use
 
 - Use `initState` for one-time setup: subscribing to streams, starting animations, loading initial data.

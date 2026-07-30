@@ -269,7 +269,7 @@ xcrun devicectl device process launch --device <device-udid> com.example.MyApp
 
 ---
 
-## When to reach for the CLI
+## When to use
 
 - **CI/CD pipelines** — `xcodebuild` + `swift test` are the building blocks.
 - **Headless test runs** on a fleet of simulators.
@@ -280,7 +280,7 @@ xcrun devicectl device process launch --device <device-udid> com.example.MyApp
 
 ---
 
-## When NOT to
+## When NOT to use
 
 - **Day-to-day app dev.** Xcode's run loop with breakpoints and previews is faster than re-running CLI commands.
 - **One-off device testing.** Plug in, hit Run in Xcode — the device-deploy CLI is more setup than it's worth for occasional runs.

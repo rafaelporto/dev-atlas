@@ -19,7 +19,7 @@ Remotes are entries in `.git/config`:
 
 ```
 [remote "origin"]
-    url = git@github.com:your-username/your-repo.git
+    url = git@<host>:your-username/your-repo.git
     fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
@@ -143,13 +143,13 @@ A **bare repository** has no working tree — only the `.git/` contents, laid ou
 
 ```bash
 # Clone — creates origin automatically
-git clone git@github.com:user/repo.git
+git clone git@<host>:user/repo.git
 
 # Add a second remote (e.g., your fork's upstream)
 git remote add upstream https://github.com/upstream-org/repo.git
 git remote -v
-# origin    git@github.com:user/repo.git (fetch)
-# origin    git@github.com:user/repo.git (push)
+# origin    git@<host>:user/repo.git (fetch)
+# origin    git@<host>:user/repo.git (push)
 # upstream  https://github.com/upstream-org/repo.git (fetch)
 # upstream  https://github.com/upstream-org/repo.git (push)
 

@@ -34,8 +34,7 @@ Client → element.accept(visitor)
 3. **Visitor** interface declares a `visit()` overload for each concrete element type.
 4. **ConcreteVisitor** implements all overloads with the specific operation logic.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 

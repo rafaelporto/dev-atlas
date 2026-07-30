@@ -124,6 +124,79 @@ Practical guidance: embed **5.4** for new standalone/host projects; target **5.1
 
 ---
 
+## How it works
+
+Lua almost never runs alone — a host program written in C/C++ owns the process and *embeds* the Lua interpreter:
+
+1. **The host creates a Lua state** (`lua_State`) — an isolated interpreter instance holding globals, the stack, and the garbage collector.
+2. **Lua source is compiled to bytecode** for a small register-based virtual machine (either ahead of time via `luac` or on load).
+3. **The VM executes the bytecode**, managing memory with an incremental garbage collector.
+4. **Host and script exchange values through a stack**: C pushes arguments and reads results via the C API (`lua_push*` / `lua_to*`), and Lua can call registered C functions the same way.
+
+Everything above the primitives is built from **tables** plus **metatables**: an object is a table whose metatable's `__index` points at a "class" table, inheritance is a chain of `__index` links, and operators are metamethods. **LuaJIT** replaces the reference VM with a tracing JIT that compiles hot bytecode paths to native code and adds an FFI for calling C without writing binding code.
+
+---
+
+## Examples
+
+A self-contained slice showing tables-as-objects, a metatable for method lookup, a closure-based iterator, and a coroutine:
+
+```lua
+-- Table used as a "class" via metatable __index
+local Account = {}
+Account.__index = Account
+
+function Account.new(balance)
+  return setmetatable({ balance = balance or 0 }, Account)
+end
+
+function Account:deposit(amount)
+  self.balance = self.balance + amount
+  return self.balance
+end
+
+-- Closure-based iterator
+local function counter(n)
+  local i = 0
+  return function()
+    if i < n then i = i + 1; return i end
+  end
+end
+
+-- Coroutine as a cooperative generator
+local function squares(limit)
+  return coroutine.wrap(function()
+    for i = 1, limit do coroutine.yield(i * i) end
+  end)
+end
+
+local acc = Account.new(100)
+acc:deposit(50)                         -- 150
+for step in counter(3) do print(step) end   -- 1 2 3
+for sq in squares(3) do print(sq) end        -- 1 4 9
+```
+
+---
+
+## When to use
+
+- **Embedding a scripting layer** into a C/C++ host — the original design goal.
+- **Game logic and modding** where designers script behavior without rebuilding the engine.
+- **Configuration and plugins** for tools that need a safe, tiny extension language (Neovim, Redis, NGINX).
+- **High-throughput request handling** via LuaJIT + OpenResty.
+- **Resource-constrained targets** (routers, microcontrollers) where a full runtime won't fit.
+
+---
+
+## When NOT to use
+
+- **Large standalone applications** — the minimal standard library and dynamic typing make big self-contained codebases harder to scale.
+- **Machine learning / data science** — the ecosystem is thin; Python dominates.
+- **Teams needing compiler-enforced static types** — the core has none; external tooling only partly compensates.
+- **Cross-version portability without care** — 5.1/5.2/5.3/5.4 differ meaningfully, so pinning a version matters.
+
+---
+
 ## References
 
 - [Lua: about](https://www.lua.org/about.html)

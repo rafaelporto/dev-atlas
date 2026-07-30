@@ -22,9 +22,13 @@ language: "flutter"
 
 ---
 
-## Android deployment
+## Steps
 
-### Step 1 — Generate a signing keystore
+The release procedure differs per platform. Follow the Android track, the iOS track, or both, then set the version and (optionally) wire up CI/CD.
+
+### 1. Android deployment
+
+#### Step 1 — Generate a signing keystore
 
 ```bash
 keytool -genkey -v \
@@ -38,7 +42,7 @@ keytool -genkey -v \
 
 Keep this file secure — it cannot be regenerated if lost. Never commit it to version control.
 
-### Step 2 — Reference the keystore in the build
+#### Step 2 — Reference the keystore in the build
 
 Create `android/key.properties` (add to `.gitignore`):
 
@@ -77,7 +81,7 @@ android {
 }
 ```
 
-### Step 3 — Build the release App Bundle
+#### Step 3 — Build the release App Bundle
 
 ```bash
 flutter build appbundle --release
@@ -87,7 +91,7 @@ Output: `build/app/outputs/bundle/release/app-release.aab`
 
 Use the App Bundle format (not APK) for Play Store uploads — Google generates optimised APKs per device configuration.
 
-### Step 4 — Submit to Google Play Console
+#### Step 4 — Submit to Google Play Console
 
 1. Sign in to [Google Play Console](https://play.google.com/console).
 2. Create your app (or select an existing one).
@@ -97,9 +101,9 @@ Use the App Bundle format (not APK) for Play Store uploads — Google generates 
 
 ---
 
-## iOS deployment
+### 2. iOS deployment
 
-### Step 1 — Configure signing in Xcode
+#### Step 1 — Configure signing in Xcode
 
 Open `ios/Runner.xcworkspace` in Xcode:
 
@@ -108,7 +112,7 @@ Open `ios/Runner.xcworkspace` in Xcode:
 3. Ensure the bundle identifier matches what you registered in App Store Connect.
 4. Set the provisioning profile to **Automatic** (or select a manual Distribution profile).
 
-### Step 2 — Build the release archive
+#### Step 2 — Build the release archive
 
 ```bash
 flutter build ios --release
@@ -128,7 +132,7 @@ flutter build ipa --release
 
 Output: `build/ios/ipa/Runner.ipa`
 
-### Step 3 — Submit to App Store Connect
+#### Step 3 — Submit to App Store Connect
 
 1. Sign in to [App Store Connect](https://appstoreconnect.apple.com/).
 2. Create a new app or select an existing one.
@@ -138,7 +142,7 @@ Output: `build/ios/ipa/Runner.ipa`
 
 ---
 
-## Version and build number
+### 3. Set the version and build number
 
 Flutter uses `version` in `pubspec.yaml` in the format `major.minor.patch+buildNumber`:
 
@@ -156,7 +160,7 @@ flutter build appbundle --build-name=1.2.0 --build-number=5
 
 ---
 
-## CI/CD basics
+### 4. Automate with CI/CD
 
 A minimal CI/CD pipeline for Flutter (GitHub Actions example):
 

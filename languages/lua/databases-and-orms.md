@@ -153,6 +153,44 @@ Compared with the JVM (Hibernate, jOOQ) or .NET (Entity Framework), Lua's data l
 
 ---
 
+## Examples
+
+A standalone read-then-write flow using LuaDBI's prepared statements (the safer default), following the `nil, err` convention with `assert` at each boundary and closing every resource:
+
+```lua
+local DBI = require("DBI")
+
+local function activate_recent(min_id)
+  local dbh = assert(DBI.Connect("PostgreSQL", "app", "app", "secret", "127.0.0.1", 5432))
+
+  -- Read with a bound parameter — never string-interpolate untrusted input
+  local sel = assert(dbh:prepare("SELECT id, name FROM users WHERE id >= ?"))
+  assert(sel:execute(min_id))
+
+  local ids = {}
+  for row in sel:rows(true) do          -- true => name-keyed row tables
+    print(row.id, row.name)
+    ids[#ids + 1] = row.id
+  end
+  sel:close()
+
+  -- Write, also parameterized
+  local upd = assert(dbh:prepare("UPDATE users SET active = true WHERE id >= ?"))
+  assert(upd:execute(min_id))
+  dbh:commit()
+  upd:close()
+
+  dbh:close()
+  return #ids
+end
+
+print(activate_recent(100) .. " user(s) processed")
+```
+
+Inside OpenResty this same logic would use `lua-resty-*` (or Lapis models) so the query stays non-blocking.
+
+---
+
 ## When to use
 
 - Talking to SQLite/Postgres/MySQL from a standalone Lua script → LuaSQL or LuaDBI (prefer LuaDBI's prepared statements)

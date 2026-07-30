@@ -126,6 +126,31 @@ Neovim configured with LSP support connects directly to `gopls` and optionally a
 
 ---
 
+## Examples
+
+A typical first-time setup: install `gopls`, turn on format-and-lint on save in VS Code, then drive the same toolchain the editor buttons use from the terminal.
+
+```jsonc
+// .vscode/settings.json — VS Code Go extension
+{
+  "editor.formatOnSave": true,
+  "go.useLanguageServer": true,
+  "go.lintTool": "golangci-lint",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.codeActionsOnSave": { "source.organizeImports": true }
+  }
+}
+```
+
+```bash
+go install golang.org/x/tools/gopls@latest   # language server used by every editor
+gopls version                                 # confirm the editor can find it
+go test ./... && go vet ./...                 # the commands behind the editor's test/lint actions
+```
+
+---
+
 ## When to use
 
 - **VS Code** — default choice for most Go developers; good balance between features and simplicity.

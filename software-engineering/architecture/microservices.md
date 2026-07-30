@@ -36,6 +36,14 @@ Microservices is an architectural style where a system is built as a collection 
               └──────┘    └───────┘       └──────┘
 ```
 
+## Why does it matter?
+
+As a system and the team behind it grow, a single deployable becomes a bottleneck: every change forces a full redeploy, one module's memory leak can take down everything, and the whole app must scale as a unit. Microservices trade that for independently deployable, independently scalable services owned by small teams — at the cost of real distributed-systems complexity.
+
+## How it works
+
+The system is decomposed into small services, each owning its own data and exposing an API. Clients reach them through an API gateway; services talk to each other synchronously (HTTP/gRPC) or asynchronously (events). Because each service has its own database, consistency across services is eventual and coordinated through events or sagas rather than distributed transactions.
+
 ## Core principles
 
 ### Single Responsibility per Service
@@ -171,6 +179,24 @@ Accept that data will be consistent eventually, not immediately. Each service is
 | Technology freedom per service | Harder to trace requests (need distributed tracing) |
 | Fault isolation | Data consistency requires Saga / eventual consistency |
 | Smaller codebases per team | More infrastructure (service registry, gateway, CI per service) |
+
+## Examples
+
+An order flow spanning services — asynchronous and eventually consistent, coordinated by events rather than a shared transaction:
+
+```python
+# 1. Order Service persists the order and publishes an event
+publish("order.placed", {"order_id": "123", "total": 99.9})
+
+# 2. Payment Service subscribes, charges, and emits its own event
+@on("order.placed")
+def charge(evt):
+    ok = gateway.charge(evt["total"])
+    publish("payment.succeeded" if ok else "payment.failed",
+            {"order_id": evt["order_id"]})
+
+# 3. Order Service reacts to payment.* to advance or compensate the saga
+```
 
 ## When to use
 

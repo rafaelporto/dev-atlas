@@ -48,7 +48,7 @@ Flutter's model delivers:
 
 ---
 
-## How Flutter renders
+## How it works
 
 Most cross-platform frameworks delegate rendering to the host platform's UI components. Flutter does not:
 
@@ -114,6 +114,71 @@ When Flutter's Dart API does not cover a platform feature (Bluetooth, NFC, camer
 **`BuildContext` is a tree handle** — every widget's `build` method receives a `BuildContext` that represents its location in the element tree. It is the mechanism for dependency lookup (`of(context)`) and for reading inherited data.
 
 **No reflection** — Flutter relies on code generation (via `build_runner`) for JSON serialisation and DI because Dart's AOT compilation does not support runtime reflection.
+
+---
+
+## Examples
+
+A minimal but complete Flutter app showing the two core ideas — widget composition and `setState`-driven rebuilds — end to end:
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Counter',
+      home: const CounterScreen(),
+    );
+  }
+}
+
+class CounterScreen extends StatefulWidget {
+  const CounterScreen({super.key});
+
+  @override
+  State<CounterScreen> createState() => _CounterScreenState();
+}
+
+class _CounterScreenState extends State<CounterScreen> {
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Counter')),
+      body: Center(child: Text('Taps: $_count')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() => _count++),
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+```
+
+---
+
+## When to use
+
+- Building a mobile app for both iOS and Android from one codebase with native performance.
+- Targeting mobile, web, and desktop with a single UI and shared business logic.
+- Products that need a highly custom, brand-consistent UI that looks identical on every platform.
+- Teams that value a fast iteration loop (hot reload) and a single language across the stack.
+
+---
+
+## When NOT to use
+
+- Apps that must strictly adopt each platform's exact native look-and-feel and latest OS widgets on day one.
+- Very small apps where a single-platform native SDK would be simpler than adding the Flutter toolchain.
+- Extremely size-sensitive deliverables — the embedded engine adds a baseline to app binary size.
+- Web experiences that require SEO-critical, text-heavy content indexed by search engines (the canvas renderer is not ideal for this).
 
 ---
 

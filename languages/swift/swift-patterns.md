@@ -326,7 +326,59 @@ But often simpler: pass a closure that mutates a `var` request — no Builder cl
 
 ---
 
-## When to use a formal pattern
+## How it works
+
+Choosing a pattern in Swift is less about reaching for a GoF recipe and more about asking which language feature already expresses the intent:
+
+1. **Does a protocol capture it?** Strategy, Bridge, and Abstract Factory usually collapse into "accept a protocol (or `some`/`any`) parameter".
+2. **Does an enum capture it?** State, Composite (via `indirect`), and many Visitor cases become an enum plus a `switch`.
+3. **Does a value type capture it?** Prototype, Flyweight, and Memento are largely free because `struct`s copy and support `Codable`.
+4. **Does a closure capture it?** Command and simple Strategy often reduce to passing a function.
+5. **Only then reach for a formal object structure** — and prefer the Swift-native idiom (Protocol Witness, Result Builder, Property Wrapper) over a literal GoF class hierarchy.
+
+The frequency table above is the shortcut: the "Very common" rows are the ones the language actively encourages; the "Rare"/"Very rare" rows are usually a sign a native feature fits better.
+
+---
+
+## Examples
+
+A small module combining several idioms — an enum for State, a Protocol Witness for an injectable dependency, and an `AsyncStream` as the Observer:
+
+```swift
+enum LoadState<Value> {
+    case idle, loading, loaded(Value), failed(Error)
+}
+
+// Protocol Witness: a struct of closures instead of a protocol
+struct UserService {
+    var fetch: (String) async throws -> String
+}
+
+extension UserService {
+    static let live = UserService(fetch: { id in "user-\(id)" })
+    static let test = UserService(fetch: { _ in "test-user" })
+}
+
+@Observable
+final class UserViewModel {
+    private(set) var state: LoadState<String> = .idle
+    private let service: UserService
+
+    init(service: UserService = .live) { self.service = service }
+
+    func load(id: String) async {
+        state = .loading
+        do { state = .loaded(try await service.fetch(id)) }
+        catch { state = .failed(error) }
+    }
+}
+```
+
+The same code swaps `.live` for `.test` at construction — no mocking framework, no inheritance.
+
+---
+
+## When to use
 
 - **The shape repeats in three or more places** — the pattern is documenting an actual structure, not anticipating one.
 - **The abstraction has cost** but a clear name (e.g., "Repository", "Coordinator", "ViewModel") helps the next reader.
@@ -334,7 +386,7 @@ But often simpler: pass a closure that mutates a `var` request — no Builder cl
 
 ---
 
-## When NOT to
+## When NOT to use
 
 - **The first time you see the shape.** Three repetitions before extracting.
 - **The pattern fights the language.** If your Visitor or Abstract Factory feels heavy, the language is telling you to use the native idiom (enum + switch, generic protocol).

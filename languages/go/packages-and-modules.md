@@ -194,6 +194,61 @@ A package can have multiple `init()` functions across multiple files. They run i
 
 ---
 
+## Examples
+
+A minimal but complete module: a public package, an `internal/` package only this module can import, and a `main` that wires them together.
+
+```
+myapp/
+├── go.mod                 module github.com/example/myapp
+├── main.go
+├── internal/
+│   └── greet/
+│       └── greet.go       package greet  (importable only within myapp)
+└── mathx/
+    └── mathx.go           package mathx  (public API)
+```
+
+```go
+// mathx/mathx.go
+package mathx
+
+func Add(a, b int) int { return a + b }
+```
+
+```go
+// internal/greet/greet.go
+package greet
+
+import "fmt"
+
+func Line(sum int) string { return fmt.Sprintf("total is %d", sum) }
+```
+
+```go
+// main.go
+package main
+
+import (
+	"fmt"
+
+	"github.com/example/myapp/internal/greet"
+	"github.com/example/myapp/mathx"
+)
+
+func main() {
+	fmt.Println(greet.Line(mathx.Add(2, 3))) // total is 5
+}
+```
+
+```bash
+go mod init github.com/example/myapp
+go mod tidy
+go run .
+```
+
+---
+
 ## When to use
 
 - Split packages along **domain boundaries**, not technical layers — `invoice/` not `models/`

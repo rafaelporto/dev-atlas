@@ -30,6 +30,19 @@ Most Go codebases — including the standard library, Kubernetes, Docker, and Pr
 
 ---
 
+## How it works
+
+Go patterns lean on a small set of language features instead of class machinery:
+
+- **First-class functions** turn behavioral patterns (Strategy, Command, Template Method, Decorator) into plain functions or function-valued struct fields.
+- **Implicit interfaces** let a type stand in for an abstraction without declaring it, powering Adapter and Strategy.
+- **Struct embedding** provides reuse without inheritance.
+- **Goroutines and channels** give Observer and pipeline patterns a concurrent form with no callback framework.
+
+The two groups below apply these features: first classic GoF patterns re-expressed in Go, then patterns that are native to the language.
+
+---
+
 ## GoF Pattern Adaptations
 
 ### Factory Function (`New*`)
@@ -380,6 +393,91 @@ See the dedicated [Functional Options](functional-options.md) article.
 | Pipeline via Channels | Idiomatic | Common | Goroutine chain connected by channels |
 | Graceful Shutdown | Idiomatic | Required | `signal.NotifyContext` + `server.Shutdown` |
 | Functional Options | Idiomatic | Common | `type Option func(*T)` variadic parameter |
+
+---
+
+## Examples
+
+One server wiring several patterns together: a **factory function** builds the service, **functional options** configure it, **middleware** decorates the handler, and **graceful shutdown** drains in-flight work.
+
+```go
+package main
+
+import (
+	"context"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+)
+
+type Server struct {
+	addr string
+	mux  *http.ServeMux
+}
+
+type Option func(*Server)
+
+func WithAddr(a string) Option { return func(s *Server) { s.addr = a } }
+
+// Factory function.
+func NewServer(opts ...Option) *Server {
+	s := &Server{addr: ":8080", mux: http.NewServeMux()}
+	for _, opt := range opts { // apply functional options
+		opt(s)
+	}
+	s.mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("ok"))
+	})
+	return s
+}
+
+// Decorator / middleware.
+func logging(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+		next.ServeHTTP(w, r)
+		log.Printf("%s %s %v", r.Method, r.URL.Path, time.Since(start))
+	})
+}
+
+func main() {
+	s := NewServer(WithAddr(":9090"))
+	srv := &http.Server{Addr: s.addr, Handler: logging(s.mux)}
+
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	go func() {
+		if err := srv.ListenAndServe(); err != http.ErrServerClosed {
+			log.Fatal(err)
+		}
+	}()
+
+	<-ctx.Done() // wait for SIGINT/SIGTERM
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	srv.Shutdown(shutdownCtx) // graceful shutdown
+}
+```
+
+---
+
+## When to use
+
+- Reach for a **GoF adaptation** when you recognize the classic problem but want its Go-idiomatic form (a `New*` function instead of a factory class, `sync.Once` instead of a singleton).
+- Use **middleware/decorator** for cross-cutting concerns (logging, auth, metrics) on HTTP handlers, gRPC interceptors, or query wrappers.
+- Use **functional options** for constructors with many optional, growing parameters.
+- Use **channel pipelines** and **graceful shutdown** in servers, workers, and streaming systems.
+
+## When NOT to use
+
+- Do not port Java-style class hierarchies, abstract factories, or visitor trees into Go — they fight the language.
+- Do not apply a named pattern where a plain function or struct already solves the problem; most Go code needs none.
+- Do not reach for functional options for one or two required parameters — a simple constructor is clearer.
+- Do not use goroutines and channels for patterns that a mutex or a direct call expresses more simply.
 
 ---
 

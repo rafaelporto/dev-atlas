@@ -175,6 +175,66 @@ Config structs are simpler when callers always configure most fields.
 
 ---
 
+## Examples
+
+A complete, self-contained HTTP client type using the error-returning option variant — showing defaults, per-option validation, and three call sites.
+
+```go
+package httpc
+
+import (
+	"fmt"
+	"net/http"
+	"time"
+)
+
+type Client struct {
+	baseURL string
+	timeout time.Duration
+	http    *http.Client
+}
+
+type Option func(*Client) error
+
+func WithBaseURL(u string) Option {
+	return func(c *Client) error {
+		if u == "" {
+			return fmt.Errorf("base URL must not be empty")
+		}
+		c.baseURL = u
+		return nil
+	}
+}
+
+func WithTimeout(d time.Duration) Option {
+	return func(c *Client) error {
+		if d <= 0 {
+			return fmt.Errorf("timeout must be positive, got %v", d)
+		}
+		c.timeout = d
+		return nil
+	}
+}
+
+func New(opts ...Option) (*Client, error) {
+	c := &Client{baseURL: "http://localhost", timeout: 30 * time.Second}
+	for _, opt := range opts {
+		if err := opt(c); err != nil {
+			return nil, fmt.Errorf("httpc.New: %w", err)
+		}
+	}
+	c.http = &http.Client{Timeout: c.timeout}
+	return c, nil
+}
+
+// Usage:
+//   c, _   := New()                             // all defaults
+//   c, _   := New(WithTimeout(5 * time.Second)) // one override
+//   _, err := New(WithBaseURL(""))              // err: base URL must not be empty
+```
+
+---
+
 ## When to use
 
 - When building a public API type with many optional configuration parameters

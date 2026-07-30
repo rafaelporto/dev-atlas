@@ -176,6 +176,47 @@ getIt.registerSingleton<UserRepository>(MockUserRepository());
 
 ---
 
+## Examples
+
+An end-to-end GetIt setup: register a layered graph at startup, resolve a use case from the UI, and swap in a mock for a test:
+
+```dart
+// lib/core/di/service_locator.dart
+final getIt = GetIt.instance;
+
+void setupServiceLocator() {
+  getIt.registerLazySingleton<HttpClient>(HttpClient.new);
+  getIt.registerLazySingleton<UserRepository>(
+    () => UserRepositoryImpl(getIt<HttpClient>()),
+  );
+  getIt.registerFactory<GetUser>(() => GetUser(getIt<UserRepository>()));
+}
+
+// main.dart
+void main() {
+  setupServiceLocator();
+  runApp(const MyApp());
+}
+
+// Resolving where needed — no BuildContext required.
+Future<User> loadProfile(String id) => getIt<GetUser>().call(id);
+
+// test/get_user_test.dart
+void main() {
+  setUp(() {
+    getIt.reset();
+    getIt.registerSingleton<UserRepository>(MockUserRepository());
+    getIt.registerFactory<GetUser>(() => GetUser(getIt<UserRepository>()));
+  });
+
+  test('resolves a use case backed by a mock repository', () {
+    expect(getIt<GetUser>(), isA<GetUser>());
+  });
+}
+```
+
+---
+
 ## When to use
 
 - Use **GetIt** for straightforward manual wiring in small-to-medium apps where the registration code is manageable.

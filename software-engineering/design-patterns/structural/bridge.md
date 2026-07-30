@@ -41,8 +41,7 @@ Abstraction ──────────────────► Implemento
 RefinedAbstraction         ConcreteImplA   ConcreteImplB
 ```
 
-## Pseudo-code
-
+## Examples
 ```python
 # Implementor interface
 class Renderer:

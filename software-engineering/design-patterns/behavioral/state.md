@@ -34,8 +34,7 @@ Context ──holds──► State (interface)
 2. **ConcreteState** implements the behavior for one state; it may trigger transitions by replacing the context's state.
 3. **Context** delegates behavior to the current state object.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 

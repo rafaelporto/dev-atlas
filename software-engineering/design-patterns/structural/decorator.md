@@ -31,8 +31,7 @@ Client → DecoratorB → DecoratorA → ConcreteComponent
 3. **Decorator** implements the same interface and holds a reference to another Component.
 4. Each **ConcreteDecorator** wraps a component and adds its own behavior before or after delegating.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 

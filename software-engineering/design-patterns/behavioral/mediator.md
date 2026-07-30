@@ -35,8 +35,7 @@ C → M ← D                                    (4 connections for 4 objects)
 2. **ConcreteMediator** implements the coordination logic.
 3. Each **Component** holds a reference to the mediator and calls `notify()` instead of referencing other components.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 
@@ -121,9 +120,9 @@ dialog.terms_checkbox.toggle()
 # → TextInput: enabled
 # → SubmitButton: enabled
 
-dialog.email_input.value = "user@example.com"
+dialog.email_input.value = "<email>"
 dialog.submit_button.click()
-# → Submitting registration with email: user@example.com
+# → Submitting registration with email: <email>
 ```
 
 ## Mediator vs Observer

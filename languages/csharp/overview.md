@@ -125,6 +125,82 @@ For new production work, target the current LTS (**.NET 10**) unless you specifi
 
 ---
 
+## How it works
+
+C# runs on the .NET managed runtime, so execution is a two-stage process rather than direct compilation to machine code:
+
+1. **Compile to IL** — the Roslyn compiler turns C# source into platform-neutral **Intermediate Language (IL)** packaged in an assembly (`.dll`/`.exe`), with a manifest of metadata and types.
+2. **Load** — the Common Language Runtime (CLR) loads assemblies on demand, verifying types and resolving references.
+3. **JIT or AOT compile** — the CLR's just-in-time compiler turns IL into optimized native code the first time each method runs (tiered compilation); Native AOT can instead compile everything ahead of time for fast startup.
+4. **Run under managed services** — a tracing garbage collector reclaims memory, and the Base Class Library provides the runtime types the code builds on.
+
+The contract is IL + the CLR, which is why other .NET languages (F#, VB.NET) share the same runtime, GC, and libraries.
+
+---
+
+## Examples
+
+A small slice of idiomatic modern C# — a record, nullable-aware lookup, a LINQ query, `async`/`await`, and a `switch` expression with patterns:
+
+```csharp
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+record User(long Id, string Name);
+
+abstract record Lookup;
+record Found(User User) : Lookup;
+record Missing(long Id) : Lookup;
+
+class Demo
+{
+    static Lookup Lookup(long id, User[] users)
+    {
+        User? match = users.FirstOrDefault(u => u.Id == id);
+        return match is null ? new Missing(id) : new Found(match);
+    }
+
+    static string Describe(Lookup result) => result switch
+    {
+        Found f   => $"found {f.User.Name}",
+        Missing m => $"no user {m.Id}",
+        _         => "unknown",
+    };
+
+    static async Task Main()
+    {
+        var users = new[] { new User(1, "Ada"), new User(2, "Linus") };
+        foreach (var id in new long[] { 1, 3 })
+        {
+            await Task.Yield();                 // stand-in for async I/O
+            Console.WriteLine(Describe(Lookup(id, users)));
+        }
+    }
+}
+```
+
+---
+
+## When to use
+
+- **Backend and web APIs** — ASP.NET Core is mature and routinely tops web-framework benchmarks.
+- **Windows desktop apps** — WPF and WinUI are the native, best-supported path.
+- **Game development** — C# is the language of Unity (and supported by Godot).
+- **Cross-platform apps sharing a .NET codebase** — .NET MAUI, Blazor, and console services on Linux/macOS.
+- **Cloud-native services and containers** — modern .NET runs first-class on Linux with good performance.
+
+---
+
+## When NOT to use
+
+- **Quick shell-style scripting** — Python or Bash are lighter for throwaway automation.
+- **Data science and ML modelling** — Python owns the ecosystem.
+- **Tiny single-binary native tools** where footprint dominates — Go or Rust fit better (Native AOT narrows but does not close the gap).
+- **Hard-real-time or bare-metal work** — a managed GC runtime is the wrong tool.
+
+---
+
 ## References
 
 - [C# documentation — Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/csharp/)

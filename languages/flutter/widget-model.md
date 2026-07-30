@@ -128,6 +128,53 @@ class AppTheme extends InheritedWidget {
 
 ---
 
+## Examples
+
+A single screen that exercises the model end to end: composition of small widgets, a `const` subtree the framework can skip rebuilding, a `Key` to preserve element identity in a list, and `BuildContext` used for an inherited lookup:
+
+```dart
+class TodoList extends StatelessWidget {
+  final List<String> items;
+  const TodoList({super.key, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.bodyLarge; // inherited lookup
+    return Column(
+      children: [
+        const _Header(), // const: reused across rebuilds, not rebuilt
+        for (final item in items)
+          TodoRow(
+            key: ValueKey(item), // stable identity across reorders
+            label: item,
+            style: style,
+          ),
+      ],
+    );
+  }
+}
+
+class _Header extends StatelessWidget {
+  const _Header();
+  @override
+  Widget build(BuildContext context) => const Text('To do');
+}
+
+class TodoRow extends StatelessWidget {
+  final String label;
+  final TextStyle? style;
+  const TodoRow({super.key, required this.label, this.style});
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Text(label, style: style),
+      );
+}
+```
+
+---
+
 ## When to use
 
 - Compose small, reusable widgets rather than building monolithic `build` methods.

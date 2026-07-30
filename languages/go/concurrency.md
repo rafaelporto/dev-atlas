@@ -272,6 +272,70 @@ The race detector adds ~5–10× overhead in CPU and memory but catches races th
 
 ---
 
+## Examples
+
+A bounded worker pool tying the pieces together: a fixed set of goroutines drains a jobs channel (fan-out), results flow back on another channel (fan-in), a `WaitGroup` closes the output, and a `context` deadline cancels everything.
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"sync"
+	"time"
+)
+
+func worker(ctx context.Context, jobs <-chan int, results chan<- int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for {
+		select {
+		case <-ctx.Done():
+			return // deadline or cancellation: stop promptly
+		case j, ok := <-jobs:
+			if !ok {
+				return // jobs channel closed: no more work
+			}
+			results <- j * j
+		}
+	}
+}
+
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+
+	jobs := make(chan int)
+	results := make(chan int)
+
+	var wg sync.WaitGroup
+	for i := 0; i < 3; i++ { // fan-out to 3 workers
+		wg.Add(1)
+		go worker(ctx, jobs, results, &wg)
+	}
+
+	go func() { // feed jobs, then signal completion by closing the channel
+		defer close(jobs)
+		for n := 1; n <= 5; n++ {
+			jobs <- n
+		}
+	}()
+
+	go func() { // close results once every worker has finished (fan-in)
+		wg.Wait()
+		close(results)
+	}()
+
+	sum := 0
+	for r := range results {
+		sum += r
+	}
+	fmt.Println("sum of squares:", sum) // 55
+}
+```
+
+---
+
 ## When to use
 
 - Use goroutines for any work that can proceed independently: I/O operations, request handling, background tasks

@@ -174,6 +174,45 @@ class UserProfileScreen extends ConsumerWidget {
 
 ---
 
+## Examples
+
+An end-to-end screen that caches the `Future` in `initState` (avoiding the rebuild flicker) and renders every async state through a `FutureBuilder`:
+
+```dart
+class ProfileScreen extends StatefulWidget {
+  final String userId;
+  const ProfileScreen({super.key, required this.userId});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  late final Future<User> _userFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _userFuture = UserService.fetchUser(widget.userId); // created once
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<User>(
+      future: _userFuture,
+      builder: (context, snapshot) => switch (snapshot.connectionState) {
+        ConnectionState.done when snapshot.hasError =>
+          Text('Error: ${snapshot.error}'),
+        ConnectionState.done => Text('Hi, ${snapshot.requireData.name}'),
+        _ => const CircularProgressIndicator(),
+      },
+    );
+  }
+}
+```
+
+---
+
 ## When to use
 
 - Use `FutureBuilder` for one-off data loads that are scoped to a single widget and do not need caching.

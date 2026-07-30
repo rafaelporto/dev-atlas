@@ -30,8 +30,7 @@ Three roles:
 | **Memento** | Stores the originator's state; exposes nothing to outsiders |
 | **Caretaker** | Stores mementos; never reads or modifies their content |
 
-## Pseudo-code
-
+## Examples
 ```python
 from dataclasses import dataclass
 from typing import Any

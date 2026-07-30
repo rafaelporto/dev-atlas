@@ -265,6 +265,54 @@ Don't reach for `@unchecked Sendable` to silence the compiler — fix the model.
 
 ---
 
+## How it works
+
+These guidelines are not aspirational prose — most are enforced by concrete mechanisms, layered from cheapest to most expensive:
+
+- **The compiler** enforces the largest share: optionals, exclusive access, `Sendable` checking, unused-`var` warnings, and (under Swift 6) data-race safety are all compile-time.
+- **`swift-format`** enforces the mechanical layout rules (naming casing, spacing, line length) in a pre-commit hook or CI step.
+- **Code review** catches the judgment calls the tools can't: is the argument label readable, is the public surface minimal, is a `class` justified over a `struct`.
+
+The API design rules trace back to a single principle from Apple's guidelines: **optimize for clarity at the call site**, because a symbol is read far more often than it is written.
+
+---
+
+## Examples
+
+A single type applying the core rules together — value type, `final` reference type only where identity is needed, `private(set)`, thrown errors instead of sentinels, optionals over defaults, and a readable call site:
+
+```swift
+struct Money: Codable, Sendable {
+    let amount: Decimal
+    let currency: String
+}
+
+enum PaymentError: Error { case declined, offline }
+
+final class PaymentClient {
+    private let baseURL: URL
+    private(set) var lastReceiptID: String?
+
+    init(baseURL: URL) { self.baseURL = baseURL }
+
+    /// Charges `amount` to the given account.
+    /// - Throws: `PaymentError.offline` when there is no connection.
+    func charge(_ amount: Money, to account: String) async throws -> String {
+        guard !account.isEmpty else { throw PaymentError.declined }
+        let receiptID = try await send(amount, account)   // reads as English
+        lastReceiptID = receiptID
+        return receiptID
+    }
+
+    private func send(_ amount: Money, _ account: String) async throws -> String {
+        // network call omitted
+        "receipt-123"
+    }
+}
+```
+
+---
+
 ## API design checklist
 
 Before merging a public type or function, ask:
@@ -280,7 +328,7 @@ Before merging a public type or function, ask:
 
 ---
 
-## When to deviate
+## When to use
 
 These guidelines aren't laws. Deviate when:
 
@@ -292,7 +340,7 @@ Document the deviation. A short comment explaining why you broke convention save
 
 ---
 
-## When NOT to bend
+## When NOT to use
 
 - **`try!`/`as!` on dynamic input.** A crash isn't error handling.
 - **Singletons everywhere.** They're a habit, not a design.

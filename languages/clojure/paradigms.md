@@ -31,6 +31,19 @@ Clojure's designer, Rich Hickey, had strong, well-argued opinions about where ob
 
 ---
 
+## How it works
+
+Clojure's paradigms rest on a few core commitments rather than special syntax per style:
+
+- **Everything is an expression over immutable data** — functions take values and return new values, which is what makes the functional and data-oriented styles the default.
+- **The reader turns code into data** — source is parsed into lists, vectors, and maps before evaluation, enabling macros and metaprogramming.
+- **Polymorphism is runtime dispatch** — protocols dispatch on the first argument's type, multimethods on any computed value, neither using inheritance.
+- **The JVM host is reachable directly** — Java interop is available at the edges when you need it.
+
+The sections below walk each paradigm, how strongly Clojure supports it, and its trade-offs.
+
+---
+
 ## Paradigms supported
 
 ### 1. Functional (primary paradigm)
@@ -182,6 +195,50 @@ Clojure is hosted, so it speaks the JVM's object-oriented dialect when interoper
 | Object-oriented interop | Partial (host only) | Only at the Java boundary |
 
 The idiomatic Clojure approach is to **model data as immutable maps and vectors**, **transform it with pure functions**, **reach for protocols/multimethods when behavior must vary by type**, and **confine mutation and Java interop to the edges**.
+
+---
+
+## Examples
+
+A short program blending Clojure's main paradigms: data-oriented maps, protocol-based polymorphism, and a pure functional pipeline.
+
+```clojure
+(ns catalog.core)
+
+;; Data-oriented: entities are plain maps.
+(def products
+  [{:name "book" :type :media :price 20}
+   {:name "mug"  :type :goods :price 8}])
+
+;; Polymorphism without inheritance: dispatch on :type.
+(defmulti shipping :type)
+(defmethod shipping :media [_] 2)
+(defmethod shipping :goods [_] 5)
+
+;; Functional: pure pipeline over immutable data.
+(defn order-total [products]
+  (->> products
+       (map (fn [p] (+ (:price p) (shipping p))))
+       (reduce + 0)))
+
+(order-total products) ;; => 35
+```
+
+---
+
+## When to use
+
+- Default to the **functional** style — pure functions over immutable data — for essentially all logic.
+- Model domains as **plain data** (maps/vectors) and transform them with generic functions.
+- Reach for **protocols/multimethods** when behavior must vary by type or by an arbitrary value.
+- Use **macros** only to remove genuine boilerplate or build a DSL that functions cannot express.
+
+## When NOT to use
+
+- Do not replicate object-oriented class hierarchies or bundle mutable state with behavior.
+- Do not rely on deep cross-function recursion without `recur`/`loop` — there is no automatic tail-call optimization.
+- Do not scatter Java interop and mutation through the code — keep it at the edges, wrapped in pure functions.
+- Do not overuse macros where a function would do; macros do not compose and hurt readability.
 
 ---
 

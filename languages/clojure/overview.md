@@ -38,6 +38,17 @@ The result is a language that is expressive and terse like a scripting language,
 
 ---
 
+## How it works
+
+Clojure's character comes from a few interlocking mechanisms:
+
+- **Persistent data structures** — maps, vectors, sets, and lists are immutable; "changing" one returns a new version that shares structure with the original, so copies are cheap and safe to share across threads.
+- **The reader and evaluation** — source text is parsed into Clojure data (lists, vectors, symbols) *before* evaluation, which is what makes macros and homoiconicity possible.
+- **Hosted on the JVM** — code compiles to Java bytecode and calls Java directly, inheriting the JVM's GC, JIT, threads, and libraries with no FFI cost.
+- **Managed references** — mutation is confined to a few reference types (atoms, refs, agents) with well-defined semantics, so immutable values flow through pure functions and state change stays explicit.
+
+---
+
 ## What can you build with Clojure?
 
 | Domain | Fit | Notes |
@@ -121,6 +132,52 @@ Clojure officially supports Java LTS releases (currently Java 8, 11, 17, 21, and
 **Hosted, not sandboxed** — Clojure embraces its host platform's strengths (JVM threads, GC, libraries) instead of abstracting them away.
 
 **Stability as a value** — the language deliberately avoids breaking changes; code written a decade ago typically still runs.
+
+---
+
+## Examples
+
+A small, idiomatic slice of Clojure: immutable data flowing through pure functions with a threading macro, plus one managed reference for state.
+
+```clojure
+(ns shop.core)
+
+;; Domain data is just immutable maps and vectors.
+(def orders
+  [{:id 1 :status :paid :total 42}
+   {:id 2 :status :open :total 10}
+   {:id 3 :status :paid :total 58}])
+
+;; Pure transformation pipeline (thread-last).
+(defn revenue [orders]
+  (->> orders
+       (filter (comp #{:paid} :status))
+       (map :total)
+       (reduce + 0)))
+
+(revenue orders) ;; => 100
+
+;; The only mutable state is an explicit atom.
+(def total (atom 0))
+(swap! total + (revenue orders))
+@total ;; => 100
+```
+
+---
+
+## When to use
+
+- Long-running backend services and APIs on the JVM (Ring/reitit/Pedestal stacks).
+- Data processing, transformation, and ETL, where immutable data and transducers shine.
+- Interactive, REPL-driven development where you grow a program inside a live process.
+- Frontend SPAs via ClojureScript and re-frame, or fast scripting with babashka.
+
+## When NOT to use
+
+- Systems programming, mobile apps, or desktop GUIs — there is no first-class support.
+- Hard-realtime or latency-sensitive code where JVM GC pauses and boxing are unacceptable.
+- Teams that need a large, easily hired talent pool — the Lisp/REPL learning curve is real.
+- Situations demanding compile-time type guarantees out of the box (only mitigated, not replaced, by spec/malli).
 
 ---
 

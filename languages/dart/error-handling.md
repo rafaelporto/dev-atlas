@@ -127,6 +127,50 @@ Use `rethrow` — not `throw e` — to preserve the original stack trace when yo
 
 ---
 
+## Examples
+
+An end-to-end flow that mixes both strategies: a custom exception and `try/catch` at the I/O boundary, wrapped in a `Result` type the caller matches exhaustively:
+
+```dart
+class ParseException implements Exception {
+  final String message;
+  ParseException(this.message);
+  @override
+  String toString() => 'ParseException: $message';
+}
+
+sealed class Result<T> {}
+class Ok<T> extends Result<T> { final T value; Ok(this.value); }
+class Err<T> extends Result<T> { final String message; Err(this.message); }
+
+Result<int> parsePort(String raw) {
+  try {
+    final port = int.parse(raw);
+    if (port < 1 || port > 65535) throw ParseException('out of range');
+    return Ok(port);
+  } on FormatException {
+    return Err('not a number: "$raw"');
+  } on ParseException catch (e) {
+    return Err(e.message);
+  }
+}
+
+void main() {
+  for (final raw in ['8080', 'abc', '99999']) {
+    final label = switch (parsePort(raw)) {
+      Ok(:final value)    => 'ok: $value',
+      Err(:final message) => 'error: $message',
+    };
+    print('$raw -> $label');
+  }
+  // 8080 -> ok: 8080
+  // abc -> error: not a number: "abc"
+  // 99999 -> error: out of range
+}
+```
+
+---
+
 ## When to use
 
 - Use `try/catch` at system boundaries: I/O, network calls, JSON parsing, external APIs.

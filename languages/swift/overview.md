@@ -131,6 +131,71 @@ The current major line is **Swift 6**, which is the recommended target for new c
 
 ---
 
+## How it works
+
+Swift's pipeline is fully ahead-of-time compiled — there is no VM or interpreter in shipping apps:
+
+1. **Parse & type-check** — the front end builds an AST and runs Swift's type inference and safety checks (optionals, exclusivity, concurrency isolation).
+2. **SIL (Swift Intermediate Language)** — a Swift-specific IR where ARC insertion, generic specialization, and optimizations happen.
+3. **LLVM IR → machine code** — SIL lowers to LLVM IR, which LLVM optimizes and emits as native object code for the target triple.
+4. **Link** — object files link against the Swift runtime and standard library into an executable or framework.
+
+Memory is managed by **ARC**: the compiler inserts retain/release calls at compile time rather than using a tracing garbage collector, so memory behavior is deterministic. Value types (`struct`, `enum`) are copied on assignment, with copy-on-write for the standard-library collections so a copy is only paid when a shared buffer is mutated.
+
+---
+
+## Examples
+
+A small end-to-end slice showing the language's defaults — value type, optional handling, protocol conformance, and structured concurrency:
+
+```swift
+struct User: Codable, Identifiable {
+    let id: String
+    var name: String
+}
+
+enum LoadError: Error { case notFound }
+
+func loadUser(id: String, from store: [String: User]) throws -> User {
+    guard let user = store[id] else { throw LoadError.notFound }
+    return user
+}
+
+func refresh(ids: [String], from store: [String: User]) async -> [User] {
+    await withTaskGroup(of: User?.self) { group in
+        for id in ids {
+            group.addTask { try? loadUser(id: id, from: store) }
+        }
+        var results: [User] = []
+        for await user in group where user != nil {
+            results.append(user!)
+        }
+        return results
+    }
+}
+```
+
+---
+
+## When to use
+
+- **Any Apple-platform app** — iOS, iPadOS, macOS, watchOS, tvOS, visionOS.
+- **Performance-sensitive native code** where a GC pause is unacceptable and value semantics simplify reasoning.
+- **New projects on Apple platforms** — Swift 6 is the recommended target over Objective-C.
+- **Cross-platform libraries** targeting Linux/Windows via SPM, where Apple frameworks are not required.
+- **Embedded / resource-constrained targets** via Embedded Swift.
+
+---
+
+## When NOT to use
+
+- **Non-Apple GUI or ecosystems** where the mature toolchain and libraries live elsewhere (e.g. Android-native, most web front ends).
+- **Teams with a deep existing investment** in another native stack and no Apple-platform target.
+- **Scripting glue** where a dynamically typed language already fits the workflow and startup cost matters more than performance.
+- **Environments without a supported toolchain** — some niche platforms lack a Swift port.
+
+---
+
 ## References
 
 - [Swift.org — Documentation](https://www.swift.org/documentation/)

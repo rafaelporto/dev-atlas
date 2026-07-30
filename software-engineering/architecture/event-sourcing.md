@@ -35,6 +35,10 @@ Event Sourcing:
 - **Event replay**: rebuild read models, fix bugs by reprocessing history, add new projections retroactively.
 - **Debugging**: reproduce bugs by replaying the exact sequence of events that caused them.
 
+## How it works
+
+Rather than storing current state, the system stores the full, ordered sequence of events that produced it. Current state is derived by replaying those events; snapshots cache the result periodically to keep replay fast. Because the log is append-only and immutable, it doubles as a complete audit trail and can be reprojected into new read models at any time.
+
 ## Core concepts
 
 ### Event
@@ -259,6 +263,21 @@ Command ──► Handler ──► Aggregate ──► Events ──► Event S
 | New projections from historical data | Schema evolution of old events is complex |
 | Natural fit for event-driven systems | Higher operational complexity |
 | Enables temporal queries ("state at time T") | Learning curve for teams unfamiliar with the pattern |
+
+## Examples
+
+Every change is an event appended to the log, and current state is a fold over those events (optionally starting from a snapshot):
+
+```python
+events = [
+    OrderPlaced(order_id="123", total=100),
+    ItemAdded(order_id="123", sku="A", price=20),
+    OrderPaid(order_id="123"),
+]
+
+order = reduce(apply_event, events, Order.empty("123"))
+# order.total == 120, order.status == "paid"
+```
 
 ## When to use
 

@@ -135,6 +135,52 @@ Stream<int> countUp(int max) async* {
 
 ---
 
+## Examples
+
+One program that touches every paradigm: an OOP model with a mixin, a functional transformation, a record return, pattern matching, and async I/O:
+
+```dart
+mixin Loggable {
+  void log(String msg) => print('$runtimeType: $msg');
+}
+
+sealed class Feed {}
+class Article extends Feed { final String title; Article(this.title); }
+class Ad extends Feed { final int id; Ad(this.id); }
+
+class Reader with Loggable {
+  Future<List<Feed>> fetch() async {
+    await Future.delayed(const Duration(milliseconds: 20)); // async I/O
+    return [Article('Dart 3'), Ad(7), Article('Records')];
+  }
+}
+
+(int articles, int ads) summarise(List<Feed> items) {
+  var a = 0, d = 0;
+  for (final item in items) {
+    switch (item) {          // pattern matching over a sealed type
+      case Article(): a++;
+      case Ad(): d++;
+    }
+  }
+  return (a, d);             // record return
+}
+
+Future<void> main() async {
+  final reader = Reader()..log('fetching');
+  final feed = await reader.fetch();
+
+  // functional pipeline
+  final titles = feed.whereType<Article>().map((a) => a.title).toList();
+  final (articles, ads) = summarise(feed);
+
+  print('titles: $titles');       // titles: [Dart 3, Records]
+  print('articles=$articles ads=$ads'); // articles=2 ads=1
+}
+```
+
+---
+
 ## When to use
 
 - **OOP**: modelling domain entities, defining contracts with abstract classes, building class hierarchies.

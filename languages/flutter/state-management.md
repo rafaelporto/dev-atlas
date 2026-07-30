@@ -174,6 +174,52 @@ BlocBuilder<CartBloc, CartState>(
 
 ---
 
+## Examples
+
+A complete Riverpod slice wiring shared state to the UI end to end — provider, mutation from a callback, and a reactive consumer:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// 1. Shared state declared at the top level (no BuildContext needed).
+final counterProvider = StateNotifierProvider<CounterNotifier, int>(
+  (ref) => CounterNotifier(),
+);
+
+class CounterNotifier extends StateNotifier<int> {
+  CounterNotifier() : super(0);
+  void increment() => state = state + 1;
+}
+
+void main() => runApp(const ProviderScope(child: MyApp()));
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) =>
+      const MaterialApp(home: CounterScreen());
+}
+
+class CounterScreen extends ConsumerWidget {
+  const CounterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final count = ref.watch(counterProvider); // rebuilds on change
+    return Scaffold(
+      body: Center(child: Text('Count: $count')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => ref.read(counterProvider.notifier).increment(),
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+```
+
+---
+
 ## When to use
 
 - **Provider**: straightforward apps, or when onboarding a team unfamiliar with Riverpod or Bloc.

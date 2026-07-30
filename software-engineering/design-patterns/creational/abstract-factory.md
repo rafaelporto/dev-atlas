@@ -26,8 +26,7 @@ When a system needs to work with multiple families of products (e.g., a UI toolk
 2. Implement one concrete factory per product family.
 3. The client receives a factory and calls its methods — it never references concrete product classes.
 
-## Pseudo-code
-
+## Examples
 ```python
 # Abstract products
 class Button:

@@ -169,6 +169,50 @@ ShellRoute(
 
 ---
 
+## Examples
+
+An end-to-end GoRouter setup with an auth guard, a path parameter, and both `go`/`push` navigation from the UI:
+
+```dart
+final router = GoRouter(
+  initialLocation: '/',
+  redirect: (context, state) {
+    final loggedIn = authService.isAuthenticated;
+    if (!loggedIn && state.matchedLocation != '/login') return '/login';
+    return null;
+  },
+  routes: [
+    GoRoute(path: '/login', builder: (_, __) => const LoginScreen()),
+    GoRoute(path: '/', builder: (_, __) => const HomeScreen()),
+    GoRoute(
+      path: '/user/:id',
+      builder: (context, state) =>
+          UserScreen(id: state.pathParameters['id']!),
+    ),
+  ],
+);
+
+void main() => runApp(MaterialApp.router(routerConfig: router));
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => context.push('/user/42'), // back-stack push
+          child: const Text('Open user 42'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
 ## When to use
 
 - Use GoRouter for any multi-screen app — it handles deep links, web URLs, and nested navigation out of the box.

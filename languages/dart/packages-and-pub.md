@@ -120,6 +120,48 @@ import '../lib/src/utils.dart';
 
 ---
 
+## Examples
+
+A realistic end-to-end flow: a `pubspec.yaml` for a small CLI package plus the commands to set it up, add a dependency, and lock versions.
+
+```yaml
+# pubspec.yaml
+name: url_pinger
+description: A tiny CLI that checks whether a URL is reachable.
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  http: ^1.2.0
+  args: ^2.4.0
+
+dev_dependencies:
+  lints: ^3.0.0
+  test: ^1.25.0
+```
+
+```bash
+dart pub get                 # resolve and fetch, writing pubspec.lock
+dart pub add args            # add a dependency (updates pubspec.yaml + lock)
+dart pub outdated            # check for newer allowed versions
+dart run bin/url_pinger.dart # run the executable in bin/
+```
+
+```dart
+// bin/url_pinger.dart
+import 'package:http/http.dart' as http;
+
+Future<void> main(List<String> args) async {
+  final url = args.isEmpty ? 'https://dart.dev' : args.first;
+  final res = await http.get(Uri.parse(url));
+  print('$url -> ${res.statusCode}');
+}
+```
+
+---
+
 ## When to use
 
 - Use `dart pub add` to add a dependency — it updates `pubspec.yaml` and runs `get` atomically.

@@ -208,6 +208,71 @@ The idiomatic Lua approach is to **default to procedural code with `local`**, **
 
 ---
 
+## How it works
+
+Lua does not implement four separate paradigm engines — it exposes one small set of mechanisms, and each paradigm is a way of using them:
+
+- **Procedural** falls straight out of functions, `local` variables, and top-to-bottom execution.
+- **Functional** works because functions are first-class values with lexical closures and proper tail-call optimization; higher-order functions and dispatch tables are just functions stored in and passed through tables.
+- **Object-oriented** is *delegation*, not instantiation: an object is a table whose metatable's `__index` points at a prototype, and inheritance is a chain of those `__index` links.
+- **Concurrent** is cooperative: `coroutine.create`/`resume`/`yield` suspend and resume a call stack at explicit points, with no preemption and no shared-memory races.
+
+The through-line is that tables, closures, and metatables recombine to express whichever style a given piece of code needs.
+
+---
+
+## Examples
+
+One program touching all four paradigms — a procedural driver, a functional `map`, a prototype-based object, and a coroutine generator:
+
+```lua
+-- Object (prototype-based)
+local Counter = {}
+Counter.__index = Counter
+function Counter.new() return setmetatable({ n = 0 }, Counter) end
+function Counter:bump() self.n = self.n + 1; return self.n end
+
+-- Functional: higher-order map
+local function map(t, f)
+  local out = {}
+  for i, v in ipairs(t) do out[i] = f(v) end
+  return out
+end
+
+-- Concurrent: coroutine generator
+local function range(limit)
+  return coroutine.wrap(function()
+    for i = 1, limit do coroutine.yield(i) end
+  end)
+end
+
+-- Procedural driver tying it together
+local counter = Counter.new()
+for _ in range(3) do counter:bump() end          -- 3 bumps via the generator
+local doubled = map({ 1, 2, 3 }, function(x) return x * 2 end)
+print(counter.n, doubled[3])                       -- 3   6
+```
+
+---
+
+## When to use
+
+- **Procedural** — the default for scripts, host glue, and anything without a compelling reason to abstract.
+- **Functional** — for iterators, callbacks, memoization, and dispatch tables where it clarifies intent.
+- **Prototype-based OOP** — when you need stateful objects with shared behavior or shallow inheritance.
+- **Coroutines** — for generators, cooperative schedulers, and async-style I/O (e.g. OpenResty).
+
+---
+
+## When NOT to use
+
+- **Heavy functional pipelines** in hot paths — chained `map`/`filter` allocate intermediate tables and pressure the GC.
+- **Deep class hierarchies** — prototype chains get slow and confusing; prefer composition.
+- **Coroutines for CPU parallelism** — they are single-threaded and cannot use multiple cores.
+- **Forcing a Java/Python class model** onto Lua — the language models objects as delegation, and fighting that produces awkward code.
+
+---
+
 ## References
 
 - [Lua 5.4 Reference Manual — Values and Types](https://www.lua.org/manual/5.4/manual.html#2.1)

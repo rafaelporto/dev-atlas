@@ -36,8 +36,7 @@ When a system models hierarchies — file systems, UI component trees, organizat
 2. **Leaf** implements the interface for individual objects.
 3. **Composite** implements the interface and holds a list of child Components — it delegates operations to its children.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 

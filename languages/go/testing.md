@@ -211,6 +211,54 @@ Prefer `package math_test` for integration-style tests of the public API. Use `p
 
 ---
 
+## Examples
+
+One test file combining the main techniques: a table-driven unit test with named subtests, plus an HTTP handler test using `httptest` and `testify`.
+
+```go
+package api
+
+import (
+	"net/http"
+	"net/http/httptest"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+)
+
+func TestDiscount(t *testing.T) {
+	tests := []struct {
+		name  string
+		price int
+		rate  float64
+		want  int
+	}{
+		{"no discount", 100, 0, 100},
+		{"ten percent", 100, 0.1, 90},
+		{"full", 100, 1, 0},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.want, Discount(tt.price, tt.rate))
+		})
+	}
+}
+
+func TestHealthHandler(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/health", nil)
+	rec := httptest.NewRecorder()
+
+	HealthHandler(rec, req)
+
+	res := rec.Result()
+	require.Equal(t, http.StatusOK, res.StatusCode) // stop the test if the status is wrong
+	assert.Equal(t, "ok", rec.Body.String())
+}
+```
+
+---
+
 ## When to use
 
 - Write table-driven tests for any function with multiple input variations

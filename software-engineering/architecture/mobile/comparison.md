@@ -176,7 +176,11 @@ Real codebases rarely use one pattern in isolation. The common stacks:
 
 ---
 
-## When NOT to over-architect
+## When to use
+
+Reach for this comparison whenever you are choosing — or reconsidering — a mobile architecture. Work top-down: use the decision matrix to narrow candidates, the recommended pairings to combine them, and the scenarios above as worked examples. Let the app's screen count, team size, and testability needs drive the pick rather than fashion.
+
+## When NOT to use
 
 A few red flags that you've reached for too much architecture:
 

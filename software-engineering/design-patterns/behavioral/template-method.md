@@ -35,8 +35,7 @@ BaseClass
 2. **Abstract steps** are declared in the base class; subclasses must implement them.
 3. **Hooks** are concrete steps with default (often empty) implementations that subclasses may override optionally.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 

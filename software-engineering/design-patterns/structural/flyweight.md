@@ -36,8 +36,7 @@ FlyweightFactory ──► Flyweight (shared)
 3. Pass extrinsic state as parameters to the flyweight's methods.
 4. Use a Factory to manage the pool of flyweights (return existing if already created).
 
-## Pseudo-code
-
+## Examples
 ```python
 # Intrinsic state — shared, immutable
 class TreeType:

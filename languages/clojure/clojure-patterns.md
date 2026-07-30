@@ -31,6 +31,18 @@ Writing Clojure by mechanically translating Java patterns produces awkward, over
 
 ---
 
+## How it works
+
+Three language features do the work that classes and pattern boilerplate do elsewhere:
+
+- **First-class functions** — behavior is a value, so Strategy, Command, Template Method, and Decorator become "pass or compose a function".
+- **Immutable data + generic functions** — entities are plain maps manipulated by `assoc`/`update`/`merge`, so Builder and configuration-object patterns collapse into data.
+- **Protocols and multimethods** — open polymorphism replaces type hierarchies and the Adapter/Visitor/State families.
+
+The next section maps the classic GoF catalogue onto these features; the one after covers patterns that are genuinely idiomatic to Clojure.
+
+---
+
 ## Why classic GoF mostly disappears
 
 | GoF pattern | Clojure reality |
@@ -198,6 +210,57 @@ Decouple a transformation pipeline from its source and sink so the same logic ap
 | Manage stateful lifecycle & wiring | Component / Integrant / Mount |
 | React to state change | `add-watch` / `core.async` pub-sub |
 | Single shared resource | `def` / `defonce` |
+
+---
+
+## Examples
+
+One small module combining the idiomatic tools: a protocol for type-based dispatch, a multimethod for value-based dispatch, a function passed as a strategy, and a threading pipeline.
+
+```clojure
+(ns billing.core)
+
+;; Protocol: dispatch on type.
+(defprotocol Account
+  (balance [a]))
+
+(defrecord Cash [amount]
+  Account
+  (balance [_] amount))
+
+;; Multimethod: dispatch on a computed value.
+(defmulti fee :tier)
+(defmethod fee :free    [_] 0)
+(defmethod fee :pro     [_] 10)
+(defmethod fee :default [_] 5)
+
+;; Strategy is just a function argument.
+(defn net [account discount-fn]
+  (discount-fn (balance account)))
+
+(def customer {:tier :pro})
+
+;; Threading pipeline ties it together.
+(-> (->Cash 100)
+    (net #(* % 0.9))     ;; strategy: 10% off => 90.0
+    (- (fee customer)))  ;; minus tier fee => 80.0
+```
+
+---
+
+## When to use
+
+- Pass a **function** when behavior varies at runtime (Strategy/Command).
+- Use a **protocol** when behavior varies by the type of the first argument and you want host-fast dispatch.
+- Use a **multimethod** when dispatch depends on an arbitrary value (a `:type` key, a computed key) and must stay open for extension.
+- Use **Component/Integrant/Mount** to wire and order stateful, long-running systems.
+
+## When NOT to use
+
+- Do not translate Java patterns mechanically — factory classes, singletons, and visitor hierarchies fight the language.
+- Do not write a protocol or multimethod when a plain function already expresses the variation.
+- Do not overuse macros to build patterns; prefer functions unless you must control evaluation.
+- Do not introduce a lifecycle library for a script or a system with no stateful dependencies to order.
 
 ---
 

@@ -82,13 +82,13 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: UserCard(
-          user: User(id: '1', name: 'Alice', email: 'alice@example.com'),
+          user: User(id: '1', name: 'Alice', email: '<email>'),
         ),
       ),
     );
 
     expect(find.text('Alice'), findsOneWidget);
-    expect(find.text('alice@example.com'), findsOneWidget);
+    expect(find.text('<email>'), findsOneWidget);
   });
 
   testWidgets('tapping the button calls onTap', (WidgetTester tester) async {
@@ -135,7 +135,7 @@ testWidgets('UserCard matches golden', (WidgetTester tester) async {
   await tester.pumpWidget(
     const MaterialApp(
       home: UserCard(
-        user: User(id: '1', name: 'Alice', email: 'alice@example.com'),
+        user: User(id: '1', name: 'Alice', email: '<email>'),
       ),
     ),
   );
@@ -176,7 +176,7 @@ void main() {
     app.main();
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byKey(const Key('email_field')), 'alice@example.com');
+    await tester.enterText(find.byKey(const Key('email_field')), '<email>');
     await tester.enterText(find.byKey(const Key('password_field')), 'secret');
     await tester.tap(find.byKey(const Key('login_button')));
     await tester.pumpAndSettle();
@@ -199,6 +199,35 @@ flutter test                              # all unit and widget tests
 flutter test test/widgets/user_card_test.dart  # specific file
 flutter test --coverage                   # collect coverage
 flutter test --update-goldens             # regenerate golden images
+```
+
+---
+
+## Examples
+
+A widget test covering the full pyramid idea in miniature — mount a widget, assert its rendered output, drive an interaction, and assert the resulting state change:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  testWidgets('counter increments when the button is tapped',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: CounterScreen()));
+
+    // Initial render.
+    expect(find.text('Count: 0'), findsOneWidget);
+
+    // Interaction.
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump(); // rebuild after setState
+
+    // Resulting state.
+    expect(find.text('Count: 1'), findsOneWidget);
+    expect(find.text('Count: 0'), findsNothing);
+  });
+}
 ```
 
 ---

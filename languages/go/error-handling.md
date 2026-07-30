@@ -213,6 +213,60 @@ func safeDiv(a, b int) (result int, err error) {
 
 ---
 
+## Examples
+
+A single flow that uses every mechanism: a sentinel error, a custom typed error, wrapping with `%w`, and matching with `errors.Is` / `errors.As` at the boundary.
+
+```go
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+var ErrNotFound = errors.New("not found")
+
+type ValidationError struct {
+	Field string
+}
+
+func (e *ValidationError) Error() string {
+	return fmt.Sprintf("invalid field: %s", e.Field)
+}
+
+func loadUser(id int) error {
+	if id < 0 {
+		return fmt.Errorf("loadUser(%d): %w", id, &ValidationError{Field: "id"})
+	}
+	if id == 0 {
+		return fmt.Errorf("loadUser(%d): %w", id, ErrNotFound)
+	}
+	return nil
+}
+
+func main() {
+	for _, id := range []int{-1, 0, 1} {
+		err := loadUser(id)
+		switch {
+		case err == nil:
+			fmt.Printf("id %d: ok\n", id)
+		case errors.Is(err, ErrNotFound): // matches through the wrap
+			fmt.Printf("id %d: not found\n", id)
+		default:
+			var ve *ValidationError
+			if errors.As(err, &ve) { // extracts the typed error from the chain
+				fmt.Printf("id %d: validation failed on %q\n", id, ve.Field)
+			} else {
+				fmt.Printf("id %d: %v\n", id, err)
+			}
+		}
+	}
+}
+```
+
+---
+
 ## When to use
 
 - Return `error` as the last value from any function that can fail

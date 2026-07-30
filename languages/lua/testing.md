@@ -170,6 +170,52 @@ os.exit(lu.LuaUnit.run())
 
 ---
 
+## Examples
+
+A single realistic spec combining the pieces — discovery via `_spec.lua`, per-test state in `before_each`, deep table comparison with `are.same`, an error assertion, and a spy on a collaborator:
+
+```lua
+-- spec/cart_spec.lua
+local Cart = require("cart")
+
+describe("cart", function()
+  local cart, logger
+
+  before_each(function()
+    logger = { info = function() end }
+    cart = Cart.new(logger)          -- fresh state and collaborator per test
+  end)
+
+  it("adds items and totals them", function()
+    cart:add({ name = "pen", price = 3 })
+    cart:add({ name = "pad", price = 5 })
+    assert.are.equal(8, cart:total())
+  end)
+
+  it("returns a deep-equal snapshot of items", function()
+    cart:add({ name = "pen", price = 3 })
+    assert.are.same({ { name = "pen", price = 3 } }, cart:items())
+  end)
+
+  it("rejects a nil item", function()
+    assert.has_error(function() cart:add(nil) end)
+  end)
+
+  it("logs each checkout", function()
+    local s = spy.on(logger, "info")
+    cart:checkout()
+    assert.spy(s).was_called(1)
+  end)
+end)
+```
+
+```bash
+busted --coverage      # run the suite and record coverage
+luacov                 # produce luacov.report.out
+```
+
+---
+
 ## When to use
 
 - **busted** for essentially all standalone and library projects — the community default

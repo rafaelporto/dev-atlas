@@ -233,6 +233,88 @@ print(cfg.width, cfg.height)  -- 120   24
 
 ---
 
+## How it works
+
+Every pattern above is assembled from the same three primitives — there is no framework underneath:
+
+- **Tables** carry state and namespaces. A "class", a "module", and an "instance" are all just tables.
+- **Metatables** redirect behavior. `__index` turns one table into a fallback for another, which is simultaneously method lookup (class), inheritance (prototype chain), and default values.
+- **Closures** capture `local` upvalues by reference, giving genuinely private state and letting a returned function *be* the object.
+
+Because these primitives compose, the patterns overlap: a dispatch table is a table of closures, memoization is a closure over a table, and a class is a table wired to itself through `__index`. Learning the primitives is learning the patterns.
+
+---
+
+## Examples
+
+A single module that layers several idioms together — the module pattern for the file, a metatable class with a dispatch table of operations, and a memoized pure function:
+
+```lua
+-- calculator.lua
+local calculator = {}                     -- module pattern
+
+local Calc = {}                           -- class via metatable
+Calc.__index = Calc
+
+local ops = {                             -- dispatch table (Strategy)
+  add = function(a, b) return a + b end,
+  sub = function(a, b) return a - b end,
+  mul = function(a, b) return a * b end,
+}
+
+function calculator.new()
+  return setmetatable({ history = {} }, Calc)
+end
+
+function Calc:apply(op, a, b)
+  local fn = ops[op] or error("unknown op: " .. op)
+  local result = fn(a, b)
+  self.history[#self.history + 1] = result
+  return result
+end
+
+-- memoization via a closure over a private cache
+local function memoize(fn)
+  local cache = {}
+  return function(n)
+    if cache[n] == nil then cache[n] = fn(n) end
+    return cache[n]
+  end
+end
+
+calculator.square = memoize(function(n) return n * n end)
+
+return calculator
+```
+
+```lua
+local calculator = require("calculator")
+local c = calculator.new()
+print(c:apply("mul", 6, 7))   -- 42
+print(calculator.square(9))    -- 81 (cached on first call)
+```
+
+---
+
+## When to use
+
+- **Class via metatables / prototype chaining** — whenever you need stateful objects or a shallow inheritance hierarchy.
+- **Module pattern** — for every non-trivial file, to keep internals `local` and export a clean table.
+- **Closures as objects** — when state must be genuinely private and the object is small.
+- **Dispatch table** — wherever behavior varies by a key, in place of long `if`/`elseif` chains.
+- **Memoization / `__index` defaults** — for pure expensive functions and configuration/options tables.
+
+---
+
+## When NOT to use
+
+- **Deep inheritance chains** — prefer composition; metatable chains get slow and hard to follow beyond a level or two.
+- **Closures-as-objects for large objects** — each instance copies every method closure, wasting memory; use a metatable class instead.
+- **A custom class helper in every file** — pick one convention (or a library like `middleclass`) rather than reinventing it.
+- **Metatable magic where a plain table suffices** — `__index` tricks that a direct field access would express more clearly.
+
+---
+
 ## References
 
 - [Programming in Lua — Object-Oriented Programming](https://www.lua.org/pil/16.html)

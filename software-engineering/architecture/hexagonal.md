@@ -43,6 +43,14 @@ Hexagonal Architecture divides the system into three parts:
 
 The hexagon shape is symbolic — it emphasizes that there is no "top" or "bottom", only the core and its ports.
 
+## Why does it matter?
+
+The core of an application — its business logic — should not care whether a request arrives over HTTP or a CLI, or whether data is stored in PostgreSQL or in memory. Hexagonal makes that concrete: the core talks only to ports (interfaces), and infrastructure plugs in as adapters, so any edge can be swapped or tested without touching the core.
+
+## How it works
+
+The application core sits in the middle, surrounded by ports. Driving ports expose what the core can do; driven ports declare what the core needs. Adapters implement those ports on the outside — a REST controller drives the core through an input port, a database adapter satisfies an output port. Dependencies always point from the adapters toward the core.
+
 ## Ports
 
 **Ports are interfaces**, not implementations. They are defined by the core and belong to it.
@@ -57,7 +65,7 @@ The hexagon shape is symbolic — it emphasizes that there is no "top" or "botto
 - **Driving Adapters** — receive external requests and translate them into calls to driving ports. Examples: REST controllers, gRPC handlers, CLI commands, Kafka consumers.
 - **Driven Adapters** — implement driven ports using real infrastructure. Examples: PostgreSQL repository, SMTP email sender, S3 file storage.
 
-## Pseudo-code
+## Examples
 
 ```python
 # ── CORE ──────────────────────────────────────────────────────

@@ -125,6 +125,39 @@ The Flutter tooling experience is tightly integrated into the editor. Hot reload
 
 ---
 
+## Examples
+
+A typical edit-run-reload loop is driven from the editor, but every action has a CLI equivalent. From VS Code you press `F5` to launch and save (`Cmd+S`) to hot reload; the equivalent terminal session is:
+
+```bash
+flutter devices                 # list connected devices/emulators
+flutter run -d chrome           # launch on a chosen device
+# while running, press:
+#   r  -> hot reload  (same as saving in the IDE)
+#   R  -> hot restart
+#   q  -> quit
+```
+
+A VS Code launch configuration that mirrors a flavored `flutter run` invocation:
+
+```json
+{
+  "name": "Dev (Android)",
+  "request": "launch",
+  "type": "dart",
+  "program": "lib/main_dev.dart",
+  "args": ["--flavor", "development", "-d", "android"]
+}
+```
+
+Running this with `F5` is equivalent to:
+
+```bash
+flutter run --flavor development -t lib/main_dev.dart -d android
+```
+
+---
+
 ## When to use
 
 - Use **VS Code** if you prefer a lightweight editor, work primarily on the Dart layer, or already use VS Code for other languages.

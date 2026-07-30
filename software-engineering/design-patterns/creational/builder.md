@@ -35,8 +35,7 @@ house = HouseBuilder().rooms(4).bathrooms(2).garage().roof("flat").build()
 3. (Optional) A Director class encodes common construction sequences.
 4. The client uses a builder directly or through a director.
 
-## Pseudo-code
-
+## Examples
 ```python
 # Product
 class House:

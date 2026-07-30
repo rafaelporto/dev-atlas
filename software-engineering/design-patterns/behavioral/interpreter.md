@@ -35,8 +35,7 @@ TerminalExpression    NonTerminalExpression
 3. **NonTerminalExpression** composes sub-expressions (operators, rules).
 4. The client builds an AST from these classes and calls `interpret()` on the root.
 
-## Pseudo-code
-
+## Examples
 ### Example: arithmetic expression evaluator
 
 ```python

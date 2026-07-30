@@ -194,6 +194,62 @@ When the 5-second timeout fires, all derived contexts are cancelled simultaneous
 
 ---
 
+## Examples
+
+End-to-end: an HTTP handler derives a timeout from the request context, propagates it into an outbound call, and stops as soon as the client disconnects or the deadline passes.
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"time"
+)
+
+type ctxKey string
+
+const requestIDKey ctxKey = "request_id"
+
+// fetchUpstream inherits cancellation and the deadline from ctx.
+func fetchUpstream(ctx context.Context, url string) (*http.Response, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
+	}
+	return http.DefaultClient.Do(req)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	// Start from r.Context() (cancelled if the client disconnects),
+	// then add a 2s budget and a request-scoped value.
+	ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
+	defer cancel()
+	ctx = context.WithValue(ctx, requestIDKey, "req-123")
+
+	resp, err := fetchUpstream(ctx, "https://api.internal/data")
+	if err != nil {
+		switch {
+		case errors.Is(err, context.DeadlineExceeded):
+			http.Error(w, "upstream timeout", http.StatusGatewayTimeout)
+		case errors.Is(err, context.Canceled):
+			return // client went away; nothing to write
+		default:
+			http.Error(w, "upstream error", http.StatusBadGateway)
+		}
+		return
+	}
+	defer resp.Body.Close()
+
+	id, _ := ctx.Value(requestIDKey).(string)
+	fmt.Fprintf(w, "request %s: upstream %s\n", id, resp.Status)
+}
+```
+
+---
+
 ## When to use
 
 - Pass a `context.Context` as the **first parameter** to any function that does I/O, calls another service, or runs for an indeterminate time

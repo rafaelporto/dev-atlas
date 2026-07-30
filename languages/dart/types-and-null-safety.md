@@ -133,6 +133,37 @@ print(largest('apple', 'fig')); // fig
 
 ---
 
+## Examples
+
+A generic cache that combines null safety, `late`, null-aware operators, and bounded generics in one realistic unit:
+
+```dart
+class Cache<K, V extends Object> {
+  final Map<K, V> _store = {};
+  late final DateTime createdAt;
+
+  Cache() {
+    createdAt = DateTime.now();
+  }
+
+  V? get(K key) => _store[key]; // nullable: key may be absent
+
+  V getOrPut(K key, V Function() ifAbsent) => _store[key] ??= ifAbsent();
+}
+
+void main() {
+  final cache = Cache<String, int>();
+
+  final a = cache.getOrPut('hits', () => 0); // computed once
+  final b = cache.get('hits') ?? -1;          // null-coalescing fallback
+
+  print('$a / $b'); // 0 / 0
+  print(cache.get('misses')?.isEven ?? false); // false (null-aware)
+}
+```
+
+---
+
 ## When to use
 
 - Prefer non-nullable types by default — add `?` only when `null` is a meaningful value in the domain.

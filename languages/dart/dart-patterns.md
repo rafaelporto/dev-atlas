@@ -173,6 +173,48 @@ double eval(Expr expr) => switch (expr) {
 
 ---
 
+## Examples
+
+A small feature wiring several idiomatic patterns together: a Singleton config, a factory, a Stream-based observer, and a function-typed strategy:
+
+```dart
+class Settings {
+  static final Settings _i = Settings._();
+  factory Settings() => _i;
+  Settings._();
+  String currency = 'USD';
+}
+
+sealed class PaymentEvent {}
+class Charged extends PaymentEvent { final int cents; Charged(this.cents); }
+
+class Payments {
+  final _events = StreamController<PaymentEvent>.broadcast();
+  Stream<PaymentEvent> get events => _events.stream;
+
+  // Strategy: formatting is injected as a function.
+  int Function(int) fee;
+  Payments({required this.fee});
+
+  void charge(int cents) => _events.add(Charged(cents + fee(cents)));
+  void dispose() => _events.close();
+}
+
+Future<void> main() async {
+  final payments = Payments(fee: (c) => (c * 0.03).round());
+
+  payments.events.listen((e) {
+    if (e is Charged) print('${Settings().currency} charged: ${e.cents}');
+  });
+
+  payments.charge(1000); // USD charged: 1030
+  await Future.delayed(Duration.zero);
+  payments.dispose();
+}
+```
+
+---
+
 ## When to use
 
 - Use factory constructors when object creation logic is non-trivial or needs to return a subtype.

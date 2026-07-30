@@ -36,6 +36,14 @@ Onion Architecture is a layered approach where each ring can only depend on ring
           Dependencies always point inward →
 ```
 
+## Why does it matter?
+
+Business rules are the most valuable and longest-lived part of a system, yet they are the most prone to getting tangled with frameworks, databases, and UI. Onion Architecture protects them: by forcing every dependency to point inward, the domain never has to change because you swapped a database driver or a web framework.
+
+## How it works
+
+The application is organized as concentric rings. Each ring may reference only the rings inside it; the outermost ring (infrastructure) wires everything together. Interfaces are declared in the inner rings and implemented in the outer ones, so the flow of control can move outward while the direction of source-code dependencies always stays inward.
+
 ## The rings
 
 ### Domain Model (innermost)
@@ -158,6 +166,20 @@ class OrderController:
 | Infrastructure position | Shared bottom layer | Outer adapters | Outermost ring |
 
 Onion is conceptually close to Hexagonal. The key difference is that Onion explicitly separates the Domain Model from Domain Services and Application Services into distinct rings, while Hexagonal focuses on the port/adapter boundary without prescribing the internal structure.
+
+## Examples
+
+Putting the rings together — the infrastructure ring composes the inner rings at startup, injecting outer implementations into the interfaces the inner rings declare:
+
+```python
+# Composition root (Infrastructure ring)
+repo = PostgresCustomerRepository(db)      # outer ring implements the interface...
+service = RegisterCustomer(repo)           # ...that the application ring declared
+controller = CustomerController(service)   # driving adapter calls inward
+
+# A request flows outer → in, while dependencies point in → out:
+#   HTTP → CustomerController → RegisterCustomer → Customer (domain)
+```
 
 ## When to use
 

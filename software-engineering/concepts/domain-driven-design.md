@@ -34,6 +34,10 @@ DDD addresses this by making the domain model the heart of the software.
 
 ---
 
+## How it works
+
+DDD works on two levels. **Strategic design** carves the problem into bounded contexts, each with its own ubiquitous language and an explicit map of how the contexts relate. **Tactical design** then models the domain inside a context with building blocks — entities, value objects, aggregates, domain services, and repositories — so the code speaks the same language as the domain expert.
+
 ## Strategic Design
 
 Strategic design defines how to break a large, complex system into manageable parts.
@@ -209,6 +213,28 @@ class PlaceOrderUseCase:
 The dependency rule: inner layers know nothing about outer layers. The domain layer has zero dependencies on infrastructure.
 
 ---
+
+## Examples
+
+An aggregate enforcing its invariants, expressed in the ubiquitous language of the domain — the root is the only entry point, so callers cannot bypass the rules:
+
+```python
+class Order:  # Aggregate root
+    def __init__(self, order_id: OrderId):
+        self.id = order_id
+        self._lines: list[OrderLine] = []
+        self._status = OrderStatus.DRAFT
+
+    def add_line(self, product: ProductId, qty: int):
+        if self._status != OrderStatus.DRAFT:
+            raise DomainError("Cannot modify a placed order")   # invariant
+        self._lines.append(OrderLine(product, qty))
+
+    def place(self):
+        if not self._lines:
+            raise DomainError("Cannot place an empty order")     # invariant
+        self._status = OrderStatus.PLACED
+```
 
 ## When to use
 

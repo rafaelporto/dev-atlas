@@ -156,6 +156,54 @@ setState(() async {
 
 ---
 
+## Examples
+
+An end-to-end screen composing both kinds of widget: a stateful parent owning the mutable count and a stateless child that only renders what it is given:
+
+```dart
+class CounterScreen extends StatefulWidget {
+  const CounterScreen({super.key});
+
+  @override
+  State<CounterScreen> createState() => _CounterScreenState();
+}
+
+class _CounterScreenState extends State<CounterScreen> {
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CountLabel(count: _count), // stateless: pure function of its input
+        ElevatedButton(
+          onPressed: () => setState(() => _count++),
+          child: const Text('Increment'),
+        ),
+      ],
+    );
+  }
+}
+
+class CountLabel extends StatelessWidget {
+  final int count;
+  const CountLabel({super.key, required this.count});
+
+  @override
+  Widget build(BuildContext context) => Text('Count: $count');
+}
+```
+
+---
+
+## When to use
+
+- Use a `StatelessWidget` when the widget is a pure function of its constructor inputs and holds no mutable state.
+- Use a `StatefulWidget` when the widget owns local, mutable state or a resource (controller, timer, subscription) that must be disposed.
+- Push shared or long-lived state out of widgets entirely into a state-management solution (see below).
+
+The subsections below break this down per case.
+
 ## When to use StatelessWidget
 
 - The widget displays data passed from its parent and has no internal state.
@@ -175,6 +223,15 @@ setState(() async {
 - Business logic should be separated from the UI layer.
 
 In those cases, use Riverpod, Bloc, or Provider instead of `StatefulWidget`. See [State Management](state-management.md).
+
+---
+
+## When NOT to use
+
+- Do not use a `StatefulWidget` when the widget only renders data passed from its parent — a `StatelessWidget` is simpler and cheaper.
+- Do not store shared or app-wide state (session, cart, auth) in a widget's `State` — it dies with the widget and cannot be reached elsewhere; lift it into a state-management layer.
+- Do not put business logic or I/O directly in `build()` or `setState()` — keep `build` pure and fast.
+- Do not call `setState()` after `dispose()` (e.g., from a late-arriving async callback) — guard with `if (mounted)`.
 
 ---
 

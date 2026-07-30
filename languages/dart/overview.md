@@ -34,6 +34,18 @@ Its design philosophy prioritises developer productivity and application perform
 
 ---
 
+## How it works
+
+Dart source is compiled by one of several toolchains depending on the target:
+
+- **Development (JIT)** — the Dart VM runs source with a Just-In-Time compiler, enabling hot reload and fast iteration.
+- **Native production (AOT)** — `dart compile exe` / Flutter release builds produce Ahead-Of-Time compiled machine code with fast startup.
+- **Web** — `dart compile js` (or the `dart2wasm` compiler) emits JavaScript or WebAssembly.
+
+At runtime, Dart executes on a **single-threaded event loop** with a microtask queue and an event queue. Long-running or CPU-bound work is offloaded to **isolates** — independent workers with their own memory that communicate only via message passing, avoiding shared-state concurrency bugs.
+
+---
+
 ## What can you build with Dart?
 
 | Use case | Notes |
@@ -102,6 +114,54 @@ final list = <int>[]
 ```
 
 **`late` variables** — the `late` modifier defers initialisation of a non-nullable variable to first access, bridging null safety and lazy initialisation.
+
+---
+
+## Examples
+
+A small end-to-end program showing several signature Dart features together — null safety, a class, collection literals, and `async`/`await`:
+
+```dart
+class Task {
+  final String title;
+  final bool done;
+  const Task(this.title, {this.done = false});
+}
+
+Future<List<Task>> loadTasks() async {
+  await Future.delayed(const Duration(milliseconds: 50)); // simulate I/O
+  return const [
+    Task('Write docs', done: true),
+    Task('Ship release'),
+  ];
+}
+
+Future<void> main() async {
+  final tasks = await loadTasks();
+
+  final pending = tasks.where((t) => !t.done).map((t) => t.title).toList();
+
+  print('Pending: ${pending.isEmpty ? 'none' : pending.join(', ')}');
+  // Pending: Ship release
+}
+```
+
+---
+
+## When to use
+
+- Building cross-platform apps (mobile, desktop, web) from a single codebase via Flutter.
+- Writing CLI tools that compile to self-contained native executables.
+- Building HTTP servers or APIs when you want to share types between client and server.
+- Any project that benefits from sound static typing, null safety, and fast hot-reload iteration.
+
+---
+
+## When NOT to use
+
+- Systems programming or workloads needing manual memory control — use Rust, C, or C++.
+- Data science and ML pipelines, where Python's ecosystem dominates.
+- Projects where a large existing team and library ecosystem in another language would outweigh Dart's benefits.
 
 ---
 

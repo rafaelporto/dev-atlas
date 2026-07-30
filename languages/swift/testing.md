@@ -244,6 +244,41 @@ From Xcode: `⌘U` runs all tests; `⌃⌥⌘U` re-runs the last; the diamond gu
 
 ---
 
+## Examples
+
+A realistic Swift Testing suite pulling the pieces together — a `struct` suite with fresh state per test, a parameterized case, an async test, and an expected-error check:
+
+```swift
+import Testing
+@testable import Catalog
+
+@Suite struct ParserTests {
+    let parser = Parser()
+
+    @Test("Parses well-formed integers", arguments: [
+        (input: "0", expected: 0),
+        (input: "42", expected: 42),
+        (input: "-7", expected: -7)
+    ])
+    func parsesInteger(input: String, expected: Int) throws {
+        #expect(try parser.parse(input) == expected)
+    }
+
+    @Test func rejectsEmptyInput() {
+        #expect(throws: ParseError.empty) {
+            try parser.parse("")
+        }
+    }
+
+    @Test func loadsRemoteConfig() async throws {
+        let config = try #require(await parser.loadConfig(id: "c1"))
+        #expect(config.name == "Ada")
+    }
+}
+```
+
+---
+
 ## When to use
 
 ### Swift Testing — by default for new code
@@ -260,7 +295,7 @@ From Xcode: `⌘U` runs all tests; `⌃⌥⌘U` re-runs the last; the diamond gu
 
 ---
 
-## When NOT to test
+## When NOT to use
 
 - **Glue code with no logic.** Adapters that wire two well-tested layers don't need their own tests.
 - **Code you're about to rewrite.** Tests of soon-to-be-deleted code waste effort.

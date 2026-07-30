@@ -43,6 +43,10 @@ In most systems, reads outnumber writes by orders of magnitude. A single model t
 
 CQRS lets each side be optimal for its purpose.
 
+## How it works
+
+Instead of one model serving both reads and writes, the write side accepts commands, applies domain rules, and persists changes, while the read side answers queries from a model shaped for exactly how the data is consumed. The two models are kept in sync — synchronously through the same store, or asynchronously by projecting write-side changes into read-optimized views.
+
 ## The Command Side
 
 Commands express intent. They are imperative and named in the present tense: `PlaceOrder`, `CancelOrder`, `UpdateShippingAddress`.
@@ -183,6 +187,22 @@ Command ──► Domain ──► Events ──► Event Store
 | Write model enforces invariants cleanly | Eventual consistency between write and read (async sync) |
 | Read and write sides scale independently | More infrastructure when using separate stores |
 | New projections can be built from event history | Added complexity for simple CRUD cases |
+
+## Examples
+
+The two sides never share a model — a command mutates state, a projection updates the read view, and a query reads it back with no domain logic:
+
+```python
+# Write side: a command mutates state through domain rules
+PlaceOrderHandler(order_repo).handle(PlaceOrder(order_id="123", items=[...]))
+
+# A projection updates the read model (here, asynchronously)
+@on("order.placed")
+def project(evt): read_db.upsert_order_summary(evt)
+
+# Read side: a query reads the optimized view — no domain logic
+summary = GetOrderSummaryHandler(read_db).handle(GetOrderSummary("123"))
+```
 
 ## When to use
 

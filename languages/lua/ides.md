@@ -131,6 +131,42 @@ Neovim is itself scripted in Lua, so many Lua developers edit inside it. Configu
 
 ---
 
+## Examples
+
+A minimal project wired for editor diagnostics: a `.luarc.json` fixing the runtime and known globals, plus an annotated module the Lua Language Server can type-check before the code ever runs.
+
+```json
+// .luarc.json
+{
+  "runtime.version": "Lua 5.4",
+  "diagnostics.globals": ["describe", "it", "assert"],
+  "workspace.checkThirdParty": false
+}
+```
+
+```lua
+-- geometry.lua
+---@class Point
+---@field x number
+---@field y number
+
+---@param a Point
+---@param b Point
+---@return number distance
+local function distance(a, b)
+  local dx, dy = a.x - b.x, a.y - b.y
+  return math.sqrt(dx * dx + dy * dy)
+end
+
+-- The language server flags the next line before runtime:
+-- "missing field 'y' in Point" — caught in-editor, not in production.
+print(distance({ x = 0, y = 0 }, { x = 3 }))
+```
+
+With the same files open in VS Code, ZeroBrane Studio, or Neovim, the server surfaces the missing-field diagnostic on hover and in the problems list.
+
+---
+
 ## When to use
 
 - **VS Code** — default for most projects; best annotation-driven diagnostics with minimal setup.

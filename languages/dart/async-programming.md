@@ -153,6 +153,41 @@ Use `rethrow` (not `throw e`) to preserve the original stack trace when re-throw
 
 ---
 
+## Examples
+
+An end-to-end example combining `Future.wait` for parallel fetches, a `Stream` for progress, and structured error handling:
+
+```dart
+Future<int> fetchScore(String user) async {
+  await Future.delayed(const Duration(milliseconds: 50));
+  if (user.isEmpty) throw ArgumentError('empty user');
+  return user.length * 10;
+}
+
+Stream<String> pipeline(List<String> users) async* {
+  yield 'Starting ${users.length} fetches';
+  try {
+    final scores = await Future.wait(users.map(fetchScore)); // parallel
+    for (final (i, score) in scores.indexed) {
+      yield '${users[i]} -> $score';
+    }
+  } on ArgumentError catch (e) {
+    yield 'Failed: ${e.message}';
+  }
+}
+
+Future<void> main() async {
+  await for (final line in pipeline(['Ada', 'Bob'])) {
+    print(line);
+  }
+  // Starting 2 fetches
+  // Ada -> 30
+  // Bob -> 30
+}
+```
+
+---
+
 ## When to use
 
 - Use `Future` for operations that produce a single result asynchronously (HTTP requests, file reads, DB queries).

@@ -238,6 +238,50 @@ func Sum[T constraints.Number](nums []T) T {
 
 ---
 
+## Examples
+
+One snippet that ties the pieces together: a concrete type with a value-receiver method, a narrow interface it satisfies implicitly, embedding for reuse, and a generic helper constrained to that interface.
+
+```go
+package shapes
+
+import "fmt"
+
+// Narrow interface, satisfied implicitly.
+type Shape interface {
+	Area() float64
+}
+
+type Rectangle struct{ Width, Height float64 }
+
+func (r Rectangle) Area() float64 { return r.Width * r.Height }
+
+// Embedding: Named reuses Rectangle's fields and its Area method.
+type Named struct {
+	Rectangle
+	Label string
+}
+
+// Generic helper constrained to Shapes.
+func TotalArea[T Shape](shapes []T) float64 {
+	var total float64
+	for _, s := range shapes {
+		total += s.Area()
+	}
+	return total
+}
+
+func demo() {
+	items := []Shape{
+		Rectangle{Width: 2, Height: 3},
+		Named{Rectangle: Rectangle{Width: 4, Height: 5}, Label: "floor"},
+	}
+	fmt.Println(TotalArea(items)) // 26
+}
+```
+
+---
+
 ## When to use
 
 - Use **value receivers** for small, read-only structs; **pointer receivers** for mutation or large structs

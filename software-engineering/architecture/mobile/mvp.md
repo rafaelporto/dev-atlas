@@ -259,7 +259,7 @@ func testLoginNavigatesToHomeOnSuccess() {
     let view = MockLoginView()
     let presenter = LoginPresenter(authService: SucceedingAuthService())
     presenter.view = view
-    presenter.onLoginTapped(email: "user@example.com", password: "secret")
+    presenter.onLoginTapped(email: "<email>", password: "secret")
 
     XCTAssertTrue(view.navigatedToHome)
     XCTAssertNil(view.errorShown)
@@ -294,7 +294,7 @@ class FakeLoginView : LoginView {
 fun `login navigates to home on success`() {
     val view = FakeLoginView()
     val presenter = LoginPresenter(view, SucceedingAuthService())
-    presenter.onLoginTapped("user@example.com", "secret")
+    presenter.onLoginTapped("<email>", "secret")
 
     assertTrue(view.navigatedToHome)
     assertNull(view.errorShown)
@@ -329,7 +329,7 @@ void main() {
   test('login navigates to home on success', () async {
     final view = FakeLoginView();
     final presenter = LoginPresenter(view: view, authService: SucceedingAuthService());
-    await presenter.onLoginTapped('user@example.com', 'secret');
+    await presenter.onLoginTapped('<email>', 'secret');
 
     expect(view.navigatedToHome, isTrue);
     expect(view.errorShown, isNull);

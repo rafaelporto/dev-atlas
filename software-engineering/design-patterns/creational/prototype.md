@@ -30,8 +30,7 @@ There are two levels of copy:
 - **Shallow copy** — copies primitive fields directly; nested objects are shared by reference.
 - **Deep copy** — recursively copies all nested objects; the clone is fully independent.
 
-## Pseudo-code
-
+## Examples
 ```python
 import copy
 

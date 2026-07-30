@@ -38,8 +38,7 @@ Both the Proxy and RealSubject implement the same interface. The client cannot t
 | **Caching Proxy** | Caches results of expensive operations |
 | **Logging Proxy** | Logs calls to the real subject |
 
-## Pseudo-code
-
+## Examples
 ### Virtual Proxy (lazy initialization)
 
 ```python

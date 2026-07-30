@@ -245,6 +245,87 @@ if (cache.TryGetValue(key, out var value))
 
 ---
 
+## How it works
+
+C# rarely hand-builds pattern scaffolding because the platform already provides the seams:
+
+- **The built-in DI container** is the factory and lifetime manager: registrations decide whether a type is a Singleton, Scoped, or Transient, and constructor injection wires collaborators together. This absorbs Factory, Singleton, and Service Locator.
+- **Interfaces and delegates (`Func<>`)** are the abstraction seam behind Strategy, Adapter, Decorator, and Observer — you wrap or inject an implementation rather than subclass.
+- **Language features collapse ceremony**: `record` + `with` cover value objects and much of Builder, `switch` expressions with patterns replace Visitor-style dispatch, and `IDisposable` + `using` give deterministic cleanup.
+
+So an idiomatic C# "pattern" is usually a registration plus an interface, not a bespoke class hierarchy.
+
+---
+
+## Examples
+
+One flow combining several idioms — records for data, a Strategy interface and a Decorator both registered in DI, the Options pattern for config, and a `switch` expression over a result:
+
+```csharp
+public record Order(Guid Id, decimal Subtotal);
+
+public interface IPricingStrategy { decimal Price(Order order); }
+public sealed class TenPercentOff : IPricingStrategy
+{
+    public decimal Price(Order order) => order.Subtotal * 0.9m;
+}
+
+public interface IRates { decimal TaxFor(Guid orderId); }
+
+// Decorator: adds caching over any IRates
+public sealed class CachingRates(IRates inner, IMemoryCache cache) : IRates
+{
+    public decimal TaxFor(Guid id) =>
+        cache.GetOrCreate(id, _ => inner.TaxFor(id));
+}
+
+public sealed class CheckoutOptions { public bool AllowZero { get; init; } }
+
+public sealed class Checkout(
+    IPricingStrategy pricing, IRates rates, IOptions<CheckoutOptions> options)
+{
+    public string Charge(Order order)
+    {
+        decimal total = pricing.Price(order) * (1 + rates.TaxFor(order.Id));
+        return (total, options.Value.AllowZero) switch
+        {
+            ( > 0, _)      => $"charged {total}",
+            (0, true)      => "charged nothing",
+            _              => "rejected",
+        };
+    }
+}
+
+// Wiring in Program.cs
+builder.Services.Configure<CheckoutOptions>(builder.Configuration.GetSection("Checkout"));
+builder.Services.AddSingleton<IPricingStrategy, TenPercentOff>();
+builder.Services.AddSingleton<IRates>(sp =>
+    new CachingRates(new FlatRates(), sp.GetRequiredService<IMemoryCache>()));
+builder.Services.AddScoped<Checkout>();
+```
+
+---
+
+## When to use
+
+- **Factory / Singleton via DI** — the default for any host-based (ASP.NET Core) app; let the container own construction and lifetime.
+- **Strategy (interface or `Func<>`)** — behaviour that varies at runtime, e.g. pricing or formatting.
+- **Decorator / Adapter** — cross-cutting concerns (caching, logging, retries) and wrapping third-party SDKs behind a local interface.
+- **Options pattern** — strongly-typed configuration in host-based apps.
+- **`IDisposable`/`using`, pattern-matching `switch`, `Try` methods** — resource cleanup, type/shape dispatch, and expected-failure returns.
+
+---
+
+## When NOT to use
+
+- **Hand-rolled double-checked-locking Singletons** — register `AddSingleton` (or use `Lazy<T>`) instead.
+- **A separate Builder class** where object initializers or record `with` already suffice.
+- **Throwing exceptions for expected, routine failures** — prefer a `bool TryX(out T)` method.
+- **A formal pattern for a shape that appears once** — wait for repetition before abstracting.
+- **`IObservable<T>`/`event` plumbing** where a simple method call or `IAsyncEnumerable<T>` is clearer.
+
+---
+
 ## References
 
 - [Dependency injection in .NET — Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)

@@ -22,6 +22,7 @@
 | [Modules: CommonJS and ES Modules](modules-cjs-esm.md) | How Node picks a module system and how CJS/ESM interoperate |
 | [The Event Loop and Timers](event-loop-and-timers.md) | libuv phases, micro/macrotasks, timers, why not to block the loop |
 | [Asynchronous Patterns](async-patterns.md) | Promises, `EventEmitter`, `AbortController`, structured concurrency |
+| [Error Handling](error-handling.md) | Operational vs programmer errors, async rejections, `uncaughtException` as a last resort |
 | [Streams](streams.md) | Readable/Writable/Transform, `pipeline`, backpressure, Web Streams |
 | [File System and Buffers](file-system-and-buffers.md) | `node:fs` promise API, paths, `Buffer` and encodings |
 

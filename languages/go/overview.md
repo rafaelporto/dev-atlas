@@ -32,6 +32,17 @@ This makes Go codebases unusually readable across teams and time.
 
 ---
 
+## How it works
+
+Four mechanisms define what it is like to work in Go day to day:
+
+- **Compilation to a native binary** — `go build` compiles the entire dependency graph and statically links it into one executable. Nothing needs to be installed on the target machine to run it.
+- **The embedded runtime and scheduler** — every binary carries a small runtime that multiplexes goroutines onto `GOMAXPROCS` OS threads and runs the garbage collector concurrently with your code.
+- **Implicit interfaces** — a type satisfies an interface simply by having the required methods, so packages stay decoupled without explicit wiring.
+- **A unified toolchain** — `go build`, `go test`, `go vet`, `gofmt`, and `go mod` ship with the compiler, so building, testing, formatting, and dependency management behave identically everywhere.
+
+---
+
 ## What can you build with Go?
 
 Go excels in scenarios where you need **high throughput, low latency, or tight operational control**:
@@ -101,6 +112,54 @@ Go's GC has sub-millisecond pause times since Go 1.14. You get memory safety wit
 **No implicit conversions** — numeric types do not silently promote.
 
 **No unused imports or variables** — the compiler rejects them. This eliminates dead code at compile time.
+
+---
+
+## Examples
+
+A minimal HTTP service that shows the defining traits at once: standard-library only, a single binary, and a goroutine per request handled automatically by the server.
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"sync/atomic"
+)
+
+func main() {
+	var hits int64
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		n := atomic.AddInt64(&hits, 1) // each request runs in its own goroutine
+		fmt.Fprintf(w, "hello, request #%d\n", n)
+	})
+
+	log.Println("listening on :8080")
+	log.Fatal(http.ListenAndServe(":8080", mux)) // net/http serves each connection concurrently
+}
+```
+
+`go build` turns this into a standalone executable with no external runtime; deploy it by copying one file.
+
+---
+
+## When to use
+
+- Network services: HTTP/REST APIs, gRPC services, proxies, and load balancers
+- Infrastructure and DevOps tooling and CLIs shipped as a single static binary
+- High-throughput, concurrent workloads such as stream processors and pipelines
+- Teams that value fast builds, a small language surface, and enforced formatting
+
+## When NOT to use
+
+- Data science and machine learning, where Python's ecosystem dominates
+- Mobile apps and desktop GUIs, which have no first-class Go support
+- Hard-realtime or GC-sensitive workloads with tight latency budgets
+- Domains that lean on rich inheritance or heavy metaprogramming — Go deliberately omits them
 
 ---
 

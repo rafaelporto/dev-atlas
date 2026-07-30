@@ -111,6 +111,17 @@ class PostgresOrderRepository:
 
 Most real projects use the relaxed variant, allowing the Presentation layer to call the Domain layer directly for read-only queries.
 
+## Examples
+
+A request walks down the layers and the response walks back up, each layer depending only on the one below it:
+
+```python
+# POST /orders → OrderController → OrderService → Order (domain)
+#                                     → OrderRepository → Postgres
+controller = OrderController(OrderService(PostgresOrderRepository(db)))
+controller.create(customer_id="c-1", items=[...])
+```
+
 ## When to use
 
 - Standard CRUD applications and enterprise systems.

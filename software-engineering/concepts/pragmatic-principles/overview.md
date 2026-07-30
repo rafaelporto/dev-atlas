@@ -12,7 +12,7 @@ language: null
 
 ---
 
-## What are they?
+## What is it?
 
 - **[DRY](dry.md)** — *Don't Repeat Yourself*. Coined by Andy Hunt and Dave Thomas in *The Pragmatic Programmer* (1999). The original statement is more careful than the bumper-sticker version: *"Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."* DRY is about **knowledge**, not lines of code.
 - **[KISS](kiss.md)** — *Keep It Simple, Stupid*. Attributed to Kelly Johnson, head of Lockheed's Skunk Works, in the 1960s. The original context was aerospace engineering: a jet fighter had to be repairable by an average mechanic in a combat zone with simple tools. The principle migrated to software with the same intent: **the simpler design is almost always the better one**.
@@ -23,7 +23,13 @@ The four sit together because they share a posture — *honesty in code* — but
 
 ---
 
-## How they relate
+## Why does it matter?
+
+These four heuristics are the everyday vocabulary of code review and refactoring. They are short enough to quote and general enough to apply to almost any change — which is exactly why they are so often misapplied: "DRY" used to justify a bad abstraction, "YAGNI" to skip real validation. Knowing what each one actually claims, and where they pull against each other, is what turns them from slogans into judgment.
+
+---
+
+## How it works
 
 The four principles overlap in the kind of code they discourage, but they have distinct centers of gravity.
 
@@ -119,14 +125,35 @@ A useful posture: prefer **straightforward and slightly repetitive** over **clev
 
 ---
 
-## When to invoke these principles
+## Examples
+
+A single change judged by all four at once — a `try/catch` that swallows errors "to keep things simple":
+
+```python
+# Violates Fail Fast (hides the bug) and KISS (the catch-all is not simpler)
+def parse_amount(raw):
+    try:
+        return Decimal(raw)
+    except Exception:
+        return Decimal(0)      # silent coercion — a present-day bug
+
+# Honest version: fail loud at the boundary
+def parse_amount(raw):
+    return Decimal(raw)        # raises on bad input, near the cause
+```
+
+The shorter version *looks* like a KISS/YAGNI win, but it is really a Fail Fast violation — the failure just resurfaces later, in a worse shape.
+
+---
+
+## When to use
 
 - During code review, when something feels overbuilt or under-built.
 - During design discussions, as common vocabulary for *why* a proposal feels wrong.
 - During refactoring, to decide whether to extract or to leave duplication alone.
 - When mentoring: these are some of the shortest, most quotable principles in software — easy to teach, hard to internalize.
 
-## When NOT to lean on them
+## When NOT to use
 
 - As a substitute for understanding the domain. Code that satisfies all four but models the wrong problem is still wrong.
 - As justification for ignoring real architectural concerns. "YAGNI" is not a defense for not thinking ahead about contracts or data migration.

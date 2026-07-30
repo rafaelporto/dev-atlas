@@ -38,8 +38,7 @@ Invoker ──► Command (interface) ──► execute() ──► Receiver
 3. **Invoker** calls `execute()` — it never calls the receiver directly.
 4. **Receiver** is the object that actually performs the work.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 from collections import deque

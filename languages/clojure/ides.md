@@ -110,7 +110,7 @@ Worth noting: [Conjure](https://github.com/Olical/conjure) brings interactive nR
 
 ---
 
-## How the REPL workflow looks
+## How it works
 
 Regardless of editor, the loop is the same:
 
@@ -119,6 +119,28 @@ Regardless of editor, the loop is the same:
 3. **Redefine live** — re-evaluate a changed `defn`; subsequent calls use the new definition immediately.
 4. **Inspect data** — send a value to the inspector or just print it; results are Clojure data you can drill into.
 5. **Run tests** — evaluate/run a `deftest` or namespace without leaving the editor.
+
+---
+
+## Examples
+
+A minimal, editor-agnostic REPL session: define a function, evaluate a call inline, redefine it live, and see the new behavior without restarting the process.
+
+```clojure
+;; 1. Define and evaluate the form (the editor sends it to the connected REPL).
+(defn greet [name] (str "Hello, " name))
+
+(greet "Ada")   ;; inline result => "Hello, Ada"
+
+;; 2. Redefine the function in place — no restart.
+(defn greet [name] (str "Hi " name "!"))
+
+(greet "Ada")   ;; subsequent calls use the new definition => "Hi Ada!"
+
+;; 3. Inspect real data returned by the running program.
+(->> ["Ada" "Alan"] (map greet))
+;; => ("Hi Ada!" "Hi Alan!")
+```
 
 ---
 

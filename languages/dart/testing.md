@@ -156,6 +156,49 @@ dart test --reporter expanded         # verbose output with test names
 
 ---
 
+## Examples
+
+A complete test file exercising grouping, `setUp`, matchers, an async test, and a `mocktail` mock in one place:
+
+```dart
+import 'package:mocktail/mocktail.dart';
+import 'package:test/test.dart';
+
+class MockClock extends Mock implements Clock {}
+
+void main() {
+  group('GreetingService', () {
+    late MockClock clock;
+    late GreetingService service;
+
+    setUp(() {
+      clock = MockClock();
+      service = GreetingService(clock);
+    });
+
+    test('greets by name', () {
+      expect(service.greet('Ada'), equals('Hello, Ada'));
+    });
+
+    test('throws on empty name', () {
+      expect(() => service.greet(''), throwsArgumentError);
+    });
+
+    test('uses the clock for the timestamped greeting', () async {
+      when(() => clock.now())
+          .thenAnswer((_) async => DateTime.utc(2030, 1, 1));
+
+      final line = await service.timedGreeting('Ada');
+
+      expect(line, contains('2030'));
+      verify(() => clock.now()).called(1);
+    });
+  });
+}
+```
+
+---
+
 ## When to use
 
 - Write unit tests for all business logic, domain models, and utility functions.

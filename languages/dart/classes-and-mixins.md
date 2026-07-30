@@ -161,8 +161,63 @@ extension StringExtensions on String {
       RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(this);
 }
 
-print('hello'.capitalised);             // Hello
-print('user@example.com'.isValidEmail); // true
+print('hello'.capitalised);              // Hello
+print('not-an-address'.isValidEmail);    // false
+```
+
+---
+
+## Examples
+
+An end-to-end model that ties together a sealed hierarchy, a factory constructor, a mixin, and an extension:
+
+```dart
+mixin Describable {
+  String describe() => toString();
+}
+
+sealed class Shape with Describable {
+  const Shape();
+
+  factory Shape.fromName(String name, double size) => switch (name) {
+    'circle' => Circle(size),
+    'square' => Square(size),
+    _        => throw ArgumentError('Unknown shape: $name'),
+  };
+
+  double get area;
+}
+
+class Circle extends Shape {
+  final double radius;
+  const Circle(this.radius);
+  @override
+  double get area => 3.14159 * radius * radius;
+  @override
+  String toString() => 'Circle(r=$radius)';
+}
+
+class Square extends Shape {
+  final double side;
+  const Square(this.side);
+  @override
+  double get area => side * side;
+  @override
+  String toString() => 'Square(s=$side)';
+}
+
+extension ShapeReport on Shape {
+  String get report => '${describe()} has area ${area.toStringAsFixed(2)}';
+}
+
+void main() {
+  final shapes = [Shape.fromName('circle', 2), Shape.fromName('square', 3)];
+  for (final s in shapes) {
+    print(s.report);
+  }
+  // Circle(r=2.0) has area 12.57
+  // Square(s=3.0) has area 9.00
+}
 ```
 
 ---

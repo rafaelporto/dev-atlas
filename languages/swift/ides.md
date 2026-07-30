@@ -73,7 +73,36 @@ If you already use VS Code, Cursor is a drop-in. If you don't, evaluate based on
 
 ---
 
-## When to use which
+## Examples
+
+The same SwiftUI file drives a different loop in each editor. Xcode renders the `#Preview` live in its canvas; VS Code / Cursor give completion and diagnostics through `sourcekit-lsp` and defer the visual run to the simulator:
+
+```swift
+import SwiftUI
+
+/// A counter view. The `///` doc comment surfaces in Xcode quick-help
+/// and on hover in VS Code / Cursor via sourcekit-lsp.
+struct CounterView: View {
+    @State private var count = 0
+
+    var body: some View {
+        VStack {
+            Text("Count: \(count)")
+            Button("Increment") { count += 1 }
+        }
+    }
+}
+
+#Preview {          // rendered live in Xcode's canvas; ignored by CLI builds
+    CounterView()
+}
+```
+
+Running the previews and the simulator requires Xcode; editing, search, and refactoring this file is often faster in VS Code / Cursor.
+
+---
+
+## When to use
 
 | Use case | Best choice |
 |---|---|
@@ -120,7 +149,7 @@ A common pattern: open the project in both. Xcode handles the run/debug/profile 
 
 ---
 
-## When NOT to fight the tool
+## When NOT to use
 
 - **Don't try to ship an iOS app from VS Code.** Build, sign, archive, and upload through Xcode. The CLI (`xcodebuild`, `xcrun altool`) works, but most teams don't need that complexity.
 - **Don't keep a `.xcodeproj` in version control when you have a `Package.swift`.** Xcode opens SPM packages directly; the project file is regenerated.

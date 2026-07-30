@@ -30,8 +30,7 @@ Client ──► Facade ──► SubsystemA
 
 The Facade delegates to subsystem classes. Clients are not prevented from bypassing the Facade for advanced use — it is a convenience layer, not a lock.
 
-## Pseudo-code
-
+## Examples
 ```python
 # Complex subsystem classes
 class VideoDecoder:

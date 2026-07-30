@@ -96,6 +96,50 @@ For component/unit tests that call APIs, intercept at the network layer with **M
 
 ---
 
+## Examples
+
+A single feature — a cart with a "checkout" Server Action — tested at each appropriate level: the pure logic in isolation, the Client Component with React Testing Library, and the full server-driven flow end-to-end.
+
+```ts
+// lib/cart.test.ts — fast, framework-free unit test of extracted logic
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { computeTotals } from "@/lib/cart";
+
+test("computeTotals applies tax to the subtotal", () => {
+  const result = computeTotals([{ price: 100 }, { price: 50 }], 0.1);
+  assert.equal(result.total, 165);
+});
+```
+
+```tsx
+// components/AddToCartButton.test.tsx — Client Component with RTL
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { AddToCartButton } from "@/components/AddToCartButton";
+
+test("shows the updated item count after a click", async () => {
+  render(<AddToCartButton productId="p1" initialCount={0} />);
+  await userEvent.click(screen.getByRole("button", { name: "Add to cart" }));
+  expect(screen.getByRole("status")).toHaveTextContent("1");
+});
+```
+
+```ts
+// e2e/checkout.spec.ts — Playwright covers the Server Action + routing + render
+import { test, expect } from "@playwright/test";
+
+test("completes checkout via a Server Action", async ({ page }) => {
+  await page.goto("/cart");
+  await page.getByRole("button", { name: "Add to cart" }).click();
+  await page.getByRole("button", { name: "Checkout" }).click();
+  await expect(page).toHaveURL(/\/order\/\w+/);
+  await expect(page.getByText("Order confirmed")).toBeVisible();
+});
+```
+
+---
+
 ## When to use
 
 - Extract logic/data access into `lib/` and **unit-test it directly** — the fast, stable majority of tests.

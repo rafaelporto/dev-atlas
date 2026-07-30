@@ -27,8 +27,7 @@ Collections can be stored in many different ways (list, hash map, tree, stream).
 3. **Iterable** (the collection) returns an iterator via `create_iterator()`.
 4. The client uses only the Iterator interface.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 from typing import TypeVar, Generic, Optional

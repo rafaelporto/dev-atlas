@@ -350,6 +350,85 @@ try (var lock = distributedLock.acquire("orders");
 
 ---
 
+## How it works
+
+There is no pattern machinery in Java — each pattern is just a disciplined use of the language's core building blocks:
+
+- **Interfaces** decouple *what* from *how*: they are the seam behind Strategy, Adapter, Observer, and Factory Method.
+- **Composition (holding a delegate)** rather than inheritance powers Decorator and Adapter — wrap an instance, forward or augment its calls.
+- **Modern features collapse ceremony**: a `@FunctionalInterface` + lambda replaces a Strategy class, `record`s replace hand-written DTOs, and `sealed` interfaces plus exhaustive `switch` give algebraic-data-type modelling.
+- **Constructor injection** wires collaborators together, which is what makes the objects above testable in isolation.
+
+The two groups in this article reflect that split: the GoF adaptations show the interface/composition mechanics, and the idiomatic patterns show where a language feature has absorbed the pattern.
+
+---
+
+## Examples
+
+One small flow combining several patterns — records as DTOs, a functional-interface Strategy, constructor DI, a Decorator adding caching, and a sealed result handled exhaustively:
+
+```java
+record Order(long id, double subtotal) {}
+
+@FunctionalInterface
+interface PricingStrategy { double price(Order order); }
+
+sealed interface Charge permits Ok, Rejected {}
+record Ok(double amount) implements Charge {}
+record Rejected(String reason) implements Charge {}
+
+interface Rates { double taxFor(long orderId); }
+
+// Decorator: adds caching over any Rates implementation
+final class CachingRates implements Rates {
+    private final Rates delegate;
+    private final java.util.Map<Long, Double> cache = new java.util.concurrent.ConcurrentHashMap<>();
+    CachingRates(Rates delegate) { this.delegate = delegate; }
+    public double taxFor(long orderId) { return cache.computeIfAbsent(orderId, delegate::taxFor); }
+}
+
+final class Checkout {
+    private final PricingStrategy strategy;   // constructor-injected collaborators
+    private final Rates rates;
+    Checkout(PricingStrategy strategy, Rates rates) { this.strategy = strategy; this.rates = rates; }
+
+    Charge charge(Order order) {
+        double total = strategy.price(order) * (1 + rates.taxFor(order.id()));
+        return total > 0 ? new Ok(total) : new Rejected("non-positive total");
+    }
+}
+
+// Wiring: lambda Strategy + decorated Rates
+var checkout = new Checkout(o -> o.subtotal() * 0.9, new CachingRates(id -> 0.2));
+Charge result = checkout.charge(new Order(1, 100));
+String message = switch (result) {                 // exhaustive over the sealed type
+    case Ok(double amount)    -> "charged " + amount;
+    case Rejected(String why) -> "rejected: " + why;
+};
+```
+
+---
+
+## When to use
+
+- **Builder** — value objects with more than a few optional fields.
+- **Static Factory / Factory Method** — when the concrete type may vary or a named constructor reads better than `new`.
+- **Strategy (lambda)** — interchangeable behavior, e.g. `Comparator` or pricing rules.
+- **Decorator / Adapter** — cross-cutting concerns (caching, logging) and integration boundaries.
+- **Records, sealed hierarchies, constructor DI, `Optional`, try-with-resources** — the modern defaults for data, closed outcome sets, wiring, absence, and resource cleanup.
+
+---
+
+## When NOT to use
+
+- **A hand-rolled Singleton** where the DI container already manages a single bean — let the framework own the lifecycle.
+- **A formal pattern for a one-off shape** — wait for repetition before abstracting; premature patterns add ceremony.
+- **Inheritance to share helpers** — prefer composition and interfaces with default methods.
+- **`Optional` for fields or method parameters** — it is designed for return types signalling absence.
+- **Legacy `java.util.Observer` / telescoping constructors** — use listener lists and the Builder instead.
+
+---
+
 ## References
 
 - [Design Patterns — Gamma, Helm, Johnson, Vlissides (GoF, 1994)](https://en.wikipedia.org/wiki/Design_Patterns)

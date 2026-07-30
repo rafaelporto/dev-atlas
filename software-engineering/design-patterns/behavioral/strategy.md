@@ -33,8 +33,7 @@ Context ──uses──► Strategy (interface)
 2. Each **ConcreteStrategy** implements a specific algorithm.
 3. **Context** holds a reference to a strategy and calls it. The client swaps strategies.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 
@@ -135,7 +134,7 @@ class Checkout:
 
 # Swapped at runtime based on user choice
 Checkout(CreditCardStrategy("4111111111111234")).complete(99.90)
-Checkout(PixStrategy("user@example.com")).complete(99.90)
+Checkout(PixStrategy("<email>")).complete(99.90)
 ```
 
 ## Strategy vs State

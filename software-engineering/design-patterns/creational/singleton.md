@@ -26,8 +26,7 @@ Some resources must exist as exactly one instance: a configuration loader, a con
 2. Store the single instance in a static field.
 3. Expose a static method that returns the existing instance, creating it on first access (lazy initialization).
 
-## Pseudo-code
-
+## Examples
 ```python
 class ConfigManager:
     _instance = None

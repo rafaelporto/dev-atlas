@@ -150,6 +150,48 @@ print(coroutine.resume(co))  -- false   input:1: inside
 
 ---
 
+## Examples
+
+A config loader that ties the model together — `error` with a structured object for programmer/validation faults, the `nil, err` convention for an expected missing file, `xpcall` to capture a traceback at the top boundary, and branching on the error object:
+
+```lua
+local function parse_config(text)
+  local port = tonumber(text:match("port%s*=%s*(%d+)"))
+  if not port then
+    error({ code = "bad_config", detail = "missing or non-numeric 'port'" })
+  end
+  return { port = port }
+end
+
+-- Expected failure: return nil, err rather than raising
+local function read_file(path)
+  local file, err = io.open(path, "r")
+  if not file then return nil, err end
+  local text = file:read("a")
+  file:close()
+  return text
+end
+
+local function load(path)
+  local text, err = read_file(path)
+  if not text then error({ code = "io", detail = err }) end
+  return parse_config(text)
+end
+
+local function handler(e)
+  return debug.traceback(type(e) == "table" and e.code or tostring(e), 2)
+end
+
+local ok, result = xpcall(load, handler, "/etc/app.conf")
+if ok then
+  print("port = " .. result.port)
+elseif type(result) == "string" then
+  io.stderr:write(result, "\n")   -- traceback whose head is the error code
+end
+```
+
+---
+
 ## When to use
 
 - Use `error` / `assert` to reject invalid arguments and enforce invariants (programmer errors)

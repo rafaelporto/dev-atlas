@@ -33,8 +33,7 @@ Subject (Publisher)
 2. **Observer** interface declares the `update()` method.
 3. **ConcreteObserver** reacts to the notification.
 
-## Pseudo-code
-
+## Examples
 ```python
 from abc import ABC, abstractmethod
 
@@ -108,9 +107,9 @@ service.subscribe("order_placed", inventory)
 service.subscribe("order_placed", analytics)
 service.subscribe("order_shipped", email)
 
-service.place_order("ORD-001", "user@example.com", 149.90)
+service.place_order("ORD-001", "<email>", 149.90)
 # Order ORD-001 placed.
-# Email → user@example.com: Your order ORD-001 is confirmed.
+# Email → <email>: Your order ORD-001 is confirmed.
 # Inventory: reserving stock for order ORD-001
 # Analytics: tracking 'order_placed' event — ...
 

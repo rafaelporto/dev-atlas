@@ -142,7 +142,7 @@ import { test, expect } from "@playwright/test";
 
 test("user can sign in", async ({ page }) => {
   await page.goto("/login");
-  await page.getByLabel("Email").fill("user@example.com");
+  await page.getByLabel("Email").fill("<email>");
   await page.getByLabel("Password").fill("hunter2");
   await page.getByRole("button", { name: "Sign in" }).click();
 
@@ -164,10 +164,10 @@ test("submits the form with the typed values", async () => {
   render(<SignupForm onSubmit={onSubmit} />);
 
   await userEvent.type(screen.getByLabelText(/name/i),  "Ana");
-  await userEvent.type(screen.getByLabelText(/email/i), "ana@example.com");
+  await userEvent.type(screen.getByLabelText(/email/i), "<email>");
   await userEvent.click(screen.getByRole("button", { name: /sign up/i }));
 
-  expect(onSubmit).toHaveBeenCalledWith({ name: "Ana", email: "ana@example.com" });
+  expect(onSubmit).toHaveBeenCalledWith({ name: "Ana", email: "<email>" });
 });
 ```
 

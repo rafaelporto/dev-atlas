@@ -133,6 +133,43 @@ final flat    = [[1, 2], [3, 4]].expand((l) => l).toList(); // [1, 2, 3, 4]
 
 ---
 
+## Examples
+
+An end-to-end pipeline that combines all three collection types, a spread, collection-if, and the Iterable API to summarise orders:
+
+```dart
+void main() {
+  final orders = <Map<String, Object>>[
+    {'user': 'Ada', 'total': 30, 'paid': true},
+    {'user': 'Bob', 'total': 15, 'paid': false},
+    {'user': 'Ada', 'total': 20, 'paid': true},
+  ];
+
+  // Set: unique customers
+  final customers = orders.map((o) => o['user'] as String).toSet();
+
+  // Map: total paid per customer via fold
+  final paidByUser = <String, int>{};
+  for (final o in orders.where((o) => o['paid'] == true)) {
+    final user = o['user'] as String;
+    paidByUser[user] = (paidByUser[user] ?? 0) + (o['total'] as int);
+  }
+
+  // List built declaratively with collection-for / collection-if
+  final report = [
+    'Customers: ${customers.length}',
+    for (final e in paidByUser.entries)
+      if (e.value > 0) '${e.key}: paid ${e.value}',
+  ];
+
+  print(report.join('\n'));
+  // Customers: 2
+  // Ada: paid 50
+}
+```
+
+---
+
 ## When to use
 
 - Use `List` when order matters or you need indexed access.

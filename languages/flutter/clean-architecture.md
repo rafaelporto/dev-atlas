@@ -176,6 +176,55 @@ class UserScreen extends ConsumerWidget {
 
 ---
 
+## Examples
+
+A vertical slice through all three layers for one use case, showing how the dependency rule holds — domain defines the contract, data implements it, presentation consumes the use case, and only the outer layers know about JSON or widgets:
+
+```dart
+// domain (pure Dart) ------------------------------------------------------
+class Product {
+  final String id;
+  final String title;
+  const Product({required this.id, required this.title});
+}
+
+abstract class ProductRepository {
+  Future<Product> byId(String id);
+}
+
+class GetProduct {
+  final ProductRepository repo;
+  GetProduct(this.repo);
+  Future<Product> call(String id) => repo.byId(id);
+}
+
+// data (knows about JSON / transport) -------------------------------------
+class ProductRepositoryImpl implements ProductRepository {
+  final ApiClient api;
+  ProductRepositoryImpl(this.api);
+
+  @override
+  Future<Product> byId(String id) async {
+    final json = await api.get('/products/$id');
+    return Product(id: json['id'] as String, title: json['title'] as String);
+  }
+}
+
+// presentation (knows about Flutter) --------------------------------------
+class ProductTitle extends StatelessWidget {
+  final Product product;
+  const ProductTitle({super.key, required this.product});
+
+  @override
+  Widget build(BuildContext context) => Text(product.title);
+}
+
+// composition root wires the layers together (e.g., in DI setup)
+final getProduct = GetProduct(ProductRepositoryImpl(ApiClient()));
+```
+
+---
+
 ## When to use
 
 - Use Clean Architecture for apps with non-trivial business rules, multiple data sources, or teams that need to test business logic independently of Flutter.

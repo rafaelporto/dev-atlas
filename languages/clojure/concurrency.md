@@ -140,6 +140,35 @@ Atoms, refs, and agents support `add-watch` (react to changes) and validators (r
 
 ---
 
+## Examples
+
+A small charge processor using three reference types at once: an **atom** for a counter, **refs + STM** for coordinated balances, and an **agent** for fire-and-forget audit logging.
+
+```clojure
+(def processed (atom 0))
+(def wallet    (ref 100))
+(def escrow    (ref 0))
+(def audit     (agent []))
+
+(defn charge! [amount]
+  (dosync                                   ;; coordinated: both refs commit together
+    (when (< @wallet amount)
+      (throw (ex-info "insufficient funds" {:have @wallet :need amount})))
+    (alter wallet - amount)
+    (alter escrow + amount))
+  (swap! processed inc)                     ;; independent counter
+  (send audit conj {:event :charge :amount amount})) ;; async, serialized per agent
+
+(charge! 30)
+(charge! 20)
+
+(await audit)                              ;; block until dispatched actions finish
+[@wallet @escrow @processed @audit]
+;; => [50 50 2 [{:event :charge, :amount 30} {:event :charge, :amount 20}]]
+```
+
+---
+
 ## When to use
 
 - Reach for an **atom** first — most mutable state is a single independent value.

@@ -122,6 +122,83 @@ Decades-old bytecode still runs on modern JVMs. This stability is a primary reas
 
 ---
 
+## How it works
+
+Java's "write once, run anywhere" promise rests on the split between compilation and execution:
+
+1. **Compile** — `javac` turns `.java` source into platform-neutral `.class` **bytecode**, checking types and (checked) exceptions at compile time.
+2. **Load** — when the program runs, the JVM's class loaders read `.class` files on demand, verify the bytecode for safety, and link them into the runtime.
+3. **Execute** — the JVM starts by *interpreting* bytecode, profiling which methods run often.
+4. **JIT compile** — HotSpot's tiered C1/C2 compilers turn hot methods into optimized native code at runtime, so a long-running server approaches native performance.
+5. **Manage memory** — a pluggable garbage collector (G1 by default; ZGC/Shenandoah for low pause times) reclaims unreachable objects automatically.
+
+Because the contract is the bytecode and the JVM, any language that emits JVM bytecode (Kotlin, Scala, Clojure) inherits the same runtime, JIT, and GC.
+
+---
+
+## Examples
+
+A small slice of modern Java showing records, a sealed result type with exhaustive `switch`, the Stream API, and virtual threads for cheap blocking concurrency:
+
+```java
+import java.util.List;
+import java.util.concurrent.Executors;
+
+record User(long id, String name) {}
+
+sealed interface Lookup permits Found, Missing {}
+record Found(User user) implements Lookup {}
+record Missing(long id) implements Lookup {}
+
+public class Demo {
+    static Lookup lookup(long id, List<User> users) {
+        return users.stream()
+                .filter(u -> u.id() == id)
+                .<Lookup>map(Found::new)
+                .findFirst()
+                .orElse(new Missing(id));
+    }
+
+    static String describe(Lookup result) {
+        return switch (result) {                     // compiler enforces exhaustiveness
+            case Found(User u)  -> "found " + u.name();
+            case Missing(long id) -> "no user " + id;
+        };
+    }
+
+    public static void main(String[] args) throws Exception {
+        var users = List.of(new User(1, "Ada"), new User(2, "Linus"));
+        // One virtual thread per task — millions are cheap (Java 21+)
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            for (long id : List.of(1L, 3L)) {
+                executor.submit(() -> System.out.println(describe(lookup(id, users))));
+            }
+        }
+    }
+}
+```
+
+---
+
+## When to use
+
+- **Backend and enterprise services** — the core use case, with unmatched framework depth (Spring Boot, Jakarta EE).
+- **Web APIs and microservices** at high concurrency — virtual threads make blocking I/O scale.
+- **Big data and streaming** — Spark, Kafka, Flink, and Elasticsearch all run on the JVM.
+- **Long-lived systems** where decades of backward compatibility and stability matter.
+- **Android apps** — fully supported (though Google now prefers Kotlin).
+
+---
+
+## When NOT to use
+
+- **Hard-real-time or bare-metal / embedded work** — a managed runtime and GC make timing non-deterministic.
+- **Low-level systems programming** — reach for C, C++, or Rust.
+- **Short-lived CLI tools and throwaway scripts** — JVM startup latency feels heavy (GraalVM native image only partly mitigates it).
+- **Data science and ML** — the ecosystem is thin; Python dominates.
+
+---
+
 ## References
 
 - [Java Documentation — Oracle](https://docs.oracle.com/en/java/javase/)

@@ -53,8 +53,8 @@ To verify *other people's* SSH-signed commits locally, Git needs an **allowed si
 ```bash
 # Create allowed-signers
 cat > ~/.config/git/allowed_signers <<EOF
-alice@example.com ssh-ed25519 AAAA...
-bob@example.com   ssh-ed25519 AAAA...
+<your-email> ssh-ed25519 AAAA...
+<teammate-email> ssh-ed25519 AAAA...
 EOF
 
 git config --global gpg.ssh.allowedSignersFile ~/.config/git/allowed_signers
@@ -78,7 +78,7 @@ gpg --list-secret-keys --keyid-format=long
 # ------------------------------------
 # sec   rsa4096/3AA5C34371567BD2 2026-05-25 [SC]
 #       (fingerprint)
-# uid                 Your Name <you@example.com>
+# uid                 Your Name <your-email>
 ```
 
 Configure Git to use it:
@@ -139,7 +139,7 @@ Verify the most recent commit:
 git log --show-signature -1
 # commit abc1234... (HEAD -> main)
 # gpg: Signature made ...
-# gpg: Good signature from "Your Name <you@example.com>"
+# gpg: Good signature from "Your Name <your-email>"
 ```
 
 Or with explicit commands:
