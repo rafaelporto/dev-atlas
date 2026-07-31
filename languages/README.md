@@ -7,7 +7,7 @@
 | Language | Description |
 |---|---|
 | [Angular](angular/README.md) | The full, opinionated framework: standalone components, signals, DI, first-party routing and forms, and testing |
-| [C#](csharp/README.md) | The .NET platform, type system and nullability, async, LINQ, patterns, data access, and toolchain |
+| [C#](csharp/README.md) | The .NET platform, type system and nullability, async, LINQ, patterns, data access, toolchain, and game development |
 | [Clojure](clojure/README.md) | A functional, data-oriented Lisp on the JVM: immutability, concurrency, patterns, and the REPL-driven toolchain |
 | [Dart](dart/README.md) | Null safety, async model, OOP/functional paradigms, and patterns in Dart |
 | [Flutter](flutter/README.md) | Widget model, state management, architecture, testing, and deployment with Flutter |

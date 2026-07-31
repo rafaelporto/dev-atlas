@@ -66,3 +66,11 @@
 | Article | Description |
 |---|---|
 | [C# and WebAssembly](webassembly.md) | Running C# in the browser with Blazor WebAssembly, JS interop, and AOT |
+
+---
+
+## Game Development
+
+| Article | Description |
+|---|---|
+| [Game Development](games/README.md) | C# in games — engines (Unity, Godot, MonoGame), IDEs, getting started, strengths, and famous titles |

@@ -48,6 +48,26 @@ Blazor WebAssembly lets .NET teams build rich client-side web apps in **C#, end 
 
 The .NET runtime executes your compiled C# in the Wasm sandbox. Blazor maintains a render tree and updates the real DOM through JavaScript interop — C#, like all Wasm, cannot touch the DOM directly.
 
+### Hosting & render models
+
+Blazor can run your C# in more than one place. WebAssembly is one of several models:
+
+| Model | Where C# runs | Trade-off |
+|---|---|---|
+| Blazor Server | On the server; UI updates stream to the browser over SignalR | Tiny download and full server access, but needs a constant connection and adds per-interaction latency |
+| Blazor WebAssembly | In the browser, on the .NET runtime compiled to Wasm | Offline-capable with no round-trips, but pays the runtime download and startup cost |
+| Auto ("United", .NET 8+) | Server first, then switches to WebAssembly once assets download | Fast startup plus WASM benefits afterwards, at the cost of more setup |
+
+Since **.NET 8**, a single Blazor Web App project mixes these per-component via **interactive render modes** — `InteractiveServer`, `InteractiveWebAssembly`, and `InteractiveAuto` — so you can choose the model where it fits rather than for the whole app.
+
+### Prerendering
+
+Blazor can **prerender** a component's initial HTML on the server and send it with the first response, so the user sees content immediately (better first paint and SEO). The app then "hydrates" in the browser — wiring up event handlers and becoming interactive once the runtime and component state load.
+
+### PWA & offline
+
+Because WebAssembly runs entirely in the browser, a Blazor WebAssembly app can be published as a **Progressive Web App**: adding a service worker and a web app manifest lets users install it and run it offline. This is a natural strength of the WASM model that server-based models cannot match.
+
 ### A component (Razor + C#)
 
 ```razor
@@ -153,3 +173,4 @@ The Blazor `EditForm` validates against the same annotations the server uses —
 - Microsoft. [ASP.NET Core Blazor hosting models — WebAssembly](https://learn.microsoft.com/aspnet/core/blazor/hosting-models). learn.microsoft.com.
 - Microsoft. [Call JavaScript from .NET / .NET from JavaScript in Blazor](https://learn.microsoft.com/aspnet/core/blazor/javascript-interoperability/). learn.microsoft.com.
 - Microsoft. [ASP.NET Core Blazor WebAssembly build tools and AOT](https://learn.microsoft.com/aspnet/core/blazor/tooling/webassembly). learn.microsoft.com.
+- Microsoft. [ASP.NET Core Blazor render modes](https://learn.microsoft.com/aspnet/core/blazor/components/render-modes). learn.microsoft.com.
