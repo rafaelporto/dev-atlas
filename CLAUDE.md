@@ -29,6 +29,7 @@ dev-atlas/
 │   ├── concept.md
 │   ├── how-to.md
 │   └── tags.md                     # Tag vocabulary — validated by the MCP server at startup
+├── claude/                         # Tooling — Claude skills/agents that consume the wiki (see claude/README.md)
 ├── mcp-server/                     # Tooling — TypeScript MCP server (see mcp-server/README.md)
 ├── software-engineering/
 │   ├── README.md                   # Section index
@@ -64,6 +65,8 @@ dev-atlas/
 All three top-level content sections (`software-engineering/`, `languages/`, `tools/`) exist and are actively populated. Do not create a fourth top-level **content** section without explicit user request.
 
 The `mcp-server/` directory is **tooling**, not content. It contains the local MCP server that exposes the wiki to AI agents. `mcp-server/node_modules/`, `mcp-server/dist/`, `mcp-server/package-lock.json`, `mcp-server/audit-report.md`, and any local `.npmrc` files are in `.gitignore`. The lock file is ignored on purpose: it would expose the npm registry where dependencies were downloaded; in a public repo, we do not share that information. Reviews focus on `mcp-server/src/`. (Trade-off: future installs may resolve transitive versions differently — acceptable in this personal-tooling context.)
+
+The `claude/` directory is likewise **tooling, not content**. It holds Claude skills (and, later, agents/guides) that *consume* the wiki via the MCP server. Like `mcp-server/`, it is **not** linked from any content `README.md` nor from the root `README.md`. Skills live under `claude/skills/<name>/SKILL.md` and are installed by symlinking them into `~/.claude/skills/` (committed skills are not auto-discovered by Claude Code). See `claude/README.md`.
 
 ---
 
