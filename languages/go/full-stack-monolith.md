@@ -1,0 +1,257 @@
+---
+type: how-to
+tags:
+  - language
+  - go
+  - full-stack
+  - frontend
+  - backend
+related:
+  - languages/go/web-servers
+  - languages/go/server-side-rendering
+  - languages/go/project-setup
+  - languages/go/deploy
+language: "go"
+---
+
+# How to Build a Full-Stack Monolith in Go
+
+> Build a standalone Go application that serves both a frontend and an API from a single process and ships as one self-contained binary — the Go analogue to a Next.js app.
+
+---
+
+## Prerequisites
+
+- **Go 1.22 or newer** — required for the method-aware routing patterns used here (`GET /path`, `{id}`). See [Installation](installation.md).
+- A module initialized with `go mod init example/app`. See [Project Setup](project-setup.md).
+- Familiarity with [Web Servers in Go](web-servers.md) (routing, middleware) and [Server-Side Rendering](server-side-rendering.md) (`html/template`, `templ`, `htmx`).
+- For the SPA variant (Step 6): a built frontend (e.g. `npm run build` producing a `dist/` folder).
+
+---
+
+## Steps
+
+### 1. Lay out the project
+
+A monolith keeps the server, the views, and the static assets in one module. Put views and assets under a `web/` directory so the `embed` directives are local to the code that uses them:
+
+```
+app/
+├── go.mod
+├── cmd/
+│   └── server/
+│       └── main.go          # entrypoint: wiring + ListenAndServe
+├── internal/
+│   ├── api/                 # JSON API handlers
+│   └── web/
+│       ├── web.go           # embed directives + page handlers
+│       ├── templates/       # html/template files
+│       │   ├── layout.html
+│       │   └── home.html
+│       └── static/          # css, js, images
+│           └── styles.css
+```
+
+This follows the standard `cmd/` + `internal/` conventions from [Project Setup](project-setup.md): `cmd/server` is the binary, `internal/` holds code that must not be imported by other modules.
+
+### 2. Serve both pages and an API from one router
+
+A single `ServeMux` routes page requests, static assets, and the JSON API. Namespacing the API under `/api/` keeps it cleanly separate from page routes:
+
+```go
+// cmd/server/main.go
+package main
+
+import (
+    "log"
+    "net/http"
+
+    "example/app/internal/api"
+    "example/app/internal/web"
+)
+
+func main() {
+    mux := http.NewServeMux()
+
+    // Pages (HTML)
+    mux.HandleFunc("GET /{$}", web.Home)          // {$} matches exactly "/"
+    mux.HandleFunc("GET /about", web.About)
+
+    // API (JSON)
+    mux.HandleFunc("GET /api/health", api.Health)
+    mux.HandleFunc("GET /api/users/{id}", api.GetUser)
+
+    // Static assets (wired in Step 4)
+    mux.Handle("GET /static/", web.StaticHandler())
+
+    log.Println("listening on :8080")
+    log.Fatal(http.ListenAndServe(":8080", mux))
+}
+```
+
+`GET /{$}` matches only the root path exactly, avoiding the catch-all behavior of a bare `/` pattern.
+
+### 3. Render pages with embedded templates
+
+Parse templates from an embedded filesystem so they travel inside the binary (see [Server-Side Rendering](server-side-rendering.md)):
+
+```go
+// internal/web/web.go
+package web
+
+import (
+    "embed"
+    "html/template"
+    "net/http"
+)
+
+//go:embed templates/*.html
+var templateFS embed.FS
+
+// Parse once at startup; a bad template fails the process immediately (Fail Fast).
+var pages = template.Must(template.ParseFS(templateFS, "templates/*.html"))
+
+type pageData struct {
+    Title string
+}
+
+func Home(w http.ResponseWriter, r *http.Request) {
+    if err := pages.ExecuteTemplate(w, "layout", pageData{Title: "Home"}); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+    }
+}
+
+func About(w http.ResponseWriter, r *http.Request) {
+    if err := pages.ExecuteTemplate(w, "layout", pageData{Title: "About"}); err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+    }
+}
+```
+
+### 4. Serve static assets from the binary
+
+Embed the `static/` directory and serve it with `http.FileServerFS` (Go 1.22+), which serves directly from an `fs.FS`:
+
+```go
+// internal/web/web.go (continued)
+
+//go:embed static
+var staticFS embed.FS
+
+func StaticHandler() http.Handler {
+    // Strip the /static/ prefix so paths resolve inside the embedded FS.
+    return http.StripPrefix("/static/", http.FileServerFS(staticFS))
+}
+```
+
+A request for `/static/styles.css` now streams the embedded file — no files on disk required at runtime. Because the assets are in the binary, the file server also sets correct `Content-Type` headers from the file extensions.
+
+### 5. Variant A — add interactivity with templ + htmx
+
+To make pages interactive without a client framework, render fragments with `templ` and swap them with `htmx`. Add the htmx script in the layout, mark up an action, and return the fragment from a handler:
+
+```html
+<!-- in layout.html -->
+<script src="/static/htmx.min.js"></script>
+<button hx-post="/api/like" hx-target="#likes" hx-swap="innerHTML">Like</button>
+<span id="likes">{{.Likes}}</span>
+```
+
+```go
+// internal/web/like.templ -> generated by `templ generate`
+package web
+
+templ LikeCount(n int) {
+    <span id="likes">{ strconv.Itoa(n) }</span>
+}
+```
+
+```go
+// handler returns only the fragment htmx will swap in
+func Like(w http.ResponseWriter, r *http.Request) {
+    count := incrementLikes()
+    LikeCount(count).Render(r.Context(), w)
+}
+```
+
+Run `templ generate` whenever a `.templ` file changes; the generated `*_templ.go` files are compiled like any other Go source and embedded logic still ships in the one binary.
+
+### 6. Variant B — embed a prebuilt SPA
+
+When the frontend is a React/Vue app, build it (`npm run build`), copy the output into `internal/web/dist/`, embed it, and serve it with an **SPA fallback**: unknown paths return `index.html` so client-side routing works on deep links.
+
+```go
+//go:embed all:dist
+var distFS embed.FS
+
+func SPAHandler() http.Handler {
+    sub, _ := fs.Sub(distFS, "dist") // treat dist/ as the FS root
+    fileServer := http.FileServerFS(sub)
+
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        // If the requested file doesn't exist, serve index.html (SPA routing).
+        if _, err := fs.Stat(sub, strings.TrimPrefix(r.URL.Path, "/")); err != nil {
+            r.URL.Path = "/"
+        }
+        fileServer.ServeHTTP(w, r)
+    })
+}
+```
+
+Wire it as the catch-all page route (`mux.Handle("GET /", web.SPAHandler())`) while keeping `/api/` routes for data. Use the `all:` prefix on the embed directive so files whose names begin with `_` or `.` (common in JS build output) are included.
+
+### 7. Build the single binary
+
+With templates, static assets (and optionally the SPA) embedded, `go build` produces one self-contained executable:
+
+```bash
+templ generate                 # only if using Variant A
+go build -o app ./cmd/server
+./app                          # runs with no external files
+```
+
+That single `app` file is the whole deployable artifact — copy it to a server or a scratch Docker image and run it. For production builds, cross-compilation, and containerization, see [Deploy](deploy.md).
+
+---
+
+## Verification
+
+Run the server and exercise both the frontend and the API:
+
+```bash
+go run ./cmd/server &
+
+curl -s localhost:8080/            # -> rendered HTML page
+curl -s localhost:8080/api/health  # -> JSON health response
+curl -s localhost:8080/static/styles.css   # -> embedded CSS
+```
+
+Confirm it is truly self-contained: build the binary, move it to an empty directory with no templates or assets beside it, and run it there.
+
+```bash
+go build -o /tmp/app ./cmd/server
+cd /tmp && ./app        # pages and assets still served from inside the binary
+```
+
+If the pages and `/static/` assets still load, the embedding worked and you have a genuine single-artifact monolith.
+
+---
+
+## Common issues
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| `pattern matches no files` at build | `//go:embed` path is wrong or points outside the package directory | The embed path is relative to the `.go` file; embedded files must live in or below that directory — move `web/` accordingly |
+| Templates render blank / `nil` data in partial | `{{template "x"}}` called without passing `.` | Forward data: `{{template "x" .}}` |
+| SPA deep links return 404 | No fallback to `index.html` for unknown paths | Add the SPA fallback from Step 6; serve `index.html` when the file doesn't exist |
+| SPA assets missing after embed | Files starting with `_`/`.` are skipped by default | Use the `all:` prefix: `//go:embed all:dist` |
+| Static file served as `text/plain` | Content type not inferred | `http.FileServerFS` sets it from the extension — ensure files keep correct extensions; for custom types register with `mime.AddExtensionType` |
+| Stale UI after editing a `.templ` file | `templ generate` not re-run | Run `templ generate` before `go build`; wire it into your build task |
+
+---
+
+## References
+
+- Go Team. [`embed` package](https://pkg.go.dev/embed). pkg.go.dev.
+- Go Team. [`http.FileServerFS`](https://pkg.go.dev/net/http#FileServerFS). pkg.go.dev.
+- a-h. [templ — HTML templating for Go](https://templ.guide/). templ.guide.

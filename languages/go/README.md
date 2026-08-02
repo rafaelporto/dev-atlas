@@ -61,6 +61,16 @@
 
 ---
 
+## Web Development
+
+| Article | Description |
+|---|---|
+| [Web Servers](web-servers.md) | net/http, ServeMux, Go 1.22 routing, middleware, graceful shutdown |
+| [Server-Side Rendering](server-side-rendering.md) | html/template, embed, layouts/partials, and the templ + htmx stack |
+| [Full-Stack Monolith](full-stack-monolith.md) | Build a single-binary Go app that serves a frontend + API, Next.js-style |
+
+---
+
 ## WebAssembly
 
 | Article | Description |
