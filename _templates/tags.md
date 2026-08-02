@@ -115,6 +115,8 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `rendering`
 - `component-driven`
 - `webassembly`
+- `cli`
+- `tui`
 
 ---
 

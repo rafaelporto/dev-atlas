@@ -71,6 +71,14 @@
 
 ---
 
+## CLI & Terminal
+
+| Article | Description |
+|---|---|
+| [CLI & Terminal](cli/README.md) | Building command-line tools and TUIs in Go — cobra, Bubble Tea, terminal internals |
+
+---
+
 ## WebAssembly
 
 | Article | Description |
