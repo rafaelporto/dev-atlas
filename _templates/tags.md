@@ -20,6 +20,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - **Paradigm** tags: apply when the paradigm is a real subject of the article (typically `paradigms.md`, patterns, or concurrency/immutability articles), not to every article written in a language that happens to support that paradigm.
 - **Operating system** articles (under `operating-systems/<os>/`) must carry `operating-system` (Domain) **and** exactly one OS tag (`macos` / `linux` / `windows`) — these are orthogonal axes, like `design-pattern` + a pattern category. Add topic tags as appropriate (`overview` for the section overview, `shell` for shell articles, `cli` for command references).
 - `shell`: use for articles whose subject is a command-line shell or its behaviour (interactive shells, config files, expansion, redirection). It complements `cli`, which is about command-line *programs*; an article may carry both.
+- `ide`: use for articles whose subject is a code editor or integrated development environment. Combine with `tool` (Domain) and the relevant language tag(s). Do not apply it to language or framework articles.
 
 ---
 
@@ -127,6 +128,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `cli`
 - `tui`
 - `shell`
+- `ide`
 
 ---
 
