@@ -61,6 +61,14 @@
 
 ---
 
+## CLI & Terminal
+
+| Article | Description |
+|---|---|
+| [CLI & Terminal](cli/README.md) | Building CLI tools and TUIs in C# — System.CommandLine, Spectre.Console, and Terminal.Gui |
+
+---
+
 ## WebAssembly
 
 | Article | Description |

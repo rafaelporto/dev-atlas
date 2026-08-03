@@ -58,3 +58,11 @@
 |---|---|
 | [Toolchain](toolchain.md) | `javac`, `java`, `jar`, `jshell`, formatters, and static analysis |
 | [Deploy](deploy.md) | Build a runnable fat JAR and containerise it with a layered Docker image |
+
+---
+
+## CLI & Terminal
+
+| Article | Description |
+|---|---|
+| [CLI & Terminal](cli/README.md) | Building CLI tools and TUIs in Java — picocli, GraalVM native image, and Lanterna |

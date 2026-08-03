@@ -42,3 +42,11 @@
 | [Installation](installation.md) | Install the Dart SDK and manage multiple versions with `asdf` |
 | [Project Setup](project-setup.md) | `dart create`, recommended project structure, and package types |
 | [Toolchain](toolchain.md) | `dart analyze`, `dart format`, `dart compile`, `dart pub`, and `dart run` |
+
+---
+
+## CLI & Terminal
+
+| Article | Description |
+|---|---|
+| [CLI & Terminal](cli/README.md) | Building command-line tools in Dart — args, CommandRunner, and native executables |

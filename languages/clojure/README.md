@@ -58,3 +58,11 @@
 |---|---|
 | [Toolchain](toolchain.md) | The `clj`/`clojure` CLI, `tools.build`, `clj-kondo`, `cljfmt`, and babashka |
 | [Deploy](deploy.md) | Building an uberjar with `tools.build`, containerising with Docker, env config |
+
+---
+
+## CLI & Terminal
+
+| Article | Description |
+|---|---|
+| [CLI & Terminal](cli/README.md) | Building CLIs in Clojure — babashka, tools.cli, and cli-matic |

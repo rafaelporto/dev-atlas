@@ -73,6 +73,14 @@
 
 ---
 
+## CLI & Terminal
+
+| Article | Description |
+|---|---|
+| [CLI & Terminal](cli/README.md) | Building command-line tools in Swift — swift-argument-parser and SPM executables |
+
+---
+
 ## See also
 
 | Article | Description |

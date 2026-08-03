@@ -48,3 +48,11 @@
 | [Testing](testing.md) | `node:test`, unit vs integration, testing repositories and handlers |
 | [Deploy](deploy.md) | Reproducible install, multi-stage Docker, signals, health checks |
 | [Best Practices](best-practices.md) | Consolidated runtime, error, and observability guidelines |
+
+---
+
+## CLI & Terminal
+
+| Article | Description |
+|---|---|
+| [CLI & Terminal](cli/README.md) | Building CLI tools and TUIs in Node.js — commander, oclif, and Ink |
