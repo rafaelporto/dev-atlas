@@ -18,6 +18,8 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `overview`: exclusive to section-summary articles (e.g., `pragmatic-principles/overview.md`, `solid/solid.md`).
 - `dotnet`: use as a secondary tag for C# articles about the .NET ecosystem/runtime (NuGet, deployment, runtime); it complements — never replaces — the `csharp` language tag. Do not apply it to plain-language articles that are not .NET-specific.
 - **Paradigm** tags: apply when the paradigm is a real subject of the article (typically `paradigms.md`, patterns, or concurrency/immutability articles), not to every article written in a language that happens to support that paradigm.
+- **Operating system** articles (under `operating-systems/<os>/`) must carry `operating-system` (Domain) **and** exactly one OS tag (`macos` / `linux` / `windows`) — these are orthogonal axes, like `design-pattern` + a pattern category. Add topic tags as appropriate (`overview` for the section overview, `shell` for shell articles, `cli` for command references).
+- `shell`: use for articles whose subject is a command-line shell or its behaviour (interactive shells, config files, expansion, redirection). It complements `cli`, which is about command-line *programs*; an article may carry both.
 
 ---
 
@@ -32,6 +34,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `database`
 - `language`
 - `tool`
+- `operating-system`
 
 ### Pattern category — subcategory of design patterns (GoF)
 
@@ -82,6 +85,12 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `clojure`
 - `lua`
 
+### Operating system — which OS an article covers
+
+- `macos`
+- `linux`
+- `windows`
+
 ### Paradigm — the programming model an article deals with
 
 - `functional`
@@ -117,6 +126,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `webassembly`
 - `cli`
 - `tui`
+- `shell`
 
 ---
 

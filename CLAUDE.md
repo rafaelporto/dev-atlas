@@ -52,6 +52,10 @@ dev-atlas/
 │   ├── go/
 │   ├── react/
 │   └── swift/
+├── operating-systems/
+│   ├── macos/                  # Darwin/XNU, zsh, macOS commands, ⌘ shortcuts
+│   ├── linux/                  # distribution-agnostic: kernel, shell, commands, shortcuts
+│   └── windows/                # lighter: NT kernel, cmd/PowerShell/WSL, shortcuts
 └── tools/
     ├── ci-cd/
     ├── code-quality/
@@ -62,7 +66,7 @@ dev-atlas/
     └── orchestration/
 ```
 
-All three top-level content sections (`software-engineering/`, `languages/`, `tools/`) exist and are actively populated. Do not create a fourth top-level **content** section without explicit user request.
+All four top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `tools/`) exist and are actively populated. Do not create a new top-level **content** section without explicit user request.
 
 The `mcp-server/` directory is **tooling**, not content. It contains the local MCP server that exposes the wiki to AI agents. `mcp-server/node_modules/`, `mcp-server/dist/`, `mcp-server/package-lock.json`, `mcp-server/audit-report.md`, and any local `.npmrc` files are in `.gitignore`. The lock file is ignored on purpose: it would expose the npm registry where dependencies were downloaded; in a public repo, we do not share that information. Reviews focus on `mcp-server/src/`. (Trade-off: future installs may resolve transitive versions differently — acceptable in this personal-tooling context.)
 
@@ -185,7 +189,7 @@ The naming is intentionally not standardized (`overview.md` vs. the topic's own 
 
 ### New top-level section
 
-The three top-level content sections (`software-engineering/`, `languages/`, `tools/`) already exist and are populated. Do not add another top-level section without explicit user request. If asked:
+The four top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `tools/`) already exist and are populated. Do not add another top-level section without explicit user request. If asked:
 
 1. Create the directory and its `README.md`.
 2. Update the root `README.md` navigation table.
