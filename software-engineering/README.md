@@ -12,4 +12,5 @@ Core concepts, patterns, and principles every software engineer should know.
 | [Architecture](architecture/README.md) | Architectural styles — Hexagonal, Clean, Microservices, CQRS — plus mobile and frontend architecture |
 | [Databases](databases/README.md) | Database concepts, types, and engines |
 | [Design Patterns](design-patterns/README.md) | Reusable solutions to common design problems |
+| [Messaging](messaging/README.md) | Asynchronous messaging — protocols (AMQP), patterns, and brokers (Kafka, RabbitMQ, SQS, Service Bus, Pub/Sub, NATS) |
 
