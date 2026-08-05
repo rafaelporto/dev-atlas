@@ -22,6 +22,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `shell`: use for articles whose subject is a command-line shell or its behaviour (interactive shells, config files, expansion, redirection). It complements `cli`, which is about command-line *programs*; an article may carry both.
 - `ide`: use for articles whose subject is a code editor or integrated development environment. Combine with `tool` (Domain) and the relevant language tag(s). Do not apply it to language or framework articles.
 - `messaging`: use for articles about asynchronous messaging — protocols (AMQP, MQTT, STOMP), patterns (queues, pub/sub, delivery guarantees), and message brokers (Kafka, RabbitMQ, SQS, Service Bus, Pub/Sub, NATS). Combine with `concept` for protocol/pattern articles and with `tool` for a specific broker product.
+- `networking`: use for articles about communication/network protocols — transport (TCP, UDP, QUIC), the HTTP family (HTTP, WebSocket, SSE, streaming), and API styles (REST, gRPC, GraphQL). Combine with `concept`. For asynchronous messaging protocols and brokers use `messaging` instead.
 
 ---
 
@@ -120,6 +121,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `iac`
 - `ci-cd`
 - `messaging`
+- `networking`
 - `mobile`
 - `frontend`
 - `backend`
