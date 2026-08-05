@@ -23,6 +23,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `ide`: use for articles whose subject is a code editor or integrated development environment. Combine with `tool` (Domain) and the relevant language tag(s). Do not apply it to language or framework articles.
 - `messaging`: use for articles about asynchronous messaging — protocols (AMQP, MQTT, STOMP), patterns (queues, pub/sub, delivery guarantees), and message brokers (Kafka, RabbitMQ, SQS, Service Bus, Pub/Sub, NATS). Combine with `concept` for protocol/pattern articles and with `tool` for a specific broker product.
 - `networking`: use for articles about communication/network protocols — transport (TCP, UDP, QUIC), the HTTP family (HTTP, WebSocket, SSE, streaming), and API styles (REST, gRPC, GraphQL). Combine with `concept`. For asynchronous messaging protocols and brokers use `messaging` instead.
+- `devops`: use for DevOps articles across the `devops/` section — the cross-cutting culture/practice (`concept` + `devops`) and its tooling (`tool` + `devops`). It ties the section together for queries like "all DevOps articles". Combine it with the more specific topic tag when one fits (`containerization`, `orchestration`, `ci-cd`, `iac`, `observability`); use `devops` alone for cross-cutting subjects with no narrower topic (deployment strategies, SRE, GitOps culture).
 
 ---
 
@@ -115,6 +116,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `dependency-injection`
 - `immutability`
 - `null-safety`
+- `devops`
 - `observability`
 - `containerization`
 - `orchestration`

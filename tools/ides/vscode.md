@@ -5,7 +5,7 @@ tags:
   - ide
 related:
   - tools/ides/overview
-  - tools/local-dev/dev-containers
+  - devops/local-dev/dev-containers
 language: null
 ---
 # VS Code
@@ -89,7 +89,7 @@ Common extensions are referenced per stack in the [overview matrix](overview.md)
 }
 ```
 
-For a fully reproducible, containerized setup, VS Code pairs with [Dev Containers](../local-dev/dev-containers.md).
+For a fully reproducible, containerized setup, VS Code pairs with [Dev Containers](../../devops/local-dev/dev-containers.md).
 
 ## When to use
 

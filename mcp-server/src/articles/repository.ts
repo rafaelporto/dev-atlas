@@ -15,9 +15,9 @@ export interface LoadResult {
 }
 
 // Scans the wiki and returns parsed articles + section-indexes.
-// - Walks the four top-level content directories (`software-engineering/`,
-//   `languages/`, `tools/`, `operating-systems/`), skipping anything in
-//   EXCLUDED_DIRS.
+// - Walks the five top-level content directories (`software-engineering/`,
+//   `languages/`, `tools/`, `operating-systems/`, `devops/`), skipping anything
+//   in EXCLUDED_DIRS.
 // - Treats every `README.md` as a SectionIndex (no front matter required).
 // - Treats every other `*.md` as an Article (front matter required).
 // - Validates every article tag against the vocabulary.

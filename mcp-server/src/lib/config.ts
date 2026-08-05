@@ -4,7 +4,7 @@ import { dirname, resolve } from "node:path";
 const here = dirname(fileURLToPath(import.meta.url));
 
 // Walks up from this file until it finds the dev-atlas repo root (the directory
-// containing CLAUDE.md plus the four content top-levels). Resolves both at
+// containing CLAUDE.md plus the five content top-levels). Resolves both at
 // runtime (`dist/`) and during dev (`src/`).
 function findRepoRoot(start: string): string {
   let current = start;
@@ -27,6 +27,7 @@ export const CONTENT_DIRS = [
   "languages",
   "tools",
   "operating-systems",
+  "devops",
 ] as const;
 
 export const TAGS_FILE = resolve(REPO_ROOT, "_templates", "tags.md");
