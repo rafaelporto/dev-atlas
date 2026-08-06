@@ -2,7 +2,9 @@
 type: concept
 tags:
   - database
-related: []
+related:
+  - software-engineering/databases/engines/redis
+  - software-engineering/databases/engines/memcached
 language: null
 ---
 # In-Memory Databases
@@ -17,7 +19,7 @@ An in-memory database (IMDB) keeps its entire working set in main memory. Reads 
 
 The category spans several different shapes:
 
-- **In-memory key-value stores**: Redis, Memcached, KeyDB. Used overwhelmingly as caches and ephemeral state.
+- **In-memory key-value stores**: [Redis](../engines/redis.md), [Memcached](../engines/memcached.md), KeyDB. Used overwhelmingly as caches and ephemeral state.
 - **In-memory data grids**: Hazelcast, Apache Ignite, Oracle Coherence. Distributed RAM with richer query and compute primitives.
 - **In-memory relational engines**: VoltDB, MemSQL/SingleStore (rowstore mode), SAP HANA. Full SQL and ACID, executed in RAM.
 - **In-memory analytical engines**: kdb+, columnar in-memory data stores used in finance and high-frequency analytics.

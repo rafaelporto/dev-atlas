@@ -2,7 +2,11 @@
 type: concept
 tags:
   - database
-related: []
+related:
+  - software-engineering/databases/engines/redis
+  - software-engineering/databases/engines/memcached
+  - software-engineering/databases/engines/dynamodb
+  - software-engineering/databases/engines/etcd
 language: null
 ---
 # Key-Value Stores
@@ -17,7 +21,7 @@ A key-value store is the simplest possible database. There is exactly one operat
 
 Think of it as a `Map<K, V>` (or `dict`, or `HashMap`) that survives process restarts and is reachable over a network. There are no joins, no secondary queries (typically), no schema, no relationships. The simplicity is the point.
 
-This category includes both **in-memory** stores (Redis, Memcached) and **on-disk** stores (DynamoDB, etcd, FoundationDB, RocksDB). Many of them support richer value types — Redis has lists, sets, sorted sets, streams, hashes — but the access path is still "you give me a key, I give you a value".
+This category includes both **in-memory** stores ([Redis](../engines/redis.md), [Memcached](../engines/memcached.md)) and **on-disk** stores ([DynamoDB](../engines/dynamodb.md), [etcd](../engines/etcd.md), FoundationDB, RocksDB). Many of them support richer value types — Redis has lists, sets, sorted sets, streams, hashes — but the access path is still "you give me a key, I give you a value".
 
 ## Why does it matter?
 
