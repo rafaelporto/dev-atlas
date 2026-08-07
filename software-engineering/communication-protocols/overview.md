@@ -9,6 +9,8 @@ related:
   - software-engineering/communication-protocols/transport/tcp
   - software-engineering/communication-protocols/http/http
   - software-engineering/communication-protocols/api-styles/rest
+  - software-engineering/communication-protocols/remote-access/ssh
+  - software-engineering/communication-protocols/file-transfer/sftp
   - software-engineering/messaging/overview
 language: null
 ---
@@ -22,7 +24,7 @@ language: null
 
 A **communication protocol** is an agreed set of rules for how two programs exchange data over a network: how a connection is established, how messages are framed, in what order bytes arrive, and what a response means. When your browser loads a page, a mobile app syncs data, or two microservices call each other, a stack of protocols is doing the work underneath.
 
-This section documents the protocols you meet most often in day-to-day engineering — from the transport layer (TCP, UDP, QUIC) up to the application protocols and API styles built on top (HTTP, WebSocket, SSE, REST, gRPC, GraphQL). This overview gives you the map; each article is the deep dive.
+This section documents the protocols you meet most often in day-to-day engineering — from the transport layer (TCP, UDP, QUIC) up to the application protocols and API styles built on top (HTTP, WebSocket, SSE, REST, gRPC, GraphQL), plus the remote-access (SSH, Telnet) and file-transfer (FTP/FTPS, SFTP, SCP, rsync) protocols used to reach machines and move data between them. This overview gives you the map; each article is the deep dive.
 
 ## Why does it matter?
 
@@ -58,23 +60,28 @@ OSI (7 layers)            TCP/IP (4 layers)      Examples in this section
 
 The key insight: **application protocols ride on transport protocols**. HTTP/1.1 and HTTP/2 ride on TCP; HTTP/3 rides on QUIC (which itself rides on UDP). REST, gRPC, and GraphQL are *styles* layered on top of HTTP. Understanding the layer below explains the behavior above — HTTP/2's head-of-line blocking, for example, is a TCP property, which is exactly why HTTP/3 moved to QUIC.
 
-### The three families in this section
+### The families in this section
+
+The web stack — API styles on the HTTP family on transport — is the core, with two more application-layer families alongside it: **remote access** (a shell on another machine) and **file transfer** (moving and syncing files). All of them ultimately ride on the transport layer.
 
 ```
-                    ┌─────────────────────────────────────────────┐
-  API styles        │   REST        gRPC          GraphQL          │  how you
-  (design)          │   (resources) (RPC/Protobuf)(query language) │  design APIs
-                    └───────────────────┬─────────────────────────┘
-                                        │ ride on
-                    ┌───────────────────▼─────────────────────────┐
-  HTTP family       │   HTTP    WebSocket    SSE    HTTP streaming  │  web wire
-  (web transport)   │                                              │  protocols
-                    └───────────────────┬─────────────────────────┘
-                                        │ ride on
-                    ┌───────────────────▼─────────────────────────┐
-  Transport         │   TCP          UDP          QUIC             │  layer-4
-                    │   (reliable)   (fast)       (multiplexed)    │  transports
-                    └─────────────────────────────────────────────┘
+                 ┌────────────────────────────────────────────┐
+  API styles     │  REST         gRPC           GraphQL        │  how you
+  (design)       │  (resources)  (RPC/Protobuf) (query lang.)  │  design APIs
+                 └───────────────────┬────────────────────────┘
+                                     │ ride on
+  Application ┌───────────────┐ ┌────▼─────────┐ ┌───────────────────┐
+  protocols   │ HTTP family   │ │ Remote access│ │ File transfer     │
+              │ HTTP, WS,     │ │ SSH, Telnet  │ │ FTP/FTPS, SFTP,   │
+              │ SSE, HTTP     │ │              │ │ SCP, rsync        │
+              │ streaming     │ │              │ │ (SFTP/SCP/rsync   │
+              │               │ │              │ │  ride on SSH)     │
+              └───────┬───────┘ └──────┬───────┘ └─────────┬─────────┘
+                      │ ride on        │ ride on           │ ride on
+                 ┌────▼────────────────▼───────────────────▼───┐
+  Transport      │  TCP          UDP           QUIC             │  layer-4
+                 │  (reliable)   (fast)        (multiplexed)    │  transports
+                 └────────────────────────────────────────────┘
 ```
 
 ### Interaction patterns

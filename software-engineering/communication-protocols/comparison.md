@@ -10,6 +10,8 @@ related:
   - software-engineering/communication-protocols/transport/tcp
   - software-engineering/communication-protocols/http/http
   - software-engineering/communication-protocols/api-styles/rest
+  - software-engineering/communication-protocols/remote-access/ssh
+  - software-engineering/communication-protocols/file-transfer/sftp
   - software-engineering/messaging/comparison
 language: null
 ---
@@ -21,7 +23,7 @@ language: null
 
 ## What is it?
 
-This article compares the protocols covered in this section — [TCP](transport/tcp.md), [UDP](transport/udp.md), [QUIC](transport/quic.md), [HTTP](http/http.md), [WebSocket](http/websocket.md), [SSE](http/sse.md), [HTTP streaming](http/streaming.md), [REST](api-styles/rest.md), [gRPC](api-styles/grpc.md), and [GraphQL](api-styles/graphql.md) — across the axes that actually drive the choice. It is a decision guide, not a new protocol.
+This article compares the protocols covered in this section — [TCP](transport/tcp.md), [UDP](transport/udp.md), [QUIC](transport/quic.md), [HTTP](http/http.md), [WebSocket](http/websocket.md), [SSE](http/sse.md), [HTTP streaming](http/streaming.md), [REST](api-styles/rest.md), [gRPC](api-styles/grpc.md), [GraphQL](api-styles/graphql.md), [SSH](remote-access/ssh.md), [Telnet](remote-access/telnet.md), [FTP/FTPS](file-transfer/ftp.md), [SFTP](file-transfer/sftp.md), [SCP](file-transfer/scp.md), and [rsync](file-transfer/rsync.md) — across the axes that actually drive the choice. It is a decision guide, not a new protocol.
 
 ## Why does it matter?
 
@@ -43,6 +45,12 @@ Most protocol mistakes are mismatches: WebSocket where SSE would do, gRPC expose
 | **WebSocket** | Application | full-duplex | persistent bidirectional | TCP (via HTTP upgrade) | text/binary | chat, collaboration, games |
 | **SSE** | Application | server → client | one-way event stream | HTTP | text | notifications, live feeds, token streams |
 | **HTTP streaming** | Application | server → client | chunked / long-poll | HTTP | text/binary | progressive responses, fallback push |
+| **SSH** | Application | bidirectional stream | encrypted remote shell | TCP | binary (encrypted) | remote login, tunneling, secure automation |
+| **Telnet** | Application | bidirectional stream | plaintext remote terminal | TCP | text (cleartext) | legacy terminals, TCP port diagnostics |
+| **FTP / FTPS** | Application | request/response | two-channel file transfer | TCP (+TLS for FTPS) | files | legacy file exchange, hosting |
+| **SFTP** | Application | request/response | file ops over SSH | SSH (TCP) | files (encrypted) | secure transfer, the modern default |
+| **SCP** | Application | request/response | copy over SSH | SSH (TCP) | files (encrypted) | quick one-off secure copy (legacy) |
+| **rsync** | Application | request/response | delta-transfer sync | SSH or daemon | files (encrypted over SSH) | efficient sync, backups, mirrors |
 
 ### Decision flow
 
@@ -60,6 +68,11 @@ flowchart TD
     E -- no --> R[REST over HTTP]
     A --> F{Latency-critical,<br/>loss-tolerant datagrams?}
     F -- yes --> U[UDP<br/>or QUIC if you need reliability]
+    A --> H{Reach a machine or<br/>move files, not call an API?}
+    H -- "interactive shell / tunnel" --> SSHN[SSH<br/>avoid Telnet except for diagnostics]
+    H -- "sync large / repeated trees" --> RS[rsync over SSH]
+    H -- "secure file transfer" --> SF[SFTP<br/>SCP only for quick legacy copies]
+    H -- "legacy interop only" --> FT[FTP/FTPS]
 ```
 
 ### When the answer is messaging, not a protocol

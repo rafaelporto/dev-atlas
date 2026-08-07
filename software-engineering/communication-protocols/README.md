@@ -1,6 +1,6 @@
 # Communication Protocols
 
-Communication protocols are the agreed rules for how programs exchange data over a network — how a connection is set up, how messages are framed, and what a response means. This section covers the protocols you meet most in day-to-day engineering, organized by layer: the transport underneath, the HTTP family on top, and the API styles used to design services.
+Communication protocols are the agreed rules for how programs exchange data over a network — how a connection is set up, how messages are framed, and what a response means. This section covers the protocols you meet most in day-to-day engineering, organized by family: the transport underneath, the HTTP family and API styles used to design services, and the remote-access and file-transfer protocols used to reach and move data between machines.
 
 Start with the [Overview](overview.md) for the map (layers and interaction patterns), then use the [Comparison](comparison.md) to pick one for a concrete problem. For **asynchronous, decoupled** communication (queues, event streams, pub/sub), see the sibling [Messaging](../messaging/README.md) section — this section is about **direct** endpoint-to-endpoint communication.
 
@@ -22,6 +22,8 @@ Start with the [Overview](overview.md) for the map (layers and interaction patte
 | [Transport](transport/README.md) | Layer-4 transports: TCP, UDP, QUIC |
 | [HTTP Family](http/README.md) | Web wire protocols: HTTP, WebSocket, SSE, and HTTP streaming |
 | [API Styles](api-styles/README.md) | Designing APIs: REST, gRPC, and GraphQL |
+| [Remote Access](remote-access/README.md) | Interactive remote sessions: SSH and Telnet |
+| [File Transfer](file-transfer/README.md) | Moving and syncing files: FTP/FTPS, SFTP, SCP, rsync |
 
 ---
 
