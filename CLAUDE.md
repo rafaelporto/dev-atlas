@@ -33,8 +33,10 @@ dev-atlas/
 ├── mcp-server/                     # Tooling — TypeScript MCP server (see mcp-server/README.md)
 ├── software-engineering/
 │   ├── README.md                   # Section index
+│   ├── ai-assisted-development/    # Working with LLM coding agents: SDD, agent instruction files
 │   ├── architecture/
 │   │   └── mobile/                 # Mobile-specific architectural patterns (MVC, MVP, MVVM, MVI, VIPER, Clean, Modular)
+│   ├── communication-protocols/    # Transport (TCP/UDP/QUIC), HTTP family, API styles, remote access, file transfer
 │   ├── concepts/
 │   │   ├── solid/                  # The five SOLID principles
 │   │   └── pragmatic-principles/   # DRY, KISS, YAGNI
@@ -42,31 +44,35 @@ dev-atlas/
 │   │   ├── concepts/
 │   │   ├── engines/
 │   │   └── types/                  # Relational, document, key-value, graph, time-series, etc.
-│   └── design-patterns/
-│       ├── behavioral/
-│       ├── creational/
-│       └── structural/
-├── languages/
-│   ├── dart/
-│   ├── flutter/
-│   ├── go/
-│   ├── react/
-│   └── swift/
+│   ├── design-patterns/
+│   │   ├── behavioral/
+│   │   ├── creational/
+│   │   └── structural/
+│   └── messaging/                  # AMQP and other protocols, patterns, and brokers
+│       └── brokers/                # Kafka, RabbitMQ, SQS, Service Bus, Pub/Sub, NATS
+├── languages/                      # One directory per language/framework — see languages/README.md
+│   ├── go/                         # …and 15 more (angular, clojure, csharp, dart, flutter, java,
+│   ├── swift/                      #    javascript, lua, nextjs, nodejs, react, svelte, typescript, vue)
+│   └── …                           # Do not maintain this list here; the section README is the index
 ├── operating-systems/
-│   ├── macos/                  # Darwin/XNU, zsh, macOS commands, ⌘ shortcuts
-│   ├── linux/                  # distribution-agnostic: kernel, shell, commands, shortcuts
-│   └── windows/                # lighter: NT kernel, cmd/PowerShell/WSL, shortcuts
+│   ├── macos/                      # Darwin/XNU, zsh, macOS commands, ⌘ shortcuts
+│   ├── linux/                      # distribution-agnostic: kernel, shell, commands, shortcuts
+│   └── windows/                    # lighter: NT kernel, cmd/PowerShell/WSL, shortcuts
+├── devops/                         # Culture/practice + its tooling
+│   ├── concepts/                   # DevOps, CI/CD, containers, orchestration, IaC, observability, SRE, GitOps
+│   ├── ci-cd/                      # GitHub Actions, GitLab CI, Jenkins, Tekton, Dagger, act
+│   ├── code-quality/               # SonarQube
+│   ├── containerization/           # Docker, Docker Compose, Podman
+│   ├── iac/                        # Terraform, Ansible
+│   ├── local-dev/                  # Colima, Minikube, dev containers
+│   ├── observability/              # Prometheus, Grafana, OpenTelemetry, Jaeger, ELK
+│   └── orchestration/              # Kubernetes, Helm
 └── tools/
-    ├── ci-cd/
-    ├── code-quality/
-    ├── containerization/
-    ├── iac/
-    ├── local-dev/
-    ├── observability/
-    └── orchestration/
+    ├── git/                        # Version control: worktrees, bisect, reflog, stash, hooks, signing
+    └── ides/                       # Editors and IDEs
 ```
 
-All four top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `tools/`) exist and are actively populated. Do not create a new top-level **content** section without explicit user request.
+All five top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `devops/`, `tools/`) exist and are actively populated. Do not create a new top-level **content** section without explicit user request.
 
 The `mcp-server/` directory is **tooling**, not content. It contains the local MCP server that exposes the wiki to AI agents. `mcp-server/node_modules/`, `mcp-server/dist/`, `mcp-server/package-lock.json`, `mcp-server/audit-report.md`, and any local `.npmrc` files are in `.gitignore`. The lock file is ignored on purpose: it would expose the npm registry where dependencies were downloaded; in a public repo, we do not share that information. Reviews focus on `mcp-server/src/`. (Trade-off: future installs may resolve transitive versions differently — acceptable in this personal-tooling context.)
 
@@ -189,7 +195,7 @@ The naming is intentionally not standardized (`overview.md` vs. the topic's own 
 
 ### New top-level section
 
-The four top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `tools/`) already exist and are populated. Do not add another top-level section without explicit user request. If asked:
+The five top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `devops/`, `tools/`) already exist and are populated. Do not add another top-level section without explicit user request. If asked:
 
 1. Create the directory and its `README.md`.
 2. Update the root `README.md` navigation table.

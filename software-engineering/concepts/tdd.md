@@ -3,7 +3,8 @@ type: concept
 tags:
   - concept
   - testing
-related: []
+related:
+  - software-engineering/ai-assisted-development/spec-driven-development
 language: null
 ---
 # Test-Driven Development (TDD)
