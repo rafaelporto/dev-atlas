@@ -16,7 +16,7 @@ Each section has its own `README.md` that lists its articles. Use GitHub's file 
 
 | Section | Description |
 |---|---|
-| [Software Engineering](software-engineering/README.md) | Core concepts, architecture (including mobile and frontend), databases, design patterns, and more |
+| [Software Engineering](software-engineering/README.md) | Core concepts, architecture (including mobile, frontend, and CLI/TUI), databases, design patterns, and more |
 | [Languages](languages/README.md) | Language-specific notes and idioms |
 | [Operating Systems](operating-systems/README.md) | macOS, Linux, and Windows — overviews, shells, terminal commands, and keyboard shortcuts |
 | [DevOps](devops/README.md) | Culture and practices for building, shipping, and operating software: containers, orchestration, CI/CD, IaC, observability, and their tooling |

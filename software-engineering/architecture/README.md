@@ -35,4 +35,12 @@ Architectural styles define how a system is organized at a high level — how re
 
 ---
 
-> These styles are not mutually exclusive. A microservices system can use Hexagonal Architecture inside each service. CQRS and Event Sourcing are frequently combined.
+## CLI
+
+| Article | Description |
+|---|---|
+| [CLI and TUI Architecture](cli/README.md) | Terminal-program taxonomy, the parse-to-core pipeline and command trees, TUI architectural families and rendering, project organization, and antipatterns — language-agnostic |
+
+---
+
+> These styles are not mutually exclusive, and they sit at different altitudes. The styles above describe how a *system* is organized: a microservices system can use Hexagonal Architecture inside each service, and CQRS and Event Sourcing are frequently combined. The mobile, frontend, and CLI subsections describe how a single *application* is organized inside one of those services or clients — they compose with the system-level styles rather than replacing them.

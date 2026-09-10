@@ -35,7 +35,9 @@ dev-atlas/
 │   ├── README.md                   # Section index
 │   ├── ai-assisted-development/    # Working with LLM coding agents: SDD, agent instruction files
 │   ├── architecture/
-│   │   └── mobile/                 # Mobile-specific architectural patterns (MVC, MVP, MVVM, MVI, VIPER, Clean, Modular)
+│   │   ├── mobile/                 # Mobile-specific architectural patterns (MVC, MVP, MVVM, MVI, VIPER, Clean, Modular)
+│   │   ├── frontend/               # Component-driven architecture, rendering patterns, state, micro-frontends, WebAssembly
+│   │   └── cli/                    # CLI and TUI application architecture, project organization, antipatterns
 │   ├── communication-protocols/    # Transport (TCP/UDP/QUIC), HTTP family, API styles, remote access, file transfer
 │   ├── concepts/
 │   │   ├── solid/                  # The five SOLID principles
