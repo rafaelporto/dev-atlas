@@ -10,6 +10,7 @@ related:
   - languages/dart/overview
   - languages/dart/toolchain
   - languages/dart/packages-and-pub
+  - software-engineering/architecture/cli/overview
 language: "dart"
 ---
 
@@ -24,6 +25,8 @@ language: "dart"
 A **command-line interface (CLI)** is a program you drive by typing a command, flags, and arguments into a terminal. Dart can build them and, crucially, `dart compile exe` turns a Dart program into a **single native executable** with no separate runtime to install — the same distribution win that makes Go popular for tooling. The Flutter and `mason` CLIs are themselves Dart programs.
 
 This article is the entry point to the CLI & Terminal cluster. It explains *why* Dart fits CLIs and *which* library to reach for, then hands off to the deep dive: [Building CLIs](building-clis.md).
+
+Before the ecosystem specifics below, it is worth fixing the vocabulary: [CLI and TUI Architecture — Overview](../../../software-engineering/architecture/cli/overview.md) separates a plain CLI from a rich-output CLI from a full-screen TUI, and each shape asks for a different architecture.
 
 ## Why does it matter?
 

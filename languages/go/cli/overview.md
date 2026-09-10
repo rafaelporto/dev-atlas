@@ -12,6 +12,7 @@ related:
   - languages/go/cli/terminal-and-shell
   - languages/go/overview
   - languages/go/deploy
+  - software-engineering/architecture/cli/overview
 language: "go"
 ---
 
@@ -26,6 +27,8 @@ language: "go"
 A **command-line interface (CLI)** is a program you drive by typing a command, flags, and arguments into a terminal instead of clicking a GUI. Go is one of the most popular languages for writing them: `docker`, `kubectl`, `terraform`, `gh` (GitHub CLI), and `hugo` are all Go programs.
 
 This article is the entry point to the CLI & Terminal cluster. It explains *why* Go fits this niche so well and *which* library to reach for, then hands off to the deep dives: [Building CLIs](building-clis.md), [CLI Best Practices](best-practices.md), [Terminal UIs](tui.md), and [Terminal & Shell](terminal-and-shell.md).
+
+Before the ecosystem specifics below, it is worth fixing the vocabulary: [CLI and TUI Architecture — Overview](../../../software-engineering/architecture/cli/overview.md) separates a plain CLI from a rich-output CLI from a full-screen TUI, and each shape asks for a different architecture.
 
 ## Why does it matter?
 

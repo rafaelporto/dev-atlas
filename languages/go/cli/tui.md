@@ -10,6 +10,7 @@ related:
   - languages/go/cli/terminal-and-shell
   - languages/go/cli/best-practices
   - languages/go/concurrency
+  - software-engineering/architecture/cli/tui-architecture
 language: "go"
 ---
 
@@ -24,6 +25,8 @@ language: "go"
 A **TUI (text-based user interface)** is a full-screen, interactive application that runs inside the terminal — it redraws the screen, responds to keystrokes in real time, and often shows panels, lists, and progress. Think `htop`, `vim`, `lazygit`, or an interactive branch picker. Unlike a plain [CLI](overview.md) that runs once and exits, a TUI holds the terminal and loops until you quit.
 
 In Go, the dominant toolkit is the **Charm stack**: [Bubble Tea](https://github.com/charmbracelet/bubbletea) (the runtime/architecture), [Lip Gloss](https://github.com/charmbracelet/lipgloss) (styling), and [Bubbles](https://github.com/charmbracelet/bubbles) (ready-made widgets). [tview](https://github.com/rivo/tview) is a widget-oriented alternative.
+
+This toolkit belongs to one of three architectural families — Elm/TEA, retained-mode widget tree, and immediate mode — compared in [TUI Architecture](../../../software-engineering/architecture/cli/tui-architecture.md), along with the render pipeline and input handling every one of them implements.
 
 ## Why does it matter?
 

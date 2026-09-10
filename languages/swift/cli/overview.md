@@ -10,6 +10,7 @@ related:
   - languages/swift/overview
   - languages/swift/swift-package-manager
   - languages/swift/toolchain
+  - software-engineering/architecture/cli/overview
 language: "swift"
 ---
 
@@ -24,6 +25,8 @@ language: "swift"
 A **command-line interface (CLI)** is a program you drive by typing a command, flags, and arguments into a terminal. Swift compiles to a native binary and is a first-class language for command-line tools on macOS and Linux. Apple's own developer tooling (parts of `swift` itself, `swift-format`, and many internal tools) is built with **swift-argument-parser**, the official CLI library.
 
 This article is the entry point to the CLI & Terminal cluster. It explains *why* Swift fits CLIs and *which* library to reach for, then hands off to the deep dive: [Building CLIs](building-clis.md).
+
+Before the ecosystem specifics below, it is worth fixing the vocabulary: [CLI and TUI Architecture — Overview](../../../software-engineering/architecture/cli/overview.md) separates a plain CLI from a rich-output CLI from a full-screen TUI, and each shape asks for a different architecture.
 
 ## Why does it matter?
 

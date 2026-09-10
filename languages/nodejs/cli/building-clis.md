@@ -10,6 +10,8 @@ related:
   - languages/nodejs/project-setup
   - languages/nodejs/configuration-and-environment
   - languages/nodejs/error-handling
+  - software-engineering/architecture/cli/cli-architecture
+  - software-engineering/architecture/cli/project-organization
 language: "nodejs"
 ---
 
@@ -26,6 +28,8 @@ language: "nodejs"
 - A `bin` field in `package.json` mapping a command name to your entry file (see [Overview](overview.md#how-it-works)).
 
 This guide bakes in the CLI conventions that matter — **exit codes**, **stdout vs. stderr**, and **honoring pipes/`NO_COLOR`** — as it goes, rather than in a separate article.
+
+This guide covers the mechanics. For the language-agnostic architecture behind them — the parse-to-validated-command-to-core pipeline and command-tree design in [CLI Architecture](../../../software-engineering/architecture/cli/cli-architecture.md), and where the source goes in [Project Organization](../../../software-engineering/architecture/cli/project-organization.md) — start there and come back.
 
 ## Steps
 

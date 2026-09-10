@@ -10,6 +10,7 @@ related:
   - languages/clojure/overview
   - languages/clojure/toolchain
   - languages/clojure/deploy
+  - software-engineering/architecture/cli/overview
 language: "clojure"
 ---
 
@@ -24,6 +25,8 @@ language: "clojure"
 A **command-line interface (CLI)** is a program you drive by typing a command, flags, and arguments into a terminal. Clojure has two very different ways to build one: on the **JVM** (rich, but slow to start) and with **babashka** (`bb`) — a GraalVM-native Clojure interpreter with **instant startup**, purpose-built for scripts and CLIs. Babashka is the reason Clojure is now a practical scripting language.
 
 This article is the entry point to the CLI & Terminal cluster. It explains *why* babashka matters, the JVM trade-off, and *which* library to reach for, then hands off to the deep dive: [Building CLIs](building-clis.md).
+
+Before the ecosystem specifics below, it is worth fixing the vocabulary: [CLI and TUI Architecture — Overview](../../../software-engineering/architecture/cli/overview.md) separates a plain CLI from a rich-output CLI from a full-screen TUI, and each shape asks for a different architecture.
 
 ## Why does it matter?
 

@@ -10,6 +10,7 @@ related:
   - languages/csharp/cli/overview
   - languages/csharp/cli/building-clis
   - languages/csharp/async-and-concurrency
+  - software-engineering/architecture/cli/tui-architecture
 language: "csharp"
 ---
 
@@ -27,6 +28,8 @@ C# has two mature, distinct tools:
 
 - **[Spectre.Console](https://spectreconsole.net/)** — *rich console output*: tables, trees, bar charts, status spinners, live-updating regions, and interactive prompts. It enhances an otherwise normal, scroll-along CLI; it does not take over the whole screen.
 - **[Terminal.Gui](https://github.com/gui-cs/Terminal.Gui)** (aka `gui.cs`) — a *full-screen widget toolkit*: windows, menus, dialogs, text fields, list views, and an event loop, for a genuine full-screen TUI.
+
+This toolkit belongs to one of three architectural families — Elm/TEA, retained-mode widget tree, and immediate mode — compared in [TUI Architecture](../../../software-engineering/architecture/cli/tui-architecture.md), along with the render pipeline and input handling every one of them implements.
 
 ## Why does it matter?
 

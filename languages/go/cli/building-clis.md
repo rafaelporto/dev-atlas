@@ -10,6 +10,8 @@ related:
   - languages/go/cli/terminal-and-shell
   - languages/go/functional-options
   - languages/go/project-setup
+  - software-engineering/architecture/cli/cli-architecture
+  - software-engineering/architecture/cli/project-organization
 language: "go"
 ---
 
@@ -24,6 +26,8 @@ language: "go"
 - Go installed and a module initialized — see [Installation](../installation.md) and [Project Setup](../project-setup.md).
 - Familiarity with Go basics: packages, structs, and [error handling](../error-handling.md).
 - A terminal. Read [CLI Best Practices](best-practices.md) alongside this guide — it explains *why* the conventions below (exit codes, stdout vs stderr) matter.
+
+This guide covers the mechanics. For the language-agnostic architecture behind them — the parse-to-validated-command-to-core pipeline and command-tree design in [CLI Architecture](../../../software-engineering/architecture/cli/cli-architecture.md), and where the source goes in [Project Organization](../../../software-engineering/architecture/cli/project-organization.md) — start there and come back.
 
 ## Steps
 

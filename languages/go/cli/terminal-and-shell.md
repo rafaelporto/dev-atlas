@@ -10,6 +10,7 @@ related:
   - languages/go/cli/tui
   - languages/go/context
   - languages/go/concurrency
+  - software-engineering/architecture/cli/tui-architecture
 language: "go"
 ---
 
@@ -22,6 +23,8 @@ language: "go"
 ## What is it?
 
 The **terminal** is the text device your program's input and output are connected to; the **shell** (bash, zsh, fish, PowerShell) is the program that reads your command line, launches your process, and wires up its streams. This article covers the mechanics underneath every CLI and [TUI](tui.md): the three standard streams, whether you're attached to a real terminal, how colors and cursor movement work, how to read keys, and how to react to signals and spawn other processes — all from Go's standard library plus one small extension package.
+
+These are the primitives a full-screen program is built on. For how they compose into a render loop, a diffing pipeline, and input routing, see [TUI Architecture](../../../software-engineering/architecture/cli/tui-architecture.md).
 
 ## Why does it matter?
 

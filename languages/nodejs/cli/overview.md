@@ -11,6 +11,7 @@ related:
   - languages/nodejs/overview
   - languages/nodejs/toolchain
   - languages/nodejs/deploy
+  - software-engineering/architecture/cli/overview
 language: "nodejs"
 ---
 
@@ -25,6 +26,8 @@ language: "nodejs"
 A **command-line interface (CLI)** is a program you drive by typing a command, flags, and arguments into a terminal. Node.js is one of the most common runtimes for writing them: `npm`, `eslint`, `prettier`, `vite`, `webpack`, the Vercel/Netlify/AWS-CDK CLIs, and `create-*` scaffolders are all Node programs.
 
 This article is the entry point to the CLI & Terminal cluster. It explains *why* Node fits developer tooling so well and *which* library to reach for, then hands off to the deep dives: [Building CLIs](building-clis.md) and [Terminal UIs](tui.md).
+
+Before the ecosystem specifics below, it is worth fixing the vocabulary: [CLI and TUI Architecture — Overview](../../../software-engineering/architecture/cli/overview.md) separates a plain CLI from a rich-output CLI from a full-screen TUI, and each shape asks for a different architecture.
 
 ## Why does it matter?
 

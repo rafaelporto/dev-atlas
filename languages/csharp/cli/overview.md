@@ -12,6 +12,7 @@ related:
   - languages/csharp/overview
   - languages/csharp/toolchain
   - languages/csharp/deploy
+  - software-engineering/architecture/cli/overview
 language: "csharp"
 ---
 
@@ -26,6 +27,8 @@ language: "csharp"
 A **command-line interface (CLI)** is a program you drive by typing a command, flags, and arguments into a terminal. C# on .NET builds them well: the `dotnet` SDK itself is a CLI, as are the EF Core tools and many `dotnet tool` packages. Historically .NET needed a runtime installed and paid a startup cost, but **Native AOT** (.NET 7+) now produces a self-contained native binary with fast startup.
 
 This article is the entry point to the CLI & Terminal cluster. It explains *when* C# fits CLIs and *which* library to reach for, then hands off to the deep dives: [Building CLIs](building-clis.md) and [Terminal UIs](tui.md).
+
+Before the ecosystem specifics below, it is worth fixing the vocabulary: [CLI and TUI Architecture — Overview](../../../software-engineering/architecture/cli/overview.md) separates a plain CLI from a rich-output CLI from a full-screen TUI, and each shape asks for a different architecture.
 
 ## Why does it matter?
 

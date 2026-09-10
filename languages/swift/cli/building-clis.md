@@ -9,6 +9,8 @@ related:
   - languages/swift/swift-package-manager
   - languages/swift/concurrency
   - languages/swift/error-handling
+  - software-engineering/architecture/cli/cli-architecture
+  - software-engineering/architecture/cli/project-organization
 language: "swift"
 ---
 
@@ -25,6 +27,8 @@ language: "swift"
 - Familiarity with `throws`/[error handling](../error-handling.md) and [concurrency](../concurrency.md).
 
 This guide bakes in the CLI conventions that matter — **exit codes**, **stdout vs. stderr**, and **honoring `NO_COLOR`** — as it goes.
+
+This guide covers the mechanics. For the language-agnostic architecture behind them — the parse-to-validated-command-to-core pipeline and command-tree design in [CLI Architecture](../../../software-engineering/architecture/cli/cli-architecture.md), and where the source goes in [Project Organization](../../../software-engineering/architecture/cli/project-organization.md) — start there and come back.
 
 ## Steps
 

@@ -11,6 +11,7 @@ related:
   - languages/go/cli/terminal-and-shell
   - languages/go/context
   - languages/go/error-handling
+  - software-engineering/architecture/cli/cli-architecture
 language: "go"
 ---
 
@@ -23,6 +24,8 @@ language: "go"
 ## What is it?
 
 A set of conventions that make a command-line tool behave the way experienced users and other programs expect. Most predate Go — they come from Unix and are codified in the [Command Line Interface Guidelines (clig.dev)](https://clig.dev/) — but Go's standard library makes them easy to implement correctly. This article maps each convention to the Go code that satisfies it.
+
+These conventions are the behaviour half. The structural half — the boundary that keeps the core free of flags and streams so these guidelines have somewhere to live — is in [CLI Architecture](../../../software-engineering/architecture/cli/cli-architecture.md).
 
 ## Why does it matter?
 

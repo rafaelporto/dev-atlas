@@ -9,6 +9,7 @@ related:
   - languages/java/cli/overview
   - languages/java/cli/building-clis
   - languages/java/concurrency
+  - software-engineering/architecture/cli/tui-architecture
 language: "java"
 ---
 
@@ -23,6 +24,8 @@ language: "java"
 A **TUI (text-based user interface)** is a full-screen, interactive application that runs inside the terminal — it redraws the screen, responds to keystrokes in real time, and shows panels, lists, and dialogs. Think `htop`, `midnight commander`, or an interactive menu. Unlike a plain [CLI](overview.md) that runs once and exits, a TUI holds the terminal and loops until you quit.
 
 In Java, the mature toolkit is **[Lanterna](https://github.com/mabe02/lanterna)** — a pure-Java library (no native dependencies) that works on Linux, macOS, and Windows. It offers two layers: a low-level `Terminal`/`Screen` API for direct control, and a high-level `gui2` widget toolkit with windows, panels, buttons, and layout managers.
+
+This toolkit belongs to one of three architectural families — Elm/TEA, retained-mode widget tree, and immediate mode — compared in [TUI Architecture](../../../software-engineering/architecture/cli/tui-architecture.md), along with the render pipeline and input handling every one of them implements.
 
 ## Why does it matter?
 

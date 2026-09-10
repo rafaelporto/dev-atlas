@@ -11,6 +11,7 @@ related:
   - languages/java/overview
   - languages/java/packages-and-build
   - languages/java/deploy
+  - software-engineering/architecture/cli/overview
 language: "java"
 ---
 
@@ -25,6 +26,8 @@ language: "java"
 A **command-line interface (CLI)** is a program you drive by typing a command, flags, and arguments into a terminal. Java's reputation for slow startup made it an unusual choice for CLIs, but the library quality is excellent — **picocli** is one of the best argument parsers in any language — and **GraalVM native-image** now compiles a Java CLI to a fast-starting native binary. Many developer tools (parts of the JHipster and Micronaut tooling) are Java CLIs.
 
 This article is the entry point to the CLI & Terminal cluster. It explains *when* Java fits CLIs and *which* library to reach for, then hands off to the deep dives: [Building CLIs](building-clis.md) and [Terminal UIs](tui.md).
+
+Before the ecosystem specifics below, it is worth fixing the vocabulary: [CLI and TUI Architecture — Overview](../../../software-engineering/architecture/cli/overview.md) separates a plain CLI from a rich-output CLI from a full-screen TUI, and each shape asks for a different architecture.
 
 ## Why does it matter?
 

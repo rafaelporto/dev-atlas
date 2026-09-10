@@ -10,6 +10,7 @@ related:
   - languages/nodejs/cli/building-clis
   - languages/react/overview
   - languages/nodejs/async-patterns
+  - software-engineering/architecture/cli/tui-architecture
 language: "nodejs"
 ---
 
@@ -24,6 +25,8 @@ language: "nodejs"
 A **TUI (text-based user interface)** is a full-screen, interactive application that runs inside the terminal — it redraws the screen, responds to keystrokes in real time, and shows panels, lists, and progress. Think `htop`, `lazygit`, or an interactive picker. Unlike a plain [CLI](overview.md) that runs once and exits, a TUI holds the terminal and loops until you quit.
 
 In Node.js, the dominant toolkit is **[Ink](https://github.com/vadimdemedes/ink)** — you write **React** components and Ink renders them to the terminal instead of the DOM. It powers the UIs of tools like Gatsby, Prisma, and Shopify's CLI. **[blessed](https://github.com/chjj/blessed)** is the older, imperative, widget-oriented alternative.
+
+This toolkit belongs to one of three architectural families — Elm/TEA, retained-mode widget tree, and immediate mode — compared in [TUI Architecture](../../../software-engineering/architecture/cli/tui-architecture.md), along with the render pipeline and input handling every one of them implements.
 
 ## Why does it matter?
 
