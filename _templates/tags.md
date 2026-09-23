@@ -76,6 +76,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `dart`
 - `flutter`
 - `react`
+- `react-native`
 - `angular`
 - `vue`
 - `svelte`

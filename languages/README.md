@@ -18,6 +18,7 @@
 | [Next.js](nextjs/README.md) | The App Router, Server Components, rendering strategies, data fetching/caching, and full-stack features |
 | [Node.js](nodejs/README.md) | The runtime: event loop, core modules, async patterns, data access, backend architecture, and deployment |
 | [React](react/README.md) | Component model, hooks, server components, ecosystem, and best practices |
+| [React Native](react-native/README.md) | Building native iOS and Android apps with React: core components, navigation, state, architecture, testing, and delivery with Expo |
 | [Svelte](svelte/README.md) | The compiler-first framework: Svelte 5 runes, stores, and SvelteKit routing, data loading, and form actions |
 | [Swift](swift/README.md) | Protocol-oriented programming, modern concurrency, SwiftUI, CLI tooling, and Apple-platform best practices |
 | [TypeScript](typescript/README.md) | Static typing over JavaScript: the type system, generics, narrowing, advanced types, and patterns |
