@@ -37,7 +37,9 @@ dev-atlas/
 │   ├── architecture/
 │   │   ├── mobile/                 # Mobile-specific architectural patterns (MVC, MVP, MVVM, MVI, VIPER, Clean, Modular)
 │   │   ├── frontend/               # Component-driven architecture, rendering patterns, state, micro-frontends, WebAssembly
-│   │   └── cli/                    # CLI and TUI application architecture, project organization, antipatterns
+│   │   ├── cli/                    # CLI and TUI application architecture, project organization, antipatterns
+│   │   └── repository-organization/ # Monorepo vs polyrepo, solo/small-team layout, mobile+backend, monorepo CI
+│   │       └── tooling/            # Workspaces, task runners and caching, Bazel
 │   ├── communication-protocols/    # Transport (TCP/UDP/QUIC), HTTP family, API styles, remote access, file transfer
 │   ├── concepts/
 │   │   ├── solid/                  # The five SOLID principles

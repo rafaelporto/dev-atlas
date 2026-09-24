@@ -9,6 +9,7 @@ related:
   - languages/nodejs/project-setup
   - languages/javascript/toolchain
   - languages/nodejs/testing
+  - software-engineering/architecture/repository-organization/tooling/package-manager-workspaces
 language: "nodejs"
 ---
 # Node.js Toolchain
@@ -34,7 +35,7 @@ npm install --save-dev vitest # dev-only dependency
 npm ci                        # clean, reproducible install from the lockfile (use in CI)
 ```
 
-Commit the lockfile (`package-lock.json` / `pnpm-lock.yaml`). Alternatives to npm: **pnpm** (fast, strict, great for monorepos) and **yarn**.
+Commit the lockfile (`package-lock.json` / `pnpm-lock.yaml`). Alternatives to npm: **pnpm** (fast, strict, great for monorepos) and **yarn**. For the workspace features all three expose, and why pnpm's strictness matters in a repo with many packages, see [Package-Manager Workspaces](../../software-engineering/architecture/repository-organization/tooling/package-manager-workspaces.md).
 
 ### 2. Know the key package.json fields
 

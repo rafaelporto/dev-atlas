@@ -3,7 +3,8 @@ type: concept
 tags:
   - tool
   - overview
-related: []
+related:
+  - software-engineering/architecture/repository-organization/inside-a-monorepo
 language: null
 ---
 # Git
@@ -127,7 +128,7 @@ git cat-file -p <blob-hash>
 ## When NOT to use
 
 - Very large binary assets that change frequently (uncompressible video, design files, game assets) — Git tracks full snapshots and the repository grows quickly. Use [Git LFS](https://git-lfs.com/) or a purpose-built tool like Perforce, Plastic SCM, or DVC.
-- Monorepos at extreme scale where the working tree alone exceeds tens of gigabytes. Companies in this category (Google, Meta) use proprietary VCS or heavy Git extensions (Microsoft's [Scalar](https://github.com/microsoft/scalar), Meta's [Sapling](https://sapling-scm.com/)).
+- Monorepos at extreme scale where the working tree alone exceeds tens of gigabytes. Companies in this category (Google, Meta) use proprietary VCS or heavy Git extensions (Microsoft's [Scalar](https://github.com/microsoft/scalar), Meta's [Sapling](https://sapling-scm.com/)). Ordinary monorepos are far below this threshold and reach for sparse-checkout or partial clone long before — see [Inside a Monorepo](../../software-engineering/architecture/repository-organization/inside-a-monorepo.md).
 - Tracking ephemeral state that does not benefit from history — generated artifacts, log files, build outputs. Use `.gitignore` to keep them out.
 - Strictly linear, single-author workflows where the overhead of branches, merges, and remotes is pure ceremony — though even then, Git's audit log is often worth the small ceremony.
 

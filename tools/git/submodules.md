@@ -2,7 +2,9 @@
 type: concept
 tags:
   - tool
-related: []
+related:
+  - software-engineering/architecture/repository-organization/monorepo-vs-polyrepo
+  - software-engineering/architecture/repository-organization/inside-a-monorepo
 language: null
 ---
 # Submodules
@@ -202,7 +204,7 @@ git commit -m "chore(deps): pin libfoo to v2.3.1"
 
 - The dependency has a real package manager. Use npm / cargo / go modules / pip / maven instead — they handle resolution, conflicts, and version compatibility in ways `git submodule` cannot.
 - Contributors are unfamiliar with submodules and the project does not have time to teach them. Submodules generate a steady stream of "why are my changes not showing up?" support requests.
-- You want a single conceptual repo for development. Sometimes a **monorepo** (one repo, multiple projects) is the right answer instead.
+- You want a single conceptual repo for development. Sometimes a **monorepo** (one repo, multiple projects) is the right answer instead — see [Monorepo vs Polyrepo](../../software-engineering/architecture/repository-organization/monorepo-vs-polyrepo.md).
 - You want the submodule to track a moving branch. Submodules pin commit hashes; making them follow a branch (`git submodule update --remote`) requires explicit, repeated bumps.
 - Lightweight code sharing where `git subtree` (merges the source into the parent's history without an external link) or simple vendoring is sufficient.
 

@@ -25,6 +25,8 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `networking`: use for articles about communication/network protocols — transport (TCP, UDP, QUIC), the HTTP family (HTTP, WebSocket, SSE, streaming), and API styles (REST, gRPC, GraphQL). Combine with `concept`. For asynchronous messaging protocols and brokers use `messaging` instead.
 - `devops`: use for DevOps articles across the `devops/` section — the cross-cutting culture/practice (`concept` + `devops`) and its tooling (`tool` + `devops`). It ties the section together for queries like "all DevOps articles". Combine it with the more specific topic tag when one fits (`containerization`, `orchestration`, `ci-cd`, `iac`, `observability`); use `devops` alone for cross-cutting subjects with no narrower topic (deployment strategies, SRE, GitOps culture).
 - `ai-assisted-development`: use for articles across the `software-engineering/ai-assisted-development/` section — practices for building software with LLM-based coding agents (spec-driven development, agent instruction files, writing specs for agents). It ties the section together for queries like "all AI-assisted development articles". Combine with `concept` (Domain) and with `overview` for the section overview. Do **not** apply it to editor/IDE articles that merely ship AI features (`tools/ides/cursor.md`, `tools/ides/zed.md`) — their subject is the editor, not the practice.
+- `repository-organization`: use for articles across the `software-engineering/architecture/repository-organization/` section — how code is distributed across repositories (one repository or many, layout at solo and small-team scale, monorepo CI) and the tooling that makes one repository holding many projects workable. It ties the section together for queries like "all repository-organization articles". Combine with `architecture` (Domain) plus `concept` for the model and decision articles, or `architecture` plus `tool` for a specific build or workspace tool. Do **not** apply it to articles about organising modules *inside* a single project (`software-engineering/architecture/cli/project-organization.md`, `languages/react/folder-structure.md`) — that is a different altitude.
+- `build-system`: use for articles whose primary subject is a build or task-execution system — the dependency graph it builds, how it caches, and how it decides what to rebuild. Combine with `tool`. Do **not** apply it to the `languages/<lang>/toolchain.md` round-ups, which cover formatters, linters, and package managers alongside the build step, and do not apply it to CI platform articles, which carry `ci-cd`.
 
 ---
 
@@ -138,6 +140,8 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `shell`
 - `ide`
 - `ai-assisted-development`
+- `repository-organization`
+- `build-system`
 
 ---
 

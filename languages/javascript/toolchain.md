@@ -7,6 +7,7 @@ tags:
 related:
   - languages/javascript/modules
   - languages/javascript/testing
+  - software-engineering/architecture/repository-organization/tooling/task-runners-and-caching
 language: "javascript"
 ---
 # JavaScript Toolchain Setup
@@ -42,7 +43,7 @@ Set the module type to ESM in `package.json` so `import`/`export` work:
 }
 ```
 
-> `npm` ships with Node. Alternatives — `pnpm` (fast, disk-efficient, strict) and `yarn` — use the same `package.json`. `pnpm` is a common choice for monorepos.
+> `npm` ships with Node. Alternatives — `pnpm` (fast, disk-efficient, strict) and `yarn` — use the same `package.json`. `pnpm` is a common choice for monorepos; once a repo holds several packages, a cached task runner sits on top of it ([Task Runners and Caching](../../software-engineering/architecture/repository-organization/tooling/task-runners-and-caching.md)).
 
 ### 2. Choose a bundler / dev server
 

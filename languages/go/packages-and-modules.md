@@ -4,7 +4,8 @@ tags:
   - language
   - go
   - backend
-related: []
+related:
+  - software-engineering/architecture/repository-organization/tooling/package-manager-workspaces
 language: "go"
 ---
 # Packages and Modules in Go
@@ -172,6 +173,8 @@ use (
 
 Changes to `mylib` are immediately visible to `myapp` without publishing. Commit `go.work.sum` but typically `.gitignore` the `go.work` file in libraries — keep it only for local development.
 
+**The exception is a monorepo.** That advice targets the case where `go.work` points at directories that exist only on one developer's machine. Inside a single repository holding all the modules, the module set is a property of the repository rather than a local accident, identical for everyone who clones it — so `go.work` should be committed there. See [Package-Manager Workspaces](../../software-engineering/architecture/repository-organization/tooling/package-manager-workspaces.md).
+
 ---
 
 ### Package initialization
@@ -260,7 +263,7 @@ go run .
 
 - Do not create packages named `util`, `common`, or `helpers` — they accumulate unrelated code with no clear ownership
 - Do not import internal packages from other modules — the compiler will reject it
-- Do not commit `go.work` to shared repositories unless all contributors work with the same local layout
+- Do not commit `go.work` to shared repositories unless all contributors work with the same local layout — a monorepo, where every module lives in the same checkout, is the standard exception
 - Do not use `init()` for logic that should be explicit — it runs invisibly and makes initialization order hard to trace
 - Do not ignore `go.sum` in version control — it is your supply chain protection
 

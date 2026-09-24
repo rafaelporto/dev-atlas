@@ -4,7 +4,8 @@ tags:
   - language
   - swift
   - mobile
-related: []
+related:
+  - software-engineering/architecture/repository-organization/tooling/package-manager-workspaces
 language: "swift"
 ---
 # Swift Package Manager
@@ -177,7 +178,7 @@ SPM supports two plugin types:
 
 ## Modularization patterns
 
-Breaking an app into SPM packages reduces incremental build time and clarifies ownership. Two common shapes:
+Breaking an app into SPM packages reduces incremental build time and clarifies ownership. Note that "monorepo" below describes the *package* layout inside one app; for the repository-level question — how many repositories your projects live in — see [Package-Manager Workspaces](../../software-engineering/architecture/repository-organization/tooling/package-manager-workspaces.md). Two common shapes:
 
 ### Single-package monorepo
 

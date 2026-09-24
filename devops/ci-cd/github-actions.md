@@ -6,6 +6,7 @@ tags:
   - ci-cd
 related:
   - devops/concepts/ci-cd
+  - software-engineering/architecture/repository-organization/monorepo-ci
 language: null
 ---
 # GitHub Actions
@@ -119,6 +120,7 @@ jobs:
 - Teams that want to reuse community-built actions from the marketplace.
 - Open-source projects that benefit from free GitHub-hosted runner minutes.
 - When tight integration with pull request checks, environments, and deployment protection rules is needed.
+- Monorepos, where `on.push.paths` filters and a matrix per package keep the pipeline proportional to the change — see [Monorepo CI](../../software-engineering/architecture/repository-organization/monorepo-ci.md), including the required-status-check deadlock that path filters cause.
 
 ## When NOT to use
 

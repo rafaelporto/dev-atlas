@@ -2,7 +2,8 @@
 type: concept
 tags:
   - tool
-related: []
+related:
+  - software-engineering/architecture/repository-organization/inside-a-monorepo
 language: null
 ---
 # Conventional Commits
@@ -184,7 +185,7 @@ This mapping is what enables fully automated releases from CI.
 - Any project that publishes versioned releases — libraries, CLIs, services with a public API.
 - Any project that wants automated changelogs or release notes.
 - Teams that already do code review and want a small extra signal in the history about *what kind* of change each commit is.
-- Multi-package monorepos, where scope makes "which package did this affect?" obvious.
+- Multi-package monorepos, where scope makes "which package did this affect?" obvious — and where release tooling reads it to decide which package to version ([Inside a Monorepo](../../software-engineering/architecture/repository-organization/inside-a-monorepo.md)).
 
 ## When NOT to use
 

@@ -8,6 +8,7 @@ related:
   - languages/typescript/installation-and-setup
   - languages/typescript/modules-and-declarations
   - languages/typescript/best-practices
+  - software-engineering/architecture/repository-organization/tooling/package-manager-workspaces
 language: "typescript"
 ---
 # TypeScript Toolchain
@@ -68,7 +69,7 @@ npm install --save-dev eslint typescript-eslint
 
 ### 5. Scale with incremental builds and project references
 
-For large repos/monorepos, split into composite projects.
+For large repos/monorepos, split into composite projects. Project references are the type-checking layer on top of a package-manager workspace, not a replacement for one — see [Package-Manager Workspaces](../../software-engineering/architecture/repository-organization/tooling/package-manager-workspaces.md).
 
 ```json
 {

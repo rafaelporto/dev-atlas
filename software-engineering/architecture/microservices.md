@@ -3,12 +3,15 @@ type: concept
 tags:
   - architecture
   - backend
-related: []
+related:
+  - software-engineering/architecture/repository-organization/monorepo-vs-polyrepo
 language: null
 ---
 # Microservices Architecture
 
 > Decompose an application into a set of small, independently deployable services, each owning its own data and communicating over well-defined interfaces.
+
+Note that this says nothing about repository layout. "One service, one repository" is a convention, not a requirement — Google runs a monorepo of independently deployed services. See [Monorepo vs Polyrepo](repository-organization/monorepo-vs-polyrepo.md).
 
 ---
 

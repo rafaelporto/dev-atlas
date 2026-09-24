@@ -12,6 +12,7 @@ related:
   - languages/javascript/toolchain
   - languages/typescript/toolchain
   - languages/flutter/toolchain
+  - software-engineering/architecture/repository-organization/tooling/overview
 language: null
 ---
 # Frontend Stacks & Tooling
@@ -104,7 +105,7 @@ Most new projects start with Vite (or the bundler their meta-framework ships). T
 | **pnpm** | Content-addressed store with hard links; fast and disk-efficient, strong monorepo support. |
 | **yarn** | Popularized lockfiles and workspaces; modern versions (Berry) add Plug'n'Play. |
 
-For monorepos and large dependency trees, pnpm is the common modern pick; npm is the safe default everywhere else.
+For monorepos and large dependency trees, pnpm is the common modern pick; npm is the safe default everywhere else. A repository with several packages usually adds one layer above the package manager — a cached task runner such as Turborepo or Nx; that ladder is mapped in [Monorepo Tooling](../repository-organization/tooling/overview.md).
 
 ---
 

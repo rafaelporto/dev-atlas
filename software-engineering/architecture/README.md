@@ -43,4 +43,12 @@ Architectural styles define how a system is organized at a high level — how re
 
 ---
 
-> These styles are not mutually exclusive, and they sit at different altitudes. The styles above describe how a *system* is organized: a microservices system can use Hexagonal Architecture inside each service, and CQRS and Event Sourcing are frequently combined. The mobile, frontend, and CLI subsections describe how a single *application* is organized inside one of those services or clients — they compose with the system-level styles rather than replacing them.
+## Repository Organization
+
+| Article | Description |
+|---|---|
+| [Repository Organization](repository-organization/README.md) | Monorepo versus many repositories — the trade-offs at solo and small-team scale, mobile-plus-backend in one repo, monorepo CI, and the tooling ladder from package-manager workspaces to Bazel |
+
+---
+
+> These styles are not mutually exclusive, and they sit at different altitudes. The styles above describe how a *system* is organized: a microservices system can use Hexagonal Architecture inside each service, and CQRS and Event Sourcing are frequently combined. The mobile, frontend, and CLI subsections describe how a single *application* is organized inside one of those services or clients — they compose with the system-level styles rather than replacing them. Repository organization is a third axis again: it asks how many repositories the resulting pieces live in, which cuts across both the system and the application levels and is independent of either.
