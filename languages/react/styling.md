@@ -5,7 +5,11 @@ tags:
   - react
   - typescript
   - frontend
-related: []
+  - styling
+related:
+  - languages/css/overview
+  - languages/css/styling-approaches-comparison
+  - languages/css/css-in-js
 language: "react"
 ---
 # Styling

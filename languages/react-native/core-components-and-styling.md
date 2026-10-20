@@ -7,6 +7,7 @@ tags:
   - typescript
   - mobile
   - component-driven
+  - styling
 related:
   - languages/react-native/overview
   - languages/react-native/lists-and-performance
@@ -14,6 +15,7 @@ related:
   - languages/react-native/accessibility
   - languages/react/components-and-props
   - languages/react/styling
+  - languages/css/overview
 language: "react-native"
 ---
 # Core Components and Styling

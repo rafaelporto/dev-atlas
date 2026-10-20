@@ -6,10 +6,13 @@ tags:
   - full-stack
   - frontend
   - concept
+  - styling
 related:
   - languages/nextjs/optimization
   - languages/react/styling
   - languages/nextjs/project-setup
+  - languages/css/overview
+  - software-engineering/architecture/frontend/styling/styling-and-rendering-strategies
 language: "nextjs"
 ---
 # Styling and Assets

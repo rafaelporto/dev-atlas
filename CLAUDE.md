@@ -37,6 +37,7 @@ dev-atlas/
 │   ├── architecture/
 │   │   ├── mobile/                 # Mobile-specific architectural patterns (MVC, MVP, MVVM, MVI, VIPER, Clean, Modular)
 │   │   ├── frontend/               # Component-driven architecture, rendering patterns, state, micro-frontends, WebAssembly
+│   │   │   └── styling/            # Styling architecture: organization, design tokens, monorepos, micro-frontends, rendering, migration
 │   │   ├── cli/                    # CLI and TUI application architecture, project organization, antipatterns
 │   │   └── repository-organization/ # Monorepo vs polyrepo, solo/small-team layout, mobile+backend, monorepo CI
 │   │       └── tooling/            # Workspaces, task runners and caching, Bazel
@@ -55,8 +56,8 @@ dev-atlas/
 │   └── messaging/                  # AMQP and other protocols, patterns, and brokers
 │       └── brokers/                # Kafka, RabbitMQ, SQS, Service Bus, Pub/Sub, NATS
 ├── languages/                      # One directory per language/framework — see languages/README.md
-│   ├── go/                         # …and 15 more (angular, clojure, csharp, dart, flutter, java,
-│   ├── swift/                      #    javascript, lua, nextjs, nodejs, react, svelte, typescript, vue)
+│   ├── go/                         # …and 16 more (angular, clojure, csharp, css, dart, flutter, java,
+│   ├── swift/                      #    javascript, lua, nextjs, nodejs, react, react-native, svelte, typescript, vue)
 │   └── …                           # Do not maintain this list here; the section README is the index
 ├── operating-systems/
 │   ├── macos/                      # Darwin/XNU, zsh, macOS commands, ⌘ shortcuts

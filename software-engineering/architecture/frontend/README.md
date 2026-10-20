@@ -23,6 +23,7 @@ Architectural concepts, patterns, and styles for building web frontends — how 
 | [Layered Frontend Architecture](layered-frontend-architecture.md) | Presentation/domain/infrastructure layering and feature-vs-layer project structure |
 | [Micro-Frontends](micro-frontends.md) | Independently deployable, independently owned frontends composed into one app |
 | [Design System Architecture](design-system-architecture.md) | Tokens, a shared component library, and theming as an architectural concern |
+| [Styling Architecture](styling/README.md) | Organising, decoupling, and evolving styles — design tokens, monorepos, micro-frontends, and rendering strategies |
 
 ---
 

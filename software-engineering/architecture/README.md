@@ -31,7 +31,7 @@ Architectural styles define how a system is organized at a high level — how re
 
 | Article | Description |
 |---|---|
-| [Frontend Architecture](frontend/README.md) | Component-driven architecture, rendering patterns, state management, micro-frontends, design systems, WebAssembly, and a stacks/tooling reference — framework-agnostic |
+| [Frontend Architecture](frontend/README.md) | Component-driven architecture, rendering patterns, state management, micro-frontends, design systems, styling architecture, WebAssembly, and a stacks/tooling reference — framework-agnostic |
 
 ---
 
