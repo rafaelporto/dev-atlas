@@ -7,6 +7,8 @@ related:
   - software-engineering/ai-assisted-development/overview
   - software-engineering/ai-assisted-development/spec-driven-development
   - software-engineering/ai-assisted-development/writing-a-spec-for-an-ai-agent
+  - software-engineering/ai-engineering/agent-skills
+  - software-engineering/ai-engineering/agent-memory
 language: null
 ---
 

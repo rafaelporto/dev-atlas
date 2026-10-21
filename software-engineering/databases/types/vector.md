@@ -2,7 +2,9 @@
 type: concept
 tags:
   - database
-related: []
+related:
+  - software-engineering/ai-engineering/rag
+  - software-engineering/ai-engineering/building-a-rag-pipeline
 language: null
 ---
 # Vector Databases

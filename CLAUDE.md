@@ -34,6 +34,7 @@ dev-atlas/
 ├── software-engineering/
 │   ├── README.md                   # Section index
 │   ├── ai-assisted-development/    # Working with LLM coding agents: SDD, agent instruction files
+│   ├── ai-engineering/             # Building LLM systems: prompting, context, RAG, tools, MCP, agents, evals, caching, cost
 │   ├── architecture/
 │   │   ├── mobile/                 # Mobile-specific architectural patterns (MVC, MVP, MVVM, MVI, VIPER, Clean, Modular)
 │   │   ├── frontend/               # Component-driven architecture, rendering patterns, state, micro-frontends, WebAssembly

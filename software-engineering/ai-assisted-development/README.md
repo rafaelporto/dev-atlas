@@ -4,6 +4,8 @@ Engineering practices for building software with LLM-based coding agents. This s
 
 Start with the [Overview](overview.md) for the landscape and the trade-offs that cut across every practice here. [Spec-Driven Development](spec-driven-development.md) is the core article — it separates the three levels of the idea and says plainly which ones hold up today.
 
+For building and improving LLM systems themselves — RAG, tool use, agents, evals — see the sibling section [AI Engineering](../ai-engineering/README.md).
+
 ---
 
 ## Articles
