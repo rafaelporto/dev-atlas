@@ -32,6 +32,7 @@
 | [Rendering Strategies](rendering-strategies.md) | Static, dynamic, ISR, and client rendering — and how they're chosen |
 | [Server and Client Components](server-and-client-components.md) | RSC defaults, `"use client"`, the boundary rules, composition |
 | [Server Actions and Mutations](server-actions-and-mutations.md) | `"use server"` mutations from forms, revalidation, security |
+| [Authentication](authentication.md) | Auth in the App Router — the Data Access Layer, why middleware is not a security boundary, and integrating auth libraries |
 | [Data Fetching and Caching](data-fetching-and-caching.md) | Fetching in Server Components and the caching/revalidation layers |
 | [Route Handlers](route-handlers.md) | Building HTTP APIs with `route.ts` and Web `Request`/`Response` |
 | [Streaming and Suspense](streaming-and-suspense.md) | Progressive rendering with `<Suspense>` and `loading.tsx` |

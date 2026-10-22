@@ -9,6 +9,7 @@ related:
   - languages/nextjs/route-handlers
   - languages/nextjs/navigation-and-linking
   - languages/nextjs/rendering-strategies
+  - languages/nextjs/authentication
 language: "nextjs"
 ---
 # Middleware
@@ -20,6 +21,8 @@ language: "nextjs"
 ## What is it?
 
 **Middleware** is a single `middleware.ts` file at the project root that runs **before** a matched request reaches a route. It receives the request and returns a response that can **continue**, **rewrite** (serve a different path transparently), **redirect**, or set **headers/cookies**. It runs in a lightweight (Edge) runtime, close to the user, before rendering.
+
+> **Version note** — In Next.js 16, `middleware.ts` was renamed `proxy.ts` and runs on the Node.js runtime; `middleware.ts` is deprecated. See the [Next.js 16 release notes](https://nextjs.org/blog/next-16).
 
 ---
 
@@ -68,7 +71,7 @@ Middleware runs in the Edge runtime by default: no Node.js APIs (`fs`, native mo
 
 ### Auth pattern
 
-Use middleware for coarse gatekeeping (redirect unauthenticated users), but still authorize inside Server Components/Actions/Route Handlers — middleware alone is not sufficient authorization.
+Use middleware for coarse gatekeeping (redirect unauthenticated users), but still authorize inside Server Components/Actions/Route Handlers — middleware alone is not sufficient authorization. Crafted requests have bypassed middleware more than once (CVE-2025-29927, CVE-2024-51479, CVE-2026-44574); see [Authentication](authentication.md) for the Data Access Layer pattern.
 
 ---
 
@@ -116,3 +119,4 @@ export const config = { matcher: ["/((?!_next|api|favicon.ico).*)"] };
 - [Next.js — Middleware API reference](https://nextjs.org/docs/app/api-reference/file-conventions/middleware)
 - [Next.js — NextResponse](https://nextjs.org/docs/app/api-reference/functions/next-response)
 - [Next.js — Edge Runtime](https://nextjs.org/docs/app/api-reference/edge)
+- [Next.js 16 — `proxy.ts` replaces `middleware.ts`](https://nextjs.org/blog/next-16)

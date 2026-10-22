@@ -29,6 +29,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `repository-organization`: use for articles across the `software-engineering/architecture/repository-organization/` section — how code is distributed across repositories (one repository or many, layout at solo and small-team scale, monorepo CI) and the tooling that makes one repository holding many projects workable. It ties the section together for queries like "all repository-organization articles". Combine with `architecture` (Domain) plus `concept` for the model and decision articles, or `architecture` plus `tool` for a specific build or workspace tool. Do **not** apply it to articles about organising modules *inside* a single project (`software-engineering/architecture/cli/project-organization.md`, `languages/react/folder-structure.md`) — that is a different altitude.
 - `build-system`: use for articles whose primary subject is a build or task-execution system — the dependency graph it builds, how it caches, and how it decides what to rebuild. Combine with `tool`. Do **not** apply it to the `languages/<lang>/toolchain.md` round-ups, which cover formatters, linters, and package managers alongside the build step, and do not apply it to CI platform articles, which carry `ci-cd`.
 - `styling`: use for articles whose primary subject is styling web user interfaces — CSS itself, preprocessors (Sass, Less), post-processors (PostCSS), scoped styles, CSS-in-JS, utility-first CSS, methodologies, design tokens, and how styles are organised and evolved across a frontend. Combine with `css` for CSS-section articles and with the framework tag for framework-specific styling articles (`react`, `nextjs`, `react-native`). Do **not** apply it to articles that only mention CSS in passing (e.g. a framework `overview.md` listing its style options).
+- `security`: use for articles whose primary subject is application security — authentication and identity, session and token handling, vulnerability classes and known CVEs, and hardening practices. Combine with the language tag and `backend`/`full-stack` as appropriate, and with `comparison`/`decision-support`/`antipattern` for those article kinds. Do **not** apply it to articles that only mention security in passing (e.g. a middleware article with a one-paragraph auth example, or protocol articles describing SSH key authentication).
 
 ---
 
@@ -147,6 +148,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `repository-organization`
 - `build-system`
 - `styling`
+- `security`
 
 ---
 

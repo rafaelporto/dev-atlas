@@ -1,6 +1,6 @@
 # Node.js
 
-> A study guide covering the Node.js runtime: its event-driven model, core modules, asynchronous patterns, data access, backend architecture, security, testing, and deployment.
+> A study guide covering the Node.js runtime: its event-driven model, core modules, asynchronous patterns, data access, backend architecture, security and authentication, testing, and deployment.
 
 ---
 
@@ -48,6 +48,14 @@
 | [Testing](testing.md) | `node:test`, unit vs integration, testing repositories and handlers |
 | [Deploy](deploy.md) | Reproducible install, multi-stage Docker, signals, health checks |
 | [Best Practices](best-practices.md) | Consolidated runtime, error, and observability guidelines |
+
+---
+
+## Authentication
+
+| Article | Description |
+|---|---|
+| [Authentication](auth/README.md) | Choosing and implementing auth in Node/TS — libraries, managed and self-hosted IdPs, build vs buy, known vulnerabilities |
 
 ---
 

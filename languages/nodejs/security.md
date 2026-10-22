@@ -5,10 +5,12 @@ tags:
   - nodejs
   - backend
   - best-practice
+  - security
 related:
   - languages/nodejs/configuration-and-environment
   - languages/nodejs/data-access
   - languages/nodejs/http-and-web-servers
+  - languages/nodejs/auth/overview
 language: "nodejs"
 ---
 # Node.js Security
@@ -77,6 +79,8 @@ Keep secrets out of source, inject via the environment/secret manager, never log
 - Use vetted libraries for auth and password hashing (`node:crypto` `scrypt`, or `argon2`/`bcrypt`) — never roll your own.
 - Use `crypto.randomUUID()` / `crypto.randomBytes` for tokens, never `Math.random()`.
 - Compare secrets with `crypto.timingSafeEqual` to avoid timing attacks.
+
+For choosing an auth solution (libraries, managed or self-hosted identity providers), their known vulnerabilities, and a vetted from-scratch session implementation, see [Authentication](auth/README.md).
 
 ### Run with least privilege
 
