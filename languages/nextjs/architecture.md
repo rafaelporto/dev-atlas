@@ -6,6 +6,7 @@ tags:
   - full-stack
   - architecture
 related:
+  - languages/nextjs/orms/overview
   - languages/nextjs/project-setup
   - languages/nextjs/server-and-client-components
   - languages/nodejs/architecture

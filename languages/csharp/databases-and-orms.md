@@ -4,8 +4,11 @@ tags:
   - language
   - csharp
   - database
+  - orm
   - backend
 related:
+  - software-engineering/databases/concepts/orm-and-data-mapping
+  - software-engineering/databases/concepts/n-plus-one-problem
   - languages/csharp/overview
   - languages/csharp/linq-and-collections
   - languages/csharp/async-and-concurrency

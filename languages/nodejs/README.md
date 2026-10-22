@@ -1,6 +1,6 @@
 # Node.js
 
-> A study guide covering the Node.js runtime: its event-driven model, core modules, asynchronous patterns, data access, backend architecture, security and authentication, testing, and deployment.
+> A study guide covering the Node.js runtime: its event-driven model, core modules, asynchronous patterns, data access and ORMs, backend architecture, security and authentication, testing, and deployment.
 
 ---
 
@@ -35,7 +35,7 @@
 | [HTTP and Web Servers](http-and-web-servers.md) | `node:http`, Express, Fastify, middleware, graceful shutdown |
 | [Worker Threads and Scaling](worker-threads-and-scaling.md) | Processes vs threads, cluster, `worker_threads`, worker pools |
 | [Configuration and Environment](configuration-and-environment.md) | Env vars, validation at boot, secrets, twelve-factor config |
-| [Data Access and Databases](data-access.md) | Mature databases, drivers vs query builders vs ORMs, pooling, transactions |
+| [Data Access and Databases](data-access.md) | Mature databases, the driver/query builder/ORM decision in brief, pooling, transactions |
 | [Backend Architecture](architecture.md) | Layered/hexagonal structure, dependency inversion, composition root |
 
 ---
@@ -48,6 +48,14 @@
 | [Testing](testing.md) | `node:test`, unit vs integration, testing repositories and handlers |
 | [Deploy](deploy.md) | Reproducible install, multi-stage Docker, signals, health checks |
 | [Best Practices](best-practices.md) | Consolidated runtime, error, and observability guidelines |
+
+---
+
+## ORMs & Data Access
+
+| Article | Description |
+|---|---|
+| [ORMs & Data Access](orms/README.md) | Choosing between Prisma, Drizzle, Kysely, TypeORM, MikroORM, and raw SQL — trade-offs, maturity, migrations, and pitfalls |
 
 ---
 

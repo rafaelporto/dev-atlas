@@ -4,6 +4,7 @@ tags:
   - language
   - lua
   - database
+  - orm
 related:
   - languages/lua/modules-and-luarocks
   - languages/lua/error-handling

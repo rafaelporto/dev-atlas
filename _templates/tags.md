@@ -30,6 +30,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `build-system`: use for articles whose primary subject is a build or task-execution system — the dependency graph it builds, how it caches, and how it decides what to rebuild. Combine with `tool`. Do **not** apply it to the `languages/<lang>/toolchain.md` round-ups, which cover formatters, linters, and package managers alongside the build step, and do not apply it to CI platform articles, which carry `ci-cd`.
 - `styling`: use for articles whose primary subject is styling web user interfaces — CSS itself, preprocessors (Sass, Less), post-processors (PostCSS), scoped styles, CSS-in-JS, utility-first CSS, methodologies, design tokens, and how styles are organised and evolved across a frontend. Combine with `css` for CSS-section articles and with the framework tag for framework-specific styling articles (`react`, `nextjs`, `react-native`). Do **not** apply it to articles that only mention CSS in passing (e.g. a framework `overview.md` listing its style options).
 - `security`: use for articles whose primary subject is application security — authentication and identity, session and token handling, vulnerability classes and known CVEs, and hardening practices. Combine with the language tag and `backend`/`full-stack` as appropriate, and with `comparison`/`decision-support`/`antipattern` for those article kinds. Do **not** apply it to articles that only mention security in passing (e.g. a middleware article with a one-paragraph auth example, or protocol articles describing SSH key authentication).
+- `orm`: use for articles whose primary subject is how application code talks to a database — ORMs, query builders, raw-SQL access as an alternative to them, schema migrations, object-relational mapping patterns (Active Record, Data Mapper, Unit of Work), and their failure modes (N+1, connection exhaustion). Combine with `database` (Domain) for language-agnostic concept articles, or with `language` plus the language tag and `backend`/`full-stack` for language articles; add `decision-support`/`comparison`/`antipattern` for those article kinds. Do **not** apply it to articles that only show a `db.*` call in passing (e.g. an auth or data-fetching article), nor to database-type or engine articles whose subject is the database itself.
 
 ---
 
@@ -149,6 +150,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `build-system`
 - `styling`
 - `security`
+- `orm`
 
 ---
 

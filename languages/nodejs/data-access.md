@@ -5,8 +5,11 @@ tags:
   - nodejs
   - backend
   - database
+  - orm
   - decision-support
 related:
+  - languages/nodejs/orms/overview
+  - languages/nodejs/orms/choosing
   - software-engineering/databases/types/relational
   - software-engineering/databases/types/key-value
   - languages/nodejs/architecture
@@ -48,45 +51,15 @@ The database is the hardest part of a system to change later. Picking a mature e
 
 Three levels, from most control to most convenience:
 
-**1. Raw driver** — you write SQL; the driver runs it. Maximum control, minimum magic.
-
-```javascript
-import { Pool } from "pg";
-const pool = new Pool({ connectionString: config.databaseUrl });
-
-const { rows } = await pool.query(
-  "SELECT id, name FROM users WHERE id = $1", // parameterized — prevents SQL injection
-  [id],
-);
-```
-
-**2. Query builder** — programmatic, type-safe SQL without hand-concatenation (e.g., **Knex**, **Drizzle**, **Kysely**).
-
-```javascript
-const users = await db
-  .selectFrom("users")
-  .select(["id", "name"])
-  .where("id", "=", id)
-  .execute();
-```
-
-**3. ORM** — maps rows to objects/entities, handles migrations and relations (e.g., **Prisma**, **TypeORM**, **Sequelize**).
-
-```javascript
-const user = await prisma.user.findUnique({ where: { id }, include: { orders: true } });
-```
-
-**Trade-offs**
-
-| Axis | Raw driver | Query builder | ORM |
+| Level | What you write | Examples | Use it for |
 |---|---|---|---|
-| Control over SQL | full | high | lower |
-| Type safety (TS) | manual | strong (Drizzle/Kysely) | strong (Prisma) |
-| Boilerplate | high | medium | low |
-| Complex/perf queries | best | good | can fight you |
-| Learning/lock-in | low | low–medium | higher |
+| **Raw driver** | SQL with parameters; you get rows | `pg`, `postgres`, `mysql2`, `better-sqlite3` | Reports, bulk operations, hot paths, DB-specific features |
+| **Query builder / SQL-like ORM** | SQL as typed code; result types inferred | Kysely, Drizzle | The default for most TypeScript services |
+| **ORM** | Models and relations; the tool writes SQL | Prisma, MikroORM, TypeORM | CRUD-heavy apps, rich domain models, mixed-SQL-skill teams |
 
-> **Default recommendation:** for a TypeScript service, a **type-safe query builder (Drizzle or Kysely)** hits the best balance — strong types, transparent SQL, minimal magic. Choose a full **ORM (Prisma)** when you want managed migrations and relation loading and your queries are mostly CRUD. Drop to the **raw driver** for performance-critical or highly dynamic queries.
+> **Default recommendation:** for a TypeScript service, a **type-safe query builder or SQL-like ORM (Kysely or Drizzle)** hits the best balance — strong types, transparent SQL, minimal magic. Choose a full **ORM** (Prisma, or MikroORM for rich domains) when you want managed relations and migrations, and keep a typed **raw-SQL** escape hatch for the queries no abstraction expresses well.
+
+The full comparison — maturity and maintenance status of each tool, a decision flow, migrations, and common pitfalls — is in [ORMs and Data Access](orms/README.md); start with the [overview](orms/overview.md) and [Choosing a Data Access Tool](orms/choosing.md).
 
 ### Cross-cutting essentials
 
@@ -132,7 +105,7 @@ async function getUser(id) {
 ## When to use
 
 - Default to **PostgreSQL** for primary data; add **Redis** for caching/ephemeral state.
-- Use a **type-safe query builder** (Drizzle/Kysely) as the default abstraction in TypeScript; an **ORM** (Prisma) for CRUD-heavy apps wanting managed migrations.
+- Use a **type-safe query builder or SQL-like ORM** (Kysely/Drizzle) as the default abstraction in TypeScript; a full **ORM** where its model pays off — see [Choosing a Data Access Tool](orms/choosing.md).
 - Always use **connection pooling**, **parameterized queries**, **versioned migrations**, and **transactions** for multi-step invariants.
 - Choose a document/key-value/specialized store only when the access pattern genuinely fits it.
 
@@ -141,7 +114,7 @@ async function getUser(id) {
 - Do not pick a database for novelty — a mature relational engine covers most needs; specialized stores add operational burden.
 - Do not build SQL by string concatenation — it invites injection; parameterize.
 - Do not open a new connection per request or run migrations at app startup.
-- Do not adopt a heavy ORM for a service whose queries are complex or performance-critical — you'll fight the abstraction.
+- Do not adopt a heavy ORM for a service whose queries are complex or performance-critical — you'll fight the abstraction (see [ORM Pitfalls](orms/pitfalls.md)).
 - Do not store cache/session state only in Redis and treat it as durable — it is ephemeral by design.
 
 ---
@@ -154,3 +127,5 @@ async function getUser(id) {
 - [MongoDB — Node.js Driver](https://www.mongodb.com/docs/drivers/node/current/)
 - [Node.js — `node:sqlite`](https://nodejs.org/api/sqlite.html)
 - [Prisma — Documentation](https://www.prisma.io/docs)
+- [Kysely — Documentation](https://kysely.dev/docs/intro)
+- [Drizzle ORM — Documentation](https://orm.drizzle.team/docs/overview)

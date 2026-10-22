@@ -4,8 +4,11 @@ tags:
   - language
   - java
   - database
+  - orm
   - backend
 related:
+  - software-engineering/databases/concepts/orm-and-data-mapping
+  - software-engineering/databases/concepts/n-plus-one-problem
   - languages/java/error-handling
   - languages/java/java-patterns
 language: "java"

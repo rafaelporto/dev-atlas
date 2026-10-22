@@ -1,6 +1,6 @@
 # Next.js
 
-> A study guide covering the Next.js App Router: rendering strategies, React Server Components, data fetching and caching, routing, full-stack features, optimization, and deployment.
+> A study guide covering the Next.js App Router: rendering strategies, React Server Components, data fetching and caching, databases and ORMs, routing, full-stack features, optimization, and deployment.
 
 ---
 
@@ -36,6 +36,14 @@
 | [Data Fetching and Caching](data-fetching-and-caching.md) | Fetching in Server Components and the caching/revalidation layers |
 | [Route Handlers](route-handlers.md) | Building HTTP APIs with `route.ts` and Web `Request`/`Response` |
 | [Streaming and Suspense](streaming-and-suspense.md) | Progressive rendering with `<Suspense>` and `loading.tsx` |
+
+---
+
+## Databases and ORMs
+
+| Article | Description |
+|---|---|
+| [Databases and ORMs](orms/README.md) | Server-only data access, client lifecycle, transactions in Server Actions, and serverless/edge database constraints |
 
 ---
 

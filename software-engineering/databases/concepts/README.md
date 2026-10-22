@@ -6,6 +6,13 @@ Fundamentals shared across every database engine. These are the building blocks 
 
 ## Articles
 
+| Article | Description |
+|---|---|
+| [ORMs and Data Mapping](orm-and-data-mapping.md) | Driver → query builder → ORM, the impedance mismatch, Active Record vs Data Mapper, Unit of Work and Identity Map |
+| [The N+1 Query Problem](n-plus-one-problem.md) | Why per-row queries hide in ORM code, how to detect them, and fixing them with joins, batching, and projections |
+
+## Planned
+
 _This section is being built out. Planned articles:_
 
 | Article | Description |

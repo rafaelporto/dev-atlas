@@ -4,6 +4,7 @@ tags:
   - language
   - clojure
   - database
+  - orm
   - backend
 related:
   - languages/clojure/data-structures-and-immutability

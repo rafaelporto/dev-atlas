@@ -6,6 +6,7 @@ tags:
   - full-stack
   - concept
 related:
+  - languages/nextjs/orms/overview
   - languages/nextjs/rendering-strategies
   - languages/nextjs/server-actions-and-mutations
   - languages/react/data-fetching
