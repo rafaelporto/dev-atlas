@@ -18,6 +18,7 @@
     "audit-links": "tsx scripts/audit-links.ts",
     "backfill": "tsx scripts/backfill-frontmatter.ts",
     "measure": "tsx scripts/measure-payload.ts",
+    "move-paths": "tsx scripts/move-paths.ts",
     "validate": "npm run build && npm run test && npm run audit-links -- --strict",
     "prepare": "cd .. && husky mcp-server/.husky"
   },

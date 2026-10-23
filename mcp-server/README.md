@@ -73,6 +73,7 @@ npm run validate    # build + tests + audit-links --strict
 | `npm run audit-links` | Full link audit; writes suggestions to `audit-report.md`. |
 | `npm run audit-links -- --strict` | Strict mode — fatal errors only, no report file. Used by the pre-commit hook. |
 | `npm run backfill` | Idempotently injects scaffold front matter into articles missing it. |
+| `npm run move-paths -- --map <source>=<destination> [--apply]` | Moves directories/files and rewrites every reference to them (relative links, `related:`, repo-path mentions). Dry-run unless `--apply`; refuses a dirty working tree. |
 | `npm run validate` | Aggregate: build, tests, strict audit. |
 
 ## What the server exposes
@@ -115,12 +116,14 @@ src/
 ├── index.ts            # bootstrap + stdio
 ├── articles/           # types, parser (gray-matter + regex), repository
 ├── search/             # indexer, search-service, related-service, antipattern-service
+├── relocation/         # move-paths: relocation map, reference rewriters (Strategy + Composite), planner, executor
 ├── mcp/                # server, resources, tools, prompts
 └── lib/                # tags vocabulary, config (paths)
 
 scripts/                # one-off utilities reusing the parser
 ├── audit-links.ts
-└── backfill-frontmatter.ts
+├── backfill-frontmatter.ts
+└── move-paths.ts
 ```
 
 Index lives entirely in memory. ~100ms cold-start for the current corpus. No persistence to disk; restart the server when content changes.
