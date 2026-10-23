@@ -11,7 +11,7 @@ related:
   - software-engineering/architecture/repository-organization/tooling/package-manager-workspaces
   - software-engineering/architecture/repository-organization/tooling/bazel
   - software-engineering/architecture/repository-organization/monorepo-ci
-  - languages/javascript/toolchain
+  - languages/javascript-typescript/javascript/toolchain
 language: null
 ---
 # Task Runners and Caching

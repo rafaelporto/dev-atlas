@@ -6,11 +6,11 @@ tags:
   - styling
   - frontend
 related:
-  - languages/react/styling
-  - languages/nextjs/styling-and-assets
-  - languages/vue/template-syntax-and-components
-  - languages/svelte/components-and-templates
-  - languages/angular/components-and-templates
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/nextjs/styling-and-assets
+  - languages/javascript-typescript/frameworks/vue/template-syntax-and-components
+  - languages/javascript-typescript/frameworks/svelte/components-and-templates
+  - languages/javascript-typescript/frameworks/angular/components-and-templates
   - software-engineering/architecture/frontend/component-driven-architecture
   - languages/css/cascade-specificity-and-inheritance
   - software-engineering/architecture/frontend/styling/styling-micro-frontends

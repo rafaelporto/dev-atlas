@@ -8,7 +8,7 @@ tags:
 related:
   - languages/go/overview
   - software-engineering/architecture/frontend/webassembly
-  - languages/javascript/webassembly
+  - languages/javascript-typescript/javascript/webassembly
   - languages/csharp/webassembly
 language: "go"
 ---

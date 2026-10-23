@@ -10,7 +10,7 @@ related:
   - software-engineering/architecture/frontend/rendering-patterns
   - software-engineering/architecture/frontend/state-management-architecture
   - software-engineering/architecture/frontend/micro-frontends
-  - languages/nextjs/rendering-strategies
+  - languages/javascript-typescript/frameworks/nextjs/rendering-strategies
   - software-engineering/architecture/mobile/comparison
 language: null
 ---

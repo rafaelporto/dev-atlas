@@ -6,11 +6,11 @@ tags:
   - tool
   - decision-support
 related:
-  - languages/react/toolchain
-  - languages/react/project-setup
-  - languages/nextjs/overview
-  - languages/javascript/toolchain
-  - languages/typescript/toolchain
+  - languages/javascript-typescript/frameworks/react/toolchain
+  - languages/javascript-typescript/frameworks/react/project-setup
+  - languages/javascript-typescript/frameworks/nextjs/overview
+  - languages/javascript-typescript/javascript/toolchain
+  - languages/javascript-typescript/typescript/toolchain
   - languages/flutter/toolchain
   - software-engineering/architecture/repository-organization/tooling/overview
 language: null
@@ -53,8 +53,8 @@ Stack choices are sticky. The framework you pick shapes hiring, the libraries av
 
 | Language | Positioning | Read more |
 |---|---|---|
-| **JavaScript** | The native language of the browser; the baseline every framework compiles to. | [JavaScript](../../../languages/javascript/overview.md) |
-| **TypeScript** | JavaScript with static types; the de-facto default for non-trivial frontends. Catches errors at compile time and powers editor tooling. | [TypeScript](../../../languages/typescript/overview.md) |
+| **JavaScript** | The native language of the browser; the baseline every framework compiles to. | [JavaScript](../../../languages/javascript-typescript/javascript/overview.md) |
+| **TypeScript** | JavaScript with static types; the de-facto default for non-trivial frontends. Catches errors at compile time and powers editor tooling. | [TypeScript](../../../languages/javascript-typescript/typescript/overview.md) |
 
 For anything past a small script, TypeScript is the mainstream choice; plain JavaScript remains fine for tiny projects and learning.
 
@@ -62,10 +62,10 @@ For anything past a small script, TypeScript is the mainstream choice; plain Jav
 
 | Framework | Positioning | Read more |
 |---|---|---|
-| **React** | The most widely adopted library; huge ecosystem, component + hooks model, backed by Meta. Pairs with a meta-framework for full apps. | [React](../../../languages/react/overview.md) |
-| **Vue** | Approachable, batteries-included; single-file components and a gentle learning curve. Strong in Asia and among progressive-enhancement teams. | [Vue](../../../languages/vue/overview.md) |
-| **Angular** | Full, opinionated framework (DI, router, forms, RxJS) maintained by Google; suits large enterprise apps that want batteries included and strong conventions. | [Angular](../../../languages/angular/overview.md) |
-| **Svelte** | Compiler-first: components compile to minimal JS, no virtual DOM. Small bundles, terse syntax. | [Svelte](../../../languages/svelte/overview.md) |
+| **React** | The most widely adopted library; huge ecosystem, component + hooks model, backed by Meta. Pairs with a meta-framework for full apps. | [React](../../../languages/javascript-typescript/frameworks/react/overview.md) |
+| **Vue** | Approachable, batteries-included; single-file components and a gentle learning curve. Strong in Asia and among progressive-enhancement teams. | [Vue](../../../languages/javascript-typescript/frameworks/vue/overview.md) |
+| **Angular** | Full, opinionated framework (DI, router, forms, RxJS) maintained by Google; suits large enterprise apps that want batteries included and strong conventions. | [Angular](../../../languages/javascript-typescript/frameworks/angular/overview.md) |
+| **Svelte** | Compiler-first: components compile to minimal JS, no virtual DOM. Small bundles, terse syntax. | [Svelte](../../../languages/javascript-typescript/frameworks/svelte/overview.md) |
 | **SolidJS** | Fine-grained reactivity with a React-like API; very high performance, no virtual DOM. | — |
 | **Flutter (web)** | Dart-based; renders its own UI to canvas. Best when sharing a codebase with Flutter mobile, less so as a standalone web choice. | [Flutter](../../../languages/flutter/overview.md) |
 
@@ -77,7 +77,7 @@ Meta-frameworks add routing, rendering strategies (SSR/SSG/ISR), data loading, a
 
 | Meta-framework | Built on | Positioning | Read more |
 |---|---|---|---|
-| **Next.js** | React | The dominant React meta-framework; App Router, RSC, all rendering modes. | [Next.js](../../../languages/nextjs/overview.md) |
+| **Next.js** | React | The dominant React meta-framework; App Router, RSC, all rendering modes. | [Next.js](../../../languages/javascript-typescript/frameworks/nextjs/overview.md) |
 | **Nuxt** | Vue | Next's counterpart in the Vue world; same full-stack, multi-rendering feature set. | — |
 | **SvelteKit** | Svelte | The official Svelte app framework; routing, SSR, and adapters for many hosts. | — |
 | **Astro** | Any / none | Content-first; ships zero JS by default and uses the islands model, with any framework inside islands. | — |
@@ -95,7 +95,7 @@ Rule of thumb: pick the meta-framework that matches your UI framework (Next↔Re
 | **Turbopack** | webpack's successor from Vercel (Rust-based), aimed at large Next.js apps. |
 | **Rspack** | Rust reimplementation of webpack with a compatible API, for teams wanting webpack semantics at higher speed. |
 
-Most new projects start with Vite (or the bundler their meta-framework ships). The Rust-based tools (Turbopack, Rspack) target large codebases where build speed hurts. See [React toolchain](../../../languages/react/toolchain.md) and [project setup](../../../languages/react/project-setup.md) for concrete setups.
+Most new projects start with Vite (or the bundler their meta-framework ships). The Rust-based tools (Turbopack, Rspack) target large codebases where build speed hurts. See [React toolchain](../../../languages/javascript-typescript/frameworks/react/toolchain.md) and [project setup](../../../languages/javascript-typescript/frameworks/react/project-setup.md) for concrete setups.
 
 ### Package managers
 

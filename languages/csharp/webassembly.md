@@ -9,7 +9,7 @@ tags:
 related:
   - languages/csharp/overview
   - software-engineering/architecture/frontend/webassembly
-  - languages/javascript/webassembly
+  - languages/javascript-typescript/javascript/webassembly
   - languages/go/webassembly
 language: "csharp"
 ---

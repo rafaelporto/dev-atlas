@@ -8,7 +8,7 @@ tags:
 related:
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/component-driven-architecture
-  - languages/react/styling
+  - languages/javascript-typescript/frameworks/react/styling
   - languages/css/cascade-specificity-and-inheritance
   - software-engineering/architecture/frontend/styling/css-architecture-and-organization
 language: "css"

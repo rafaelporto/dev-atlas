@@ -8,8 +8,8 @@ tags:
   - styling
 related:
   - software-engineering/architecture/frontend/component-driven-architecture
-  - languages/react/styling
-  - languages/react/composition-patterns
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/react/composition-patterns
   - software-engineering/architecture/frontend/styling/design-tokens
   - software-engineering/architecture/frontend/styling/css-architecture-and-organization
 language: null

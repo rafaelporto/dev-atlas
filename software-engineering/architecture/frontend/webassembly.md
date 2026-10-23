@@ -8,7 +8,7 @@ tags:
 related:
   - software-engineering/architecture/frontend/rendering-patterns
   - software-engineering/architecture/frontend/frontend-stacks-and-tooling
-  - languages/javascript/webassembly
+  - languages/javascript-typescript/javascript/webassembly
   - languages/go/webassembly
   - languages/csharp/webassembly
 language: null
@@ -91,7 +91,7 @@ The dominant pattern is a JS/TS frontend that offloads *one well-defined, comput
 
 This article is framework- and language-agnostic. For how specific languages target or host Wasm, see:
 
-- [JavaScript, TypeScript, and WebAssembly](../../../languages/javascript/webassembly.md) — the host side: the `WebAssembly` JS API, the interop boundary, and AssemblyScript for TypeScript.
+- [JavaScript, TypeScript, and WebAssembly](../../../languages/javascript-typescript/javascript/webassembly.md) — the host side: the `WebAssembly` JS API, the interop boundary, and AssemblyScript for TypeScript.
 - [Go and WebAssembly](../../../languages/go/webassembly.md) — `GOOS=js GOARCH=wasm`, `syscall/js`, and TinyGo/WASI.
 - [C# and WebAssembly](../../../languages/csharp/webassembly.md) — Blazor WebAssembly, the .NET Wasm runtime, and JS interop.
 

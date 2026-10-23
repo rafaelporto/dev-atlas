@@ -9,7 +9,7 @@ related:
   - software-engineering/architecture/microservices
   - software-engineering/architecture/mobile/modular-architecture
   - software-engineering/architecture/frontend/design-system-architecture
-  - languages/nextjs/architecture
+  - languages/javascript-typescript/frameworks/nextjs/architecture
 language: null
 ---
 # Micro-Frontends

@@ -8,7 +8,7 @@ tags:
 related:
   - software-engineering/databases/concepts/orm-and-data-mapping
   - software-engineering/communication-protocols/api-styles/graphql
-  - languages/nodejs/orms/pitfalls
+  - languages/javascript-typescript/runtimes/nodejs/orms/pitfalls
   - languages/java/databases-and-orms
 language: null
 ---

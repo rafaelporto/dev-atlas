@@ -10,7 +10,7 @@ related:
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/micro-frontends
   - software-engineering/architecture/repository-organization/inside-a-monorepo
-  - languages/react/styling
+  - languages/javascript-typescript/frameworks/react/styling
   - languages/css/custom-properties-and-theming
   - software-engineering/architecture/frontend/styling/styling-in-monorepos
 language: null

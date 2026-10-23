@@ -10,7 +10,7 @@ related:
   - software-engineering/databases/types/relational
   - software-engineering/databases/types/object
   - software-engineering/architecture/hexagonal
-  - languages/nodejs/orms/overview
+  - languages/javascript-typescript/runtimes/nodejs/orms/overview
   - languages/java/databases-and-orms
   - languages/csharp/databases-and-orms
 language: null

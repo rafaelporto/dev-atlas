@@ -77,7 +77,7 @@ The pieces that shape the ecosystem:
 
 Dart's **TUI ecosystem is immature**. There is no mature, widely-adopted framework comparable to Go's Bubble Tea or Node's Ink. A few community packages exist — `dart_console` (cursor control, key reading), `mansion` (ANSI helpers), and small experimental `tui` packages — but they are niche and not a safe foundation for a large interactive app.
 
-For simple styled output you can emit ANSI escape codes directly or use `dart_console`. If you need a **rich full-screen TUI**, prefer a mature ecosystem (see [Go — Terminal UIs](../../go/cli/tui.md) or [Node.js — Terminal UIs](../../nodejs/cli/tui.md)). This cluster therefore has no dedicated TUI article for Dart.
+For simple styled output you can emit ANSI escape codes directly or use `dart_console`. If you need a **rich full-screen TUI**, prefer a mature ecosystem (see [Go — Terminal UIs](../../go/cli/tui.md) or [Node.js — Terminal UIs](../../javascript-typescript/runtimes/nodejs/cli/tui.md)). This cluster therefore has no dedicated TUI article for Dart.
 
 ## Examples
 

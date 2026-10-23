@@ -6,7 +6,7 @@ tags:
   - clean-architecture
   - concept
 related:
-  - languages/react/folder-structure
+  - languages/javascript-typescript/frameworks/react/folder-structure
   - software-engineering/architecture/clean
   - software-engineering/architecture/hexagonal
   - software-engineering/architecture/layered
@@ -17,7 +17,7 @@ language: null
 
 > Apply the classic idea of layers — presentation, application, domain, infrastructure — to a browser app, so business logic doesn't end up tangled inside components.
 
-This is the frontend application of general layering. For the underlying styles, see [Layered](../layered.md), [Clean](../clean.md), and [Hexagonal](../hexagonal.md); for a concrete file tree in one framework, see [React folder structure](../../../languages/react/folder-structure.md).
+This is the frontend application of general layering. For the underlying styles, see [Layered](../layered.md), [Clean](../clean.md), and [Hexagonal](../hexagonal.md); for a concrete file tree in one framework, see [React folder structure](../../../languages/javascript-typescript/frameworks/react/folder-structure.md).
 
 ---
 

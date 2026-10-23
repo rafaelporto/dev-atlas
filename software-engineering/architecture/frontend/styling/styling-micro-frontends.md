@@ -10,7 +10,7 @@ related:
   - software-engineering/architecture/frontend/micro-frontends
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/component-driven-architecture
-  - languages/react/styling
+  - languages/javascript-typescript/frameworks/react/styling
   - languages/css/css-modules-and-scoped-styles
   - software-engineering/architecture/frontend/styling/design-tokens
   - software-engineering/architecture/frontend/styling/css-architecture-and-organization

@@ -7,8 +7,8 @@ tags:
   - frontend
   - overview
 related:
-  - languages/react/styling
-  - languages/nextjs/styling-and-assets
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/nextjs/styling-and-assets
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/rendering-patterns
   - languages/css/cascade-specificity-and-inheritance

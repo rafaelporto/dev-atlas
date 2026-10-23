@@ -25,7 +25,7 @@ These articles stop at the concept. The toolkits, the argument parsers, and the 
 | Language | Section |
 |---|---|
 | [Go](../../../languages/go/cli/README.md) | `flag`, Cobra, Viper, Bubble Tea, Lip Gloss, tview, terminal internals |
-| [Node.js](../../../languages/nodejs/cli/README.md) | `parseArgs`, Commander, oclif, Ink, blessed |
+| [Node.js](../../../languages/javascript-typescript/runtimes/nodejs/cli/README.md) | `parseArgs`, Commander, oclif, Ink, blessed |
 | [Java](../../../languages/java/cli/README.md) | picocli, GraalVM native-image, Lanterna |
 | [C#](../../../languages/csharp/cli/README.md) | System.CommandLine, Spectre.Console, Terminal.Gui, Native AOT |
 | [Swift](../../../languages/swift/cli/README.md) | swift-argument-parser, SwiftPM executables |

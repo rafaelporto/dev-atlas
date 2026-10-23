@@ -6,9 +6,9 @@ tags:
   - styling
   - frontend
 related:
-  - languages/react/toolchain
-  - languages/react/styling
-  - languages/nextjs/styling-and-assets
+  - languages/javascript-typescript/frameworks/react/toolchain
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/nextjs/styling-and-assets
   - software-engineering/architecture/frontend/frontend-stacks-and-tooling
   - languages/css/sass
   - languages/css/performance

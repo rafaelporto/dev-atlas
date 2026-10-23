@@ -7,9 +7,9 @@ tags:
   - full-stack
   - concept
 related:
-  - languages/react/data-fetching
-  - languages/nextjs/data-fetching-and-caching
-  - languages/nextjs/route-handlers
+  - languages/javascript-typescript/frameworks/react/data-fetching
+  - languages/javascript-typescript/frameworks/nextjs/data-fetching-and-caching
+  - languages/javascript-typescript/frameworks/nextjs/route-handlers
   - software-engineering/architecture/microservices
 language: null
 ---
@@ -17,7 +17,7 @@ language: null
 
 > How the UI gets its data — where the fetch happens, how many round-trips it takes, what caches sit in between, and whether a dedicated backend should shape responses for the frontend.
 
-This is the cross-cutting data-flow layer between the UI and your services. For concrete client APIs, see [React data fetching](../../../languages/react/data-fetching.md) and [Next.js data fetching and caching](../../../languages/nextjs/data-fetching-and-caching.md).
+This is the cross-cutting data-flow layer between the UI and your services. For concrete client APIs, see [React data fetching](../../../languages/javascript-typescript/frameworks/react/data-fetching.md) and [Next.js data fetching and caching](../../../languages/javascript-typescript/frameworks/nextjs/data-fetching-and-caching.md).
 
 ---
 

@@ -6,8 +6,8 @@ tags:
   - component-driven
   - concept
 related:
-  - languages/react/components-and-props
-  - languages/react/composition-patterns
+  - languages/javascript-typescript/frameworks/react/components-and-props
+  - languages/javascript-typescript/frameworks/react/composition-patterns
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/layered-frontend-architecture
 language: null

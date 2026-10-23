@@ -7,8 +7,8 @@ tags:
   - frontend
   - best-practice
 related:
-  - languages/react/styling
-  - languages/react/accessibility
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/react/accessibility
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/component-driven-architecture
   - languages/css/cascade-specificity-and-inheritance

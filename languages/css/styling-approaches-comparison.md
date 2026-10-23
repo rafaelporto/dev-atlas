@@ -8,9 +8,9 @@ tags:
   - comparison
   - decision-support
 related:
-  - languages/react/styling
-  - languages/nextjs/styling-and-assets
-  - languages/react/server-components
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/nextjs/styling-and-assets
+  - languages/javascript-typescript/frameworks/react/server-components
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/rendering-patterns
   - languages/css/sass

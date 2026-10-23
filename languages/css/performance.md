@@ -6,10 +6,10 @@ tags:
   - styling
   - frontend
 related:
-  - languages/nextjs/optimization
-  - languages/nextjs/styling-and-assets
+  - languages/javascript-typescript/frameworks/nextjs/optimization
+  - languages/javascript-typescript/frameworks/nextjs/styling-and-assets
   - software-engineering/architecture/frontend/rendering-patterns
-  - languages/react/styling
+  - languages/javascript-typescript/frameworks/react/styling
   - software-engineering/architecture/frontend/styling/styling-and-rendering-strategies
   - languages/css/toolchain
 language: "css"

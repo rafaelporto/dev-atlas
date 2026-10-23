@@ -60,7 +60,7 @@ The workspace feature your package manager already ships. It discovers member pr
 
 | Ecosystem | The mechanism | Read more |
 |---|---|---|
-| **JavaScript / TypeScript** | `pnpm-workspace.yaml`, npm/yarn `workspaces`, the `workspace:` protocol | [Node.js toolchain](../../../../languages/nodejs/toolchain.md) · [TypeScript toolchain](../../../../languages/typescript/toolchain.md) |
+| **JavaScript / TypeScript** | `pnpm-workspace.yaml`, npm/yarn `workspaces`, the `workspace:` protocol | [Node.js toolchain](../../../../languages/javascript-typescript/runtimes/nodejs/toolchain.md) · [TypeScript toolchain](../../../../languages/javascript-typescript/typescript/toolchain.md) |
 | **Go** | `go.work` with a `use (...)` block | [Go — packages and modules](../../../../languages/go/packages-and-modules.md) |
 | **Rust** | `[workspace] members`, one `Cargo.lock`, one shared `target/` | — |
 | **JVM** | Gradle multi-project and composite builds; Maven `<modules>` | [Java — packages and build](../../../../languages/java/packages-and-build.md) |

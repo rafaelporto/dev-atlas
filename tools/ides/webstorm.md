@@ -7,7 +7,7 @@ tags:
   - frontend
 related:
   - tools/ides/overview
-  - languages/typescript/overview
+  - languages/javascript-typescript/typescript/overview
 language: null
 ---
 # WebStorm
@@ -18,7 +18,7 @@ language: null
 
 ## What is it?
 
-WebStorm is a commercial IDE focused on web development: JavaScript, [TypeScript](../../languages/typescript/overview.md), Node.js, and frameworks like React, Angular, Vue, Svelte, and Next.js. Built on the IntelliJ platform, it bundles everything needed — completion, refactoring, debugging, testing, linting, and version control — preconfigured, so support for TypeScript and the major frameworks works immediately without installing extensions.
+WebStorm is a commercial IDE focused on web development: JavaScript, [TypeScript](../../languages/javascript-typescript/typescript/overview.md), Node.js, and frameworks like React, Angular, Vue, Svelte, and Next.js. Built on the IntelliJ platform, it bundles everything needed — completion, refactoring, debugging, testing, linting, and version control — preconfigured, so support for TypeScript and the major frameworks works immediately without installing extensions.
 
 All of WebStorm's web tooling is also included in IntelliJ IDEA Ultimate; WebStorm is the standalone, web-focused package.
 

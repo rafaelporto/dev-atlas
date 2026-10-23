@@ -11,7 +11,7 @@ related:
   - software-engineering/architecture/frontend/micro-frontends
   - software-engineering/architecture/frontend/component-driven-architecture
   - software-engineering/architecture/repository-organization/monorepo-ci
-  - languages/react/styling
+  - languages/javascript-typescript/frameworks/react/styling
   - languages/css/sass
   - languages/css/css-in-js
   - languages/css/modern-css

@@ -12,7 +12,7 @@ related:
   - software-engineering/architecture/repository-organization/monorepo-ci
   - software-engineering/architecture/mobile/modular-architecture
   - software-engineering/architecture/frontend/data-fetching-and-bff
-  - languages/react-native/project-setup
+  - languages/javascript-typescript/frameworks/react-native/project-setup
   - languages/swift/swift-package-manager
 language: null
 ---

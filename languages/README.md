@@ -6,7 +6,6 @@
 
 | Language | Description |
 |---|---|
-| [Angular](angular/README.md) | The full, opinionated framework: standalone components, signals, DI, first-party routing and forms, and testing |
 | [C#](csharp/README.md) | The .NET platform, type system and nullability, async, LINQ, patterns, data access, toolchain, CLI tooling, and game development |
 | [CSS](css/README.md) | Styling the web: the cascade, layout, responsive design, custom properties, Sass, CSS Modules, CSS-in-JS, utility-first CSS, methodologies, toolchain, and performance |
 | [Clojure](clojure/README.md) | A functional, data-oriented Lisp on the JVM: immutability, concurrency, patterns, the REPL-driven toolchain, and CLI scripting with babashka |
@@ -14,13 +13,6 @@
 | [Flutter](flutter/README.md) | Widget model, state management, architecture, testing, and deployment with Flutter |
 | [Go](go/README.md) | Concurrency, type system, idioms, and patterns in Go |
 | [Java](java/README.md) | The JVM platform, type system, concurrency, patterns, data access, toolchain, and CLI tooling |
-| [JavaScript](javascript/README.md) | The ECMAScript language: types, scope and closures, prototypes, async, modules, and best practices |
+| [JavaScript & TypeScript](javascript-typescript/README.md) | The JavaScript language, TypeScript, the Node.js runtime, and the React, React Native, Next.js, Angular, Vue, and Svelte frameworks |
 | [Lua](lua/README.md) | The embeddable scripting language: tables, metatables, coroutines, the C API, and tooling |
-| [Next.js](nextjs/README.md) | The App Router, Server Components, rendering strategies, data fetching/caching, databases/ORMs, and full-stack features |
-| [Node.js](nodejs/README.md) | The runtime: event loop, core modules, async patterns, data access, backend architecture, authentication, and deployment |
-| [React](react/README.md) | Component model, hooks, server components, ecosystem, and best practices |
-| [React Native](react-native/README.md) | Building native iOS and Android apps with React: core components, navigation, state, architecture, testing, and delivery with Expo |
-| [Svelte](svelte/README.md) | The compiler-first framework: Svelte 5 runes, stores, and SvelteKit routing, data loading, and form actions |
 | [Swift](swift/README.md) | Protocol-oriented programming, modern concurrency, SwiftUI, CLI tooling, and Apple-platform best practices |
-| [TypeScript](typescript/README.md) | Static typing over JavaScript: the type system, generics, narrowing, advanced types, and patterns |
-| [Vue](vue/README.md) | Single-file components, reactivity and the Composition API, composables, Pinia, and routing |

@@ -6,7 +6,7 @@ tags:
   - styling
   - frontend
 related:
-  - languages/react/styling
+  - languages/javascript-typescript/frameworks/react/styling
   - software-engineering/architecture/frontend/design-system-architecture
   - languages/css/methodologies
   - languages/css/best-practices

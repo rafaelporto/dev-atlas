@@ -8,8 +8,8 @@ tags:
 related:
   - software-engineering/architecture/repository-organization/tooling/overview
   - languages/go/packages-and-modules
-  - languages/typescript/toolchain
-  - languages/nodejs/toolchain
+  - languages/javascript-typescript/typescript/toolchain
+  - languages/javascript-typescript/runtimes/nodejs/toolchain
   - languages/java/packages-and-build
   - languages/swift/swift-package-manager
 language: null
@@ -73,7 +73,7 @@ pnpm -r build                        # every package
 pnpm --filter @my-system/web build   # one package and, with ..., its deps
 ```
 
-On top of this, TypeScript adds **project references** — `composite: true` plus a `references` array — which give the compiler its own incremental build graph via `tsc -b`. See [TypeScript toolchain](../../../../languages/typescript/toolchain.md).
+On top of this, TypeScript adds **project references** — `composite: true` plus a `references` array — which give the compiler its own incremental build graph via `tsc -b`. See [TypeScript toolchain](../../../../languages/javascript-typescript/typescript/toolchain.md).
 
 ### Go
 

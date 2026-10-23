@@ -11,7 +11,7 @@ related:
   - software-engineering/architecture/repository-organization/monorepo-ci
   - software-engineering/architecture/repository-organization/tooling/package-manager-workspaces
   - software-engineering/architecture/frontend/design-system-architecture
-  - languages/nextjs/styling-and-assets
+  - languages/javascript-typescript/frameworks/nextjs/styling-and-assets
   - software-engineering/architecture/frontend/styling/design-tokens
   - languages/css/utility-first-css
   - languages/css/toolchain

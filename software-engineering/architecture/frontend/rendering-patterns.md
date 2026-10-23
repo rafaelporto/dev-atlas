@@ -7,18 +7,18 @@ tags:
   - concept
   - decision-support
 related:
-  - languages/nextjs/rendering-strategies
-  - languages/nextjs/server-and-client-components
-  - languages/react/server-components
-  - languages/react/rendering-and-reconciliation
-  - languages/react/suspense-and-concurrent
+  - languages/javascript-typescript/frameworks/nextjs/rendering-strategies
+  - languages/javascript-typescript/frameworks/nextjs/server-and-client-components
+  - languages/javascript-typescript/frameworks/react/server-components
+  - languages/javascript-typescript/frameworks/react/rendering-and-reconciliation
+  - languages/javascript-typescript/frameworks/react/suspense-and-concurrent
 language: null
 ---
 # Rendering Patterns
 
 > Where and when your HTML is produced — in the browser, on a server ahead of time, or per request — and the trade-offs each choice makes between speed, freshness, cost, and SEO.
 
-This is the framework-agnostic taxonomy. For a specific implementation, see [Next.js rendering strategies](../../../languages/nextjs/rendering-strategies.md); the categories here also describe Nuxt, SvelteKit, Astro, Qwik, and Remix.
+This is the framework-agnostic taxonomy. For a specific implementation, see [Next.js rendering strategies](../../../languages/javascript-typescript/frameworks/nextjs/rendering-strategies.md); the categories here also describe Nuxt, SvelteKit, Astro, Qwik, and Remix.
 
 ---
 

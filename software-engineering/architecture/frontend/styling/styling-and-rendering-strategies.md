@@ -8,11 +8,11 @@ tags:
   - rendering
 related:
   - software-engineering/architecture/frontend/rendering-patterns
-  - languages/react/server-components
-  - languages/react/styling
-  - languages/nextjs/styling-and-assets
-  - languages/nextjs/rendering-strategies
-  - languages/nextjs/streaming-and-suspense
+  - languages/javascript-typescript/frameworks/react/server-components
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/nextjs/styling-and-assets
+  - languages/javascript-typescript/frameworks/nextjs/rendering-strategies
+  - languages/javascript-typescript/frameworks/nextjs/streaming-and-suspense
   - languages/css/css-in-js
   - languages/css/performance
 language: null
@@ -88,7 +88,7 @@ The tool mechanics are in [CSS-in-JS](../../../../languages/css/css-in-js.md); t
 
 **Streaming SSR.** HTML arrives in chunks behind Suspense boundaries. CSS for a streamed section must arrive no later than that section. Global CSS in `<head>` covers this trivially. Per-component CSS needs framework support: React 19, for example, lets `<link rel="stylesheet">` and `<style>` carry a `precedence` prop so React hoists them into `<head>`, deduplicates them by `href`, orders them by precedence, and holds back revealing a Suspense boundary until its external stylesheet has loaded. Runtime CSS-in-JS libraries that collect styles in one pass at the end of the render do not fit chunked output well.
 
-**React Server Components.** Server components never run on the client and cannot use React context or hooks — which most runtime CSS-in-JS libraries depend on for theming and style injection. Those libraries therefore force `"use client"` on every styled component, discarding the main benefit of RSC. Extracted approaches (CSS Modules, utility classes, zero-runtime CSS-in-JS) work in server components because the component only references class names. The styled-components maintainer put the library into maintenance mode in March 2025 and advised against it for new projects, citing exactly this incompatibility. See [React Server Components](../../../../languages/react/server-components.md).
+**React Server Components.** Server components never run on the client and cannot use React context or hooks — which most runtime CSS-in-JS libraries depend on for theming and style injection. Those libraries therefore force `"use client"` on every styled component, discarding the main benefit of RSC. Extracted approaches (CSS Modules, utility classes, zero-runtime CSS-in-JS) work in server components because the component only references class names. The styled-components maintainer put the library into maintenance mode in March 2025 and advised against it for new projects, citing exactly this incompatibility. See [React Server Components](../../../../languages/javascript-typescript/frameworks/react/server-components.md).
 
 **Islands.** The page is static HTML with small interactive regions. Page CSS should be static and global or per-page; each island's CSS should be extracted and loaded with the page, not injected when the island hydrates (which would be after first paint). Runtime CSS-in-JS inside an island only works for styles that appear after interaction.
 

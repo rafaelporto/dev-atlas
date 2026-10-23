@@ -14,7 +14,7 @@ The repository **also includes a local TypeScript MCP server in `mcp-server/`** 
 
 - All content (article text, headings, code comments, identifiers) must be in **English**.
 - Code examples follow these rules by topic:
-  - **Language articles** (anything under `languages/<lang>/`) — write all examples in the directory's language. E.g. articles under `languages/go/` use Go, `languages/swift/` uses Swift, `languages/dart/` and `languages/flutter/` use Dart, `languages/react/` uses TypeScript with JSX (unless the article is specifically about plain JavaScript).
+  - **Language articles** (anything under `languages/<lang>/`, at any depth) — write all examples in the directory's language. E.g. articles under `languages/go/` use Go, `languages/swift/` uses Swift, `languages/dart/` and `languages/flutter/` use Dart. Under `languages/javascript-typescript/`, follow the article's own language or framework: `javascript/` uses JavaScript, `typescript/` uses TypeScript, `runtimes/nodejs/` uses JavaScript or TypeScript as the article's topic requires (match the surrounding articles), `frameworks/react/` uses TypeScript with JSX (unless the article is specifically about plain JavaScript).
   - **Mobile architecture articles** (anything under `software-engineering/architecture/mobile/` or explicitly about mobile development) — provide examples in **Swift**, **Kotlin**, and **Flutter (Dart)**, one block per language.
   - **All other articles** — ask the user which language to use before writing any code example.
 
@@ -56,9 +56,13 @@ dev-atlas/
 │   │   └── structural/
 │   └── messaging/                  # AMQP and other protocols, patterns, and brokers
 │       └── brokers/                # Kafka, RabbitMQ, SQS, Service Bus, Pub/Sub, NATS
-├── languages/                      # One directory per language/framework — see languages/README.md
-│   ├── go/                         # …and 16 more (angular, clojure, csharp, css, dart, flutter, java,
-│   ├── swift/                      #    javascript, lua, nextjs, nodejs, react, react-native, svelte, typescript, vue)
+├── languages/                      # One directory per language — see languages/README.md
+│   ├── javascript-typescript/      # JS + TS + their runtimes and frameworks
+│   │   ├── javascript/
+│   │   ├── typescript/
+│   │   ├── runtimes/               # nodejs
+│   │   └── frameworks/             # react, react-native, nextjs, angular, vue, svelte
+│   ├── go/                         # …and more (clojure, csharp, css, dart, flutter, java, lua, swift)
 │   └── …                           # Do not maintain this list here; the section README is the index
 ├── operating-systems/
 │   ├── macos/                      # Darwin/XNU, zsh, macOS commands, ⌘ shortcuts
@@ -79,6 +83,8 @@ dev-atlas/
 ```
 
 All five top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `devops/`, `tools/`) exist and are actively populated. Do not create a new top-level **content** section without explicit user request.
+
+Every direct child of `languages/` is a **language**. Runtimes and frameworks live inside their language's directory, under `languages/<lang>/runtimes/<name>/` or `languages/<lang>/frameworks/<name>/` — never directly under `languages/`. The front matter `language:` field holds the slug of the article's technical context (`nextjs`, `react`, `nodejs`), not the directory name. To move directories or files, use `npm run move-paths` (see `mcp-server/README.md`): it rewrites relative links, `related:` entries, and repo-path mentions.
 
 The `mcp-server/` directory is **tooling**, not content. It contains the local MCP server that exposes the wiki to AI agents. `mcp-server/node_modules/`, `mcp-server/dist/`, `mcp-server/package-lock.json`, `mcp-server/audit-report.md`, and any local `.npmrc` files are in `.gitignore`. The lock file is ignored on purpose: it would expose the npm registry where dependencies were downloaded; in a public repo, we do not share that information. Reviews focus on `mcp-server/src/`. (Trade-off: future installs may resolve transitive versions differently — acceptable in this personal-tooling context.)
 

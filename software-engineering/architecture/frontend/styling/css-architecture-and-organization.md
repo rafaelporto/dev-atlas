@@ -10,8 +10,8 @@ related:
   - software-engineering/architecture/frontend/design-system-architecture
   - software-engineering/architecture/frontend/component-driven-architecture
   - software-engineering/architecture/frontend/layered-frontend-architecture
-  - languages/react/styling
-  - languages/react/folder-structure
+  - languages/javascript-typescript/frameworks/react/styling
+  - languages/javascript-typescript/frameworks/react/folder-structure
   - languages/css/cascade-specificity-and-inheritance
   - languages/css/methodologies
   - software-engineering/architecture/frontend/styling/design-tokens

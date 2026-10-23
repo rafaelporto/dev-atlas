@@ -85,7 +85,7 @@ const PROMPTS: PromptDefinition[] = [
         'Call `search_articles` with { tags: ["principle"] } to list SOLID + Pragmatic Principles.',
         'Call `search_articles` with { query: "domain-driven design" } to surface the DDD article and closely related concepts.',
         language
-          ? `Call \`list_sections\` to check whether \`languages/${language}/\` exists. If it does, call \`search_articles\` with { language: "${language}" } to surface idioms, error-handling, and concurrency conventions relevant to the design.`
+          ? `Call \`search_articles\` with { language: "${language}" } to surface idioms, error-handling, and concurrency conventions relevant to the design. If it returns no results, state that dev-atlas has no coverage for ${language}.`
           : null,
         'For each principle (SOLID + DRY + KISS + YAGNI + Fail Fast) and for DDD, call `get_article` and read "What is it?" and "When NOT to use".',
         "For the feature above, produce a checklist with one row per principle/concept: how it applies, where the highest risk of violation is, and one concrete design choice that honors it.",
@@ -184,8 +184,8 @@ const PROMPTS: PromptDefinition[] = [
           ? {
               title: "PHASE 4 — Language reference",
               steps: [
-                `Call \`list_sections\` to confirm whether \`languages/${language}/\` exists.`,
-                `If it does, call \`search_articles\` with { language: "${language}" } and read articles relevant to the feature (idioms, error-handling, concurrency).`,
+                `Call \`search_articles\` with { language: "${language}" } and read articles relevant to the feature (idioms, error-handling, concurrency).`,
+                `If it returns no results, state that dev-atlas has no coverage for ${language} and continue without a language reference.`,
               ],
             }
           : null,
@@ -309,8 +309,8 @@ const PROMPTS: PromptDefinition[] = [
           ? {
               title: "PHASE 5 — Language reference",
               steps: [
-                `Call \`list_sections\` to confirm whether \`languages/${language}/\` exists.`,
-                `If it does, call \`search_articles\` with { language: "${language}" } and read articles relevant to the refactor (idioms, error-handling, refactor-friendly constructs).`,
+                `Call \`search_articles\` with { language: "${language}" } and read articles relevant to the refactor (idioms, error-handling, refactor-friendly constructs).`,
+                `If it returns no results, state that dev-atlas has no coverage for ${language} and continue without a language reference.`,
               ],
             }
           : null,

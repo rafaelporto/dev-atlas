@@ -82,7 +82,7 @@ The pieces that shape the ecosystem:
 
 Swift's **TUI ecosystem is experimental**. There is no mature, widely-adopted framework comparable to Go's Bubble Tea or Node's Ink. Community projects like **SwiftTUI** (a SwiftUI-like API for the terminal) and **swift-tui** exist and are interesting, but they are young and not a safe foundation for a large production TUI.
 
-For styled output you can emit ANSI escape codes directly. If you need a **rich full-screen TUI**, prefer a mature ecosystem (see [Go — Terminal UIs](../../go/cli/tui.md) or [Node.js — Terminal UIs](../../nodejs/cli/tui.md)). This cluster therefore has no dedicated TUI article for Swift.
+For styled output you can emit ANSI escape codes directly. If you need a **rich full-screen TUI**, prefer a mature ecosystem (see [Go — Terminal UIs](../../go/cli/tui.md) or [Node.js — Terminal UIs](../../javascript-typescript/runtimes/nodejs/cli/tui.md)). This cluster therefore has no dedicated TUI article for Swift.
 
 ## Examples
 
