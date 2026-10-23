@@ -12,7 +12,7 @@ related:
   - languages/javascript-typescript/frameworks/react-native/architecture
   - languages/javascript-typescript/frameworks/react-native/toolchain
   - languages/javascript-typescript/frameworks/react/testing
-  - languages/flutter/testing
+  - languages/dart/frameworks/flutter/testing
   - software-engineering/concepts/tdd
 language: "react-native"
 ---

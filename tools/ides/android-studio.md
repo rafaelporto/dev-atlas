@@ -7,7 +7,7 @@ tags:
   - mobile
 related:
   - tools/ides/overview
-  - languages/flutter/overview
+  - languages/dart/frameworks/flutter/overview
 language: null
 ---
 # Android Studio
@@ -18,13 +18,13 @@ language: null
 
 ## What is it?
 
-Android Studio is the official IDE for building Android apps, developed by Google on top of the IntelliJ platform. It bundles the Android SDK tooling, the Gradle build system, an emulator, device management, and specialized tools for layouts, resources, and performance profiling. With the Flutter and Dart plugins, it is also a fully supported environment for [Flutter](../../languages/flutter/overview.md) app development.
+Android Studio is the official IDE for building Android apps, developed by Google on top of the IntelliJ platform. It bundles the Android SDK tooling, the Gradle build system, an emulator, device management, and specialized tools for layouts, resources, and performance profiling. With the Flutter and Dart plugins, it is also a fully supported environment for [Flutter](../../languages/dart/frameworks/flutter/overview.md) app development.
 
 It is the IntelliJ platform specialized for mobile: the same editing and refactoring core, plus Android- and Flutter-specific tooling that general editors don't include.
 
 ## Why does it matter?
 
-For native Android (Kotlin/Java) work, Android Studio is effectively required — it is where Google ships SDK updates, the emulator, and profiling tools, and where new platform features land first. For [Flutter](../../languages/flutter/overview.md), it is one of the two primary options (alongside [VS Code](vscode.md)); it is the heavier choice but gives integrated access to the Android emulator, device manager, and Gradle configuration in one place.
+For native Android (Kotlin/Java) work, Android Studio is effectively required — it is where Google ships SDK updates, the emulator, and profiling tools, and where new platform features land first. For [Flutter](../../languages/dart/frameworks/flutter/overview.md), it is one of the two primary options (alongside [VS Code](vscode.md)); it is the heavier choice but gives integrated access to the Android emulator, device manager, and Gradle configuration in one place.
 
 Its profilers (CPU, memory, network, energy) and the layout inspector are tools that lightweight editors don't replicate, which matters when diagnosing performance or UI issues on a device.
 

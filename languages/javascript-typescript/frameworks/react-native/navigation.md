@@ -11,7 +11,7 @@ related:
   - languages/javascript-typescript/frameworks/react-native/architecture
   - languages/javascript-typescript/frameworks/react-native/state-management
   - languages/javascript-typescript/frameworks/react/routing
-  - languages/flutter/navigation
+  - languages/dart/frameworks/flutter/navigation
 language: "react-native"
 ---
 # Navigation

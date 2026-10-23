@@ -12,7 +12,7 @@ related:
   - languages/javascript-typescript/frameworks/react-native/architecture
   - languages/javascript-typescript/frameworks/react-native/dependency-injection
   - languages/javascript-typescript/frameworks/react/state-management
-  - languages/flutter/state-management
+  - languages/dart/frameworks/flutter/state-management
   - software-engineering/architecture/frontend/state-management-architecture
 language: "react-native"
 ---

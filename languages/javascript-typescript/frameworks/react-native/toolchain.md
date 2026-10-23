@@ -13,7 +13,7 @@ related:
   - languages/javascript-typescript/frameworks/react-native/deploy
   - languages/javascript-typescript/frameworks/react-native/performance
   - languages/javascript-typescript/frameworks/react/toolchain
-  - languages/flutter/toolchain
+  - languages/dart/frameworks/flutter/toolchain
 language: "react-native"
 ---
 # Toolchain

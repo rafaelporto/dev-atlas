@@ -11,7 +11,7 @@ related:
   - languages/javascript-typescript/frameworks/react-native/toolchain
   - languages/javascript-typescript/frameworks/react-native/project-setup
   - languages/javascript-typescript/frameworks/react-native/testing
-  - languages/flutter/deploy
+  - languages/dart/frameworks/flutter/deploy
 language: "react-native"
 ---
 # Deploying React Native Apps

@@ -11,7 +11,7 @@ related:
   - languages/javascript-typescript/frameworks/react-native/new-architecture-and-native-modules
   - languages/javascript-typescript/frameworks/react-native/architecture
   - languages/javascript-typescript/frameworks/react/overview
-  - languages/flutter/overview
+  - languages/dart/frameworks/flutter/overview
   - languages/javascript-typescript/javascript/overview
 language: "react-native"
 ---

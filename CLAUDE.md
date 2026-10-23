@@ -16,7 +16,7 @@ The root **`Justfile`** is the single entry point for repository tasks (MCP serv
 
 - All content (article text, headings, code comments, identifiers) must be in **English**.
 - Code examples follow these rules by topic:
-  - **Language articles** (anything under `languages/<lang>/`, at any depth) — write all examples in the directory's language. E.g. articles under `languages/go/` use Go, `languages/swift/` uses Swift, `languages/dart/` and `languages/flutter/` use Dart. Under `languages/javascript-typescript/`, follow the article's own language or framework: `javascript/` uses JavaScript, `typescript/` uses TypeScript, `runtimes/nodejs/` uses JavaScript or TypeScript as the article's topic requires (match the surrounding articles), `frameworks/react/` uses TypeScript with JSX (unless the article is specifically about plain JavaScript).
+  - **Language articles** (anything under `languages/<lang>/`, at any depth) — write all examples in the directory's language. E.g. articles under `languages/go/` use Go, `languages/swift/` uses Swift, `languages/dart/` (including `frameworks/flutter/`) uses Dart. Under `languages/javascript-typescript/`, follow the article's own language or framework: `javascript/` uses JavaScript, `typescript/` uses TypeScript, `runtimes/nodejs/` uses JavaScript or TypeScript as the article's topic requires (match the surrounding articles), `frameworks/react/` uses TypeScript with JSX (unless the article is specifically about plain JavaScript).
   - **Mobile architecture articles** (anything under `software-engineering/architecture/mobile/` or explicitly about mobile development) — provide examples in **Swift**, **Kotlin**, and **Flutter (Dart)**, one block per language.
   - **All other articles** — ask the user which language to use before writing any code example.
 
@@ -65,7 +65,9 @@ dev-atlas/
 │   │   ├── typescript/
 │   │   ├── runtimes/               # nodejs
 │   │   └── frameworks/             # react, react-native, nextjs, angular, vue, svelte
-│   ├── go/                         # …and more (clojure, csharp, css, dart, flutter, java, lua, swift)
+│   ├── dart/                       # Dart + its frameworks
+│   │   └── frameworks/             # flutter
+│   ├── go/                         # …and more (clojure, csharp, css, java, lua, swift)
 │   └── …                           # Do not maintain this list here; the section README is the index
 ├── operating-systems/
 │   ├── macos/                      # Darwin/XNU, zsh, macOS commands, ⌘ shortcuts

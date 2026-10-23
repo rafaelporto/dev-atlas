@@ -13,7 +13,7 @@ related:
   - languages/javascript-typescript/frameworks/react-native/best-practices
   - languages/javascript-typescript/frameworks/react-native/new-architecture-and-native-modules
   - software-engineering/concepts/solid/dependency-inversion
-  - languages/flutter/dependency-injection
+  - languages/dart/frameworks/flutter/dependency-injection
 language: "react-native"
 ---
 # Dependency Injection

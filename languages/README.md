@@ -9,8 +9,7 @@
 | [C#](csharp/README.md) | The .NET platform, type system and nullability, async, LINQ, patterns, data access, toolchain, CLI tooling, and game development |
 | [CSS](css/README.md) | Styling the web: the cascade, layout, responsive design, custom properties, Sass, CSS Modules, CSS-in-JS, utility-first CSS, methodologies, toolchain, and performance |
 | [Clojure](clojure/README.md) | A functional, data-oriented Lisp on the JVM: immutability, concurrency, patterns, the REPL-driven toolchain, and CLI scripting with babashka |
-| [Dart](dart/README.md) | Null safety, async model, OOP/functional paradigms, patterns, and CLI tooling in Dart |
-| [Flutter](flutter/README.md) | Widget model, state management, architecture, testing, and deployment with Flutter |
+| [Dart](dart/README.md) | Null safety, async model, OOP/functional paradigms, patterns, CLI tooling, and the Flutter framework |
 | [Go](go/README.md) | Concurrency, type system, idioms, and patterns in Go |
 | [Java](java/README.md) | The JVM platform, type system, concurrency, patterns, data access, toolchain, and CLI tooling |
 | [JavaScript & TypeScript](javascript-typescript/README.md) | The JavaScript language, TypeScript, the Node.js runtime, and the React, React Native, Next.js, Angular, Vue, and Svelte frameworks |

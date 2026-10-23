@@ -9,7 +9,7 @@ tags:
 related:
   - languages/javascript-typescript/frameworks/react/state-management
   - languages/javascript-typescript/frameworks/react/context
-  - languages/flutter/state-management
+  - languages/dart/frameworks/flutter/state-management
   - software-engineering/architecture/mobile/mvi
 language: null
 ---
@@ -17,7 +17,7 @@ language: null
 
 > Decide what *kind* of state you have and where it should live before you reach for a library — most frontend state problems are placement problems, not tooling problems.
 
-This article is about the architecture of state in a frontend app, independent of framework. For concrete library choices, see [React state management](../../../languages/javascript-typescript/frameworks/react/state-management.md) and [Flutter state management](../../../languages/flutter/state-management.md).
+This article is about the architecture of state in a frontend app, independent of framework. For concrete library choices, see [React state management](../../../languages/javascript-typescript/frameworks/react/state-management.md) and [Flutter state management](../../../languages/dart/frameworks/flutter/state-management.md).
 
 ---
 

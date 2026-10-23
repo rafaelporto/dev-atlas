@@ -11,7 +11,7 @@ related:
   - languages/javascript-typescript/frameworks/nextjs/overview
   - languages/javascript-typescript/javascript/toolchain
   - languages/javascript-typescript/typescript/toolchain
-  - languages/flutter/toolchain
+  - languages/dart/frameworks/flutter/toolchain
   - software-engineering/architecture/repository-organization/tooling/overview
 language: null
 ---
@@ -67,7 +67,7 @@ For anything past a small script, TypeScript is the mainstream choice; plain Jav
 | **Angular** | Full, opinionated framework (DI, router, forms, RxJS) maintained by Google; suits large enterprise apps that want batteries included and strong conventions. | [Angular](../../../languages/javascript-typescript/frameworks/angular/overview.md) |
 | **Svelte** | Compiler-first: components compile to minimal JS, no virtual DOM. Small bundles, terse syntax. | [Svelte](../../../languages/javascript-typescript/frameworks/svelte/overview.md) |
 | **SolidJS** | Fine-grained reactivity with a React-like API; very high performance, no virtual DOM. | — |
-| **Flutter (web)** | Dart-based; renders its own UI to canvas. Best when sharing a codebase with Flutter mobile, less so as a standalone web choice. | [Flutter](../../../languages/flutter/overview.md) |
+| **Flutter (web)** | Dart-based; renders its own UI to canvas. Best when sharing a codebase with Flutter mobile, less so as a standalone web choice. | [Flutter](../../../languages/dart/frameworks/flutter/overview.md) |
 
 React dominates by adoption and ecosystem; Vue and Angular are the other two "mainstream complete" options; Svelte and SolidJS lead on performance and bundle size.
 
