@@ -10,6 +10,14 @@ When agents make technical decisions, they tend to invent patterns/anti-patterns
 
 ## Setup
 
+From the repository root, with [just](https://just.systems) installed:
+
+```bash
+just setup
+```
+
+…or from `mcp-server/`:
+
 ```bash
 npm install
 npm run build
@@ -24,6 +32,8 @@ Either via the CLI (recommended — less chance of typos):
 ```bash
 claude mcp add dev-atlas node "$(pwd)/dist/index.js"
 ```
+
+…or `just mcp-register` from the repository root (user scope; no-op if already registered).
 
 …or by editing `~/.claude/settings.json` directly (user-level so it's available in every session and project):
 
@@ -63,18 +73,22 @@ npm run validate    # build + tests + audit-links --strict
 
 ## Scripts
 
-| Command | Purpose |
-|---|---|
-| `npm run dev` | Hot-reload run with `tsx`. |
-| `npm run build` | Compile to `dist/`. |
-| `npm run start` | Run the compiled server. |
-| `npm run inspect` | Open `@modelcontextprotocol/inspector` (requires Node ≥ 22.7.5). |
-| `npm run test` | Unit + smoke tests. |
-| `npm run audit-links` | Full link audit; writes suggestions to `audit-report.md`. |
-| `npm run audit-links -- --strict` | Strict mode — fatal errors only, no report file. Used by the pre-commit hook. |
-| `npm run backfill` | Idempotently injects scaffold front matter into articles missing it. |
-| `npm run move-paths -- --map <source>=<destination> [--apply]` | Moves directories/files and rewrites every reference to them (relative links, `related:`, repo-path mentions). Dry-run unless `--apply`; refuses a dirty working tree. |
-| `npm run validate` | Aggregate: build, tests, strict audit. |
+Every script has a `just` equivalent in the root `Justfile` (run `just` from anywhere in the repository to list all recipes).
+
+| Command | `just` | Purpose |
+|---|---|---|
+| `npm run dev` | `just dev` | Hot-reload run with `tsx`. |
+| `npm run build` | `just build` | Compile to `dist/`. |
+| `npm run start` | `just start` | Run the compiled server. |
+| `npm run inspect` | `just inspect` | Open `@modelcontextprotocol/inspector` (requires Node ≥ 22.7.5). |
+| `npm run test` | `just test` | Unit + smoke tests. |
+| `npm run test:watch` | `just test-watch` | Tests in watch mode. |
+| `npm run audit-links` | `just audit-report` | Full link audit; writes suggestions to `audit-report.md`. |
+| `npm run audit-links -- --strict` | `just audit` | Strict mode — fatal errors only, no report file. Used by the pre-commit hook. |
+| `npm run backfill` | `just backfill` | Idempotently injects scaffold front matter into articles missing it. |
+| `npm run measure` | `just measure` | Measures tool payload sizes against `scripts/measure-baseline.json`. |
+| `npm run move-paths -- --map <source>=<destination> [--apply]` | `just move <source>=<destination> …` / `just move-apply …` | Moves directories/files and rewrites every reference to them (relative links, `related:`, repo-path mentions). Dry-run unless `--apply`; refuses a dirty working tree. |
+| `npm run validate` | `just validate` | Aggregate: build, tests, strict audit. |
 
 ## What the server exposes
 

@@ -8,6 +8,8 @@ There is no build system, no package manager, and no runtime **for the content i
 
 The repository **also includes a local TypeScript MCP server in `mcp-server/`** that exposes this knowledge base to AI agents (Claude Code and other MCP clients). The MCP server is tooling, not content — it has its own build system and runtime, isolated to its subdirectory. See `mcp-server/README.md`.
 
+The root **`Justfile`** is the single entry point for repository tasks (MCP server build/test/audit, article scaffolding, tag listing, email check, skill install). Run `just` to list every recipe. Its MCP recipes delegate to the npm scripts in `mcp-server/package.json`, which remain the source of truth.
+
 ---
 
 ## Language
@@ -25,6 +27,7 @@ The repository **also includes a local TypeScript MCP server in `mcp-server/`** 
 ```
 dev-atlas/
 ├── README.md                       # Root index — navigation table for all sections
+├── Justfile                        # Tooling — task runner; `just` lists every recipe
 ├── _templates/                     # Article templates — NOT content, never link from README
 │   ├── concept.md
 │   ├── how-to.md
@@ -84,7 +87,7 @@ dev-atlas/
 
 All five top-level content sections (`software-engineering/`, `languages/`, `operating-systems/`, `devops/`, `tools/`) exist and are actively populated. Do not create a new top-level **content** section without explicit user request.
 
-Every direct child of `languages/` is a **language**. Runtimes and frameworks live inside their language's directory, under `languages/<lang>/runtimes/<name>/` or `languages/<lang>/frameworks/<name>/` — never directly under `languages/`. The front matter `language:` field holds the slug of the article's technical context (`nextjs`, `react`, `nodejs`), not the directory name. To move directories or files, use `npm run move-paths` (see `mcp-server/README.md`): it rewrites relative links, `related:` entries, and repo-path mentions.
+Every direct child of `languages/` is a **language**. Runtimes and frameworks live inside their language's directory, under `languages/<lang>/runtimes/<name>/` or `languages/<lang>/frameworks/<name>/` — never directly under `languages/`. The front matter `language:` field holds the slug of the article's technical context (`nextjs`, `react`, `nodejs`), not the directory name. To move directories or files, use `just move` / `just move-apply` (wrapping `npm run move-paths`; see `mcp-server/README.md`): it rewrites relative links, `related:` entries, and repo-path mentions.
 
 The `mcp-server/` directory is **tooling**, not content. It contains the local MCP server that exposes the wiki to AI agents. `mcp-server/node_modules/`, `mcp-server/dist/`, `mcp-server/package-lock.json`, `mcp-server/audit-report.md`, and any local `.npmrc` files are in `.gitignore`. The lock file is ignored on purpose: it would expose the npm registry where dependencies were downloaded; in a public repo, we do not share that information. Reviews focus on `mcp-server/src/`. (Trade-off: future installs may resolve transitive versions differently — acceptable in this personal-tooling context.)
 
@@ -225,7 +228,7 @@ Stop walking up the tree as soon as you reach a `README.md` that already describ
 
 ## What NOT to Do
 
-- Do not add runnable projects, `package.json`, `pyproject.toml`, or any dependency files, **with one exception: the `mcp-server/` directory contains the TypeScript MCP server that exposes this knowledge base to AI agents. See `mcp-server/README.md` for details.**
+- Do not add runnable projects, `package.json`, `pyproject.toml`, or any dependency files, **with two tooling exceptions: the `mcp-server/` directory contains the TypeScript MCP server that exposes this knowledge base to AI agents (see `mcp-server/README.md`), and the root `Justfile` is the task runner for repository tasks.**
 - Do not create articles without following the full template structure.
 - Do not write articles in the `_templates/` directory.
 - Do not write email addresses anywhere in this repository — see **No Email Addresses** below. Also do not hardcode phone numbers or any other personal data.

@@ -83,7 +83,7 @@ Before opening a PR, confirm:
 
 ## Out of scope
 
-- No runnable projects, build systems, or dependency files (`package.json`, `pyproject.toml`, etc.). This repo only ships Markdown.
+- No runnable projects, build systems, or dependency files (`package.json`, `pyproject.toml`, etc.). The content ships as Markdown only; the sole exceptions are the tooling in `mcp-server/` (the MCP server) and the root `Justfile` (task runner — run `just` to list its recipes).
 - No content sourced from private/internal systems.
 
 ---
