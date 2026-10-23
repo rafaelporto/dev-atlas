@@ -4,6 +4,7 @@ tags:
   - tool
 related:
   - software-engineering/architecture/repository-organization/inside-a-monorepo
+  - tools/git/changelog
 language: null
 ---
 # Conventional Commits
@@ -52,7 +53,7 @@ The specification is maintained at [conventionalcommits.org](https://www.convent
 
 A consistent commit format turns history from prose into structured data. Tooling can:
 
-- Generate **CHANGELOG.md** automatically — every `feat:` becomes a new feature entry; every `fix:` becomes a bug fix.
+- Generate a [CHANGELOG.md](changelog.md) automatically — every `feat:` becomes a new feature entry; every `fix:` becomes a bug fix.
 - Determine the **next semantic version** automatically — `feat:` triggers a minor bump, `fix:` a patch, `!` or `BREAKING CHANGE:` a major. This is the foundation of tools like [semantic-release](https://github.com/semantic-release/semantic-release) and [release-please](https://github.com/googleapis/release-please).
 - Filter and search history by intent — "show me all the fixes in the auth scope this quarter."
 - Drive commit linting in CI so messages are validated before they enter `main`.

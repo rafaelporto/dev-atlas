@@ -2,7 +2,8 @@
 type: concept
 tags:
   - tool
-related: []
+related:
+  - tools/git/changelog
 language: null
 ---
 # Tags and Releases
@@ -210,7 +211,7 @@ Only do this for tags that have not been published. After release, never overwri
 - Marking releases — every published version of a library, application, or service should be tagged.
 - Marking notable historical points: pre-major-refactor snapshots, last commit on a deprecated branch, security advisory boundaries.
 - Triggering CI release pipelines — most CI systems can run jobs on tag push, often filtered to `v*` patterns.
-- Generating changelogs and release notes between consecutive tags.
+- Generating [changelogs](changelog.md) and release notes between consecutive tags.
 
 ## When NOT to use
 

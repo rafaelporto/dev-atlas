@@ -13,6 +13,7 @@ Distributed version control system — concepts and how-tos.
 | [Merging vs Rebasing](merging-vs-rebasing.md) | Two ways to combine branches, trade-offs, the cardinal rule |
 | [Remotes](remotes.md) | Origin, upstream, fetch vs pull, push, tracking branches |
 | [Conventional Commits](conventional-commits.md) | Structured commit messages for automated changelogs and SemVer |
+| [Changelog](changelog.md) | Curated per-version list of notable changes — Keep a Changelog, SemVer, growth, antipatterns |
 | [Submodules](submodules.md) | Embedding one Git repo inside another by reference |
 | [Tags and Releases](tags-and-releases.md) | Immutable named pointers, annotated vs lightweight, signing |
 
@@ -27,3 +28,4 @@ Distributed version control system — concepts and how-tos.
 | [Hooks](hooks.md) | Run scripts at well-defined points in the Git lifecycle |
 | [Signing Commits](signing-commits.md) | Cryptographically sign commits and tags with GPG or SSH |
 | [Stash](stash.md) | Set uncommitted work aside temporarily and restore it later |
+| [Maintaining a Changelog](maintaining-a-changelog.md) | Update `CHANGELOG.md` per PR, cut releases, use fragments or generators, enforce it in CI |
