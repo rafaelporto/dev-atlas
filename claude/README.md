@@ -10,8 +10,10 @@ This directory holds **agent tooling** for dev-atlas: Claude skills (and, later,
 claude/
 ├── README.md                       # this file
 └── skills/
-    └── atlas-review/
-        └── SKILL.md                # the skill definition
+    ├── atlas-review/
+    │   └── SKILL.md                # the skill definition
+    └── atlas-changelog/
+        └── SKILL.md
 ```
 
 `agents/` and `guides/` are reserved for future use — they will be created only when there is real content to put in them (no empty placeholder directories).
@@ -21,6 +23,7 @@ claude/
 | Skill | Description |
 |---|---|
 | [`atlas-review`](skills/atlas-review/SKILL.md) | Full code review (smells, antipatterns, naming, conventions, SOLID, Pragmatic Principles, Design Patterns, correctness, security, performance, test coverage), grounded in dev-atlas where applicable. |
+| [`atlas-changelog`](skills/atlas-changelog/SKILL.md) | Create, update, release and validate a `CHANGELOG.md` following Keep a Changelog + SemVer, as recommended by dev-atlas (`tools/git/changelog`). |
 
 ## Installing a skill
 
@@ -36,4 +39,6 @@ After the symlink exists, invoke the skill with `/atlas-review` in a Claude Code
 
 ## Requirements
 
-The skills here read the knowledge base through the **dev-atlas MCP server** (`mcp-server/`). That server must be connected in the session where a skill runs; otherwise the skill reports the missing dependency and stops. See `mcp-server/README.md` for how to build and register it.
+`atlas-review` reads the knowledge base through the **dev-atlas MCP server** (`mcp-server/`). That server must be connected in the session where the skill runs; otherwise the skill reports the missing dependency and stops. See `mcp-server/README.md` for how to build and register it.
+
+`atlas-changelog` is self-contained: its format rules are embedded in the SKILL.md, so it works without the MCP. When the MCP is connected, it checks those rules against `tools/git/changelog`. The embedded rules mirror `tools/git/changelog.md` — when changing either, update both in the same commit.
