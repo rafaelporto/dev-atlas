@@ -37,6 +37,7 @@
 | [Configuration and Environment](configuration-and-environment.md) | Env vars, validation at boot, secrets, twelve-factor config |
 | [Data Access and Databases](data-access.md) | Mature databases, the driver/query builder/ORM decision in brief, pooling, transactions |
 | [Backend Architecture](architecture.md) | Layered/hexagonal structure, dependency inversion, composition root |
+| [Multi-Tenancy](multi-tenancy.md) | Resolving the tenant in Fastify, AsyncLocalStorage vs explicit passing, Drizzle pgPolicy and RLS-scoped transactions |
 
 ---
 

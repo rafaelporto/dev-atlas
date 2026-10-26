@@ -12,6 +12,7 @@ related:
   - languages/csharp/overview
   - languages/csharp/linq-and-collections
   - languages/csharp/async-and-concurrency
+  - languages/csharp/multi-tenancy
 language: "csharp"
 ---
 # Databases and ORMs

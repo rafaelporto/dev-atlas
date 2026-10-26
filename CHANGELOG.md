@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Multi-tenancy coverage: a PostgreSQL row-level security subsection under databases (overview, RLS, tenant context, pitfalls, isolation testing), a multi-tenant applications architecture article, and Go, C#, and Node.js implementation articles.
 - Domain-Driven Design article and a design patterns overview.
 - All 23 GoF design patterns (creational, structural, behavioral).
 - Architecture section with 8 articles.

@@ -16,6 +16,7 @@ Architectural styles define how a system is organized at a high level — how re
 | [Event-Driven Architecture](event-driven.md) | Components communicate through events asynchronously |
 | [CQRS](cqrs.md) | Separate read and write models for scalability and clarity |
 | [Event Sourcing](event-sourcing.md) | Store state as an immutable sequence of events |
+| [Multi-Tenant Applications](multi-tenancy.md) | Resolving, propagating, and isolating the tenant across requests, caches, queues, and telemetry |
 
 ---
 

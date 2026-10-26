@@ -29,6 +29,7 @@
 |---|---|
 | [Async and Concurrency](async-and-concurrency.md) | `async`/`await`, `Task`, TPL, cancellation, channels, and async streams |
 | [Databases and ORMs](databases-and-orms.md) | EF Core, Dapper, and ADO.NET — full ORM vs micro-ORM vs raw |
+| [Multi-Tenancy](multi-tenancy.md) | Tenant resolution with Finbuckle, scoped tenant context, EF Core query filters vs PostgreSQL RLS |
 
 ---
 
