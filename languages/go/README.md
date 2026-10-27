@@ -69,6 +69,7 @@
 | [Server-Side Rendering](server-side-rendering.md) | html/template, embed, layouts/partials, and the templ + htmx stack |
 | [Full-Stack Monolith](full-stack-monolith.md) | Build a single-binary Go app that serves a frontend + API, Next.js-style |
 | [Multi-Tenancy](multi-tenancy.md) | Tenant in context.Context, pgx transactions with RLS scope, and tenant-aware workers |
+| [Stateful Services](stateful-services.md) | Stateless handlers vs goroutine-owned state, actors with Proto.Actor/Ergo/Hollywood, and key-based sharding |
 
 ---
 

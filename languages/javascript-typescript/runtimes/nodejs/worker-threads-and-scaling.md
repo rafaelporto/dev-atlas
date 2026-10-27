@@ -10,6 +10,7 @@ related:
   - languages/javascript-typescript/runtimes/nodejs/event-loop-and-timers
   - languages/javascript-typescript/runtimes/nodejs/architecture
   - languages/javascript-typescript/runtimes/nodejs/deploy
+  - languages/javascript-typescript/runtimes/nodejs/stateful-services
 language: "nodejs"
 ---
 # Worker Threads and Scaling

@@ -5,7 +5,8 @@ tags:
   - go
   - backend
   - concurrency
-related: []
+related:
+  - languages/go/stateful-services
 language: "go"
 ---
 # Concurrency in Go

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Stateful and stateless architectures: a subsection under architecture (overview, Actor Model with classic and virtual actors, stateful patterns such as sticky sessions, partitioned ownership, and durable execution), and Go, C#, and Node.js implementation articles.
 - Multi-tenancy coverage: a PostgreSQL row-level security subsection under databases (overview, RLS, tenant context, pitfalls, isolation testing), a multi-tenant applications architecture article, and Go, C#, and Node.js implementation articles.
 - Domain-Driven Design article and a design patterns overview.
 - All 23 GoF design patterns (creational, structural, behavioral).

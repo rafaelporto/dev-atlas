@@ -8,6 +8,7 @@ related:
   - software-engineering/communication-protocols/http/sse
   - software-engineering/communication-protocols/http/streaming
   - software-engineering/communication-protocols/overview
+  - software-engineering/architecture/stateful-and-stateless/stateful-patterns
 language: null
 ---
 # WebSocket

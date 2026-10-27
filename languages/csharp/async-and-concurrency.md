@@ -10,6 +10,7 @@ related:
   - languages/csharp/overview
   - languages/csharp/error-handling
   - languages/csharp/linq-and-collections
+  - languages/csharp/stateful-services
 language: "csharp"
 ---
 # Async and Concurrency

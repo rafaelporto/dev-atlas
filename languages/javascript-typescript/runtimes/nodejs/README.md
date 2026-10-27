@@ -38,6 +38,7 @@
 | [Data Access and Databases](data-access.md) | Mature databases, the driver/query builder/ORM decision in brief, pooling, transactions |
 | [Backend Architecture](architecture.md) | Layered/hexagonal structure, dependency inversion, composition root |
 | [Multi-Tenancy](multi-tenancy.md) | Resolving the tenant in Fastify, AsyncLocalStorage vs explicit passing, Drizzle pgPolicy and RLS-scoped transactions |
+| [Stateful Services](stateful-services.md) | Why in-memory state breaks across processes, Socket.IO sticky sessions, Dapr actors, Durable Objects, and Temporal |
 
 ---
 

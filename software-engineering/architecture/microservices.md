@@ -5,6 +5,7 @@ tags:
   - backend
 related:
   - software-engineering/architecture/repository-organization/monorepo-vs-polyrepo
+  - software-engineering/architecture/stateful-and-stateless/overview
 language: null
 ---
 # Microservices Architecture

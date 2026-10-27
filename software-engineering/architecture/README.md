@@ -20,6 +20,14 @@ Architectural styles define how a system is organized at a high level — how re
 
 ---
 
+## Stateful and Stateless
+
+| Article | Description |
+|---|---|
+| [Stateful and Stateless Architectures](stateful-and-stateless/README.md) | Where a service keeps its state — stateless vs stateful trade-offs, the Actor Model (classic and virtual actors), and patterns such as sticky sessions, partitioned ownership, and durable execution |
+
+---
+
 ## Mobile
 
 | Article | Description |
@@ -52,4 +60,4 @@ Architectural styles define how a system is organized at a high level — how re
 
 ---
 
-> These styles are not mutually exclusive, and they sit at different altitudes. The styles above describe how a *system* is organized: a microservices system can use Hexagonal Architecture inside each service, and CQRS and Event Sourcing are frequently combined. The mobile, frontend, and CLI subsections describe how a single *application* is organized inside one of those services or clients — they compose with the system-level styles rather than replacing them. Repository organization is a third axis again: it asks how many repositories the resulting pieces live in, which cuts across both the system and the application levels and is independent of either.
+> These styles are not mutually exclusive, and they sit at different altitudes. The styles above describe how a *system* is organized: a microservices system can use Hexagonal Architecture inside each service, and CQRS and Event Sourcing are frequently combined. The mobile, frontend, and CLI subsections describe how a single *application* is organized inside one of those services or clients — they compose with the system-level styles rather than replacing them. Statefulness is a property of each running service — any of the system-level styles above can be built stateless or stateful. Repository organization is a third axis again: it asks how many repositories the resulting pieces live in, which cuts across both the system and the application levels and is independent of either.
