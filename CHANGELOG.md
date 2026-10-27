@@ -55,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changelog concept article and maintenance how-to.
 - `atlas-changelog` skill.
 - Root `Justfile` as the single entry point for repository tasks.
+- `atlas-write` skill for creating articles and subsections that follow the repository's templates, tags, and index conventions.
 
 ### Changed
 - MCP responses use about 50% fewer tokens.
