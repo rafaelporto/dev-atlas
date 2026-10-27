@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Cloud providers subsection under DevOps: an overview (service models, pricing, equivalent services, ease-of-use comparison, and when cloud is not worth it) and AWS, Google Cloud, and Azure articles covering resource hierarchy, IAM, core services, pricing and free tier, and CLI usage.
 - Stateful and stateless architectures: a subsection under architecture (overview, Actor Model with classic and virtual actors, stateful patterns such as sticky sessions, partitioned ownership, and durable execution), and Go, C#, and Node.js implementation articles.
 - Multi-tenancy coverage: a PostgreSQL row-level security subsection under databases (overview, RLS, tenant context, pitfalls, isolation testing), a multi-tenant applications architecture article, and Go, C#, and Node.js implementation articles.
 - Domain-Driven Design article and a design patterns overview.

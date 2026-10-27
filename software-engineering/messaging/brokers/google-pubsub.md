@@ -6,6 +6,7 @@ tags:
 related:
   - software-engineering/messaging/comparison
   - software-engineering/messaging/patterns
+  - devops/cloud/google-cloud
 language: null
 ---
 # Google Cloud Pub/Sub

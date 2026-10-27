@@ -6,6 +6,7 @@ tags:
 related:
   - software-engineering/messaging/comparison
   - software-engineering/messaging/patterns
+  - devops/cloud/aws
 language: null
 ---
 # AWS SQS (Simple Queue Service)

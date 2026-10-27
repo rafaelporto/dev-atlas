@@ -7,6 +7,7 @@ related:
   - software-engineering/messaging/comparison
   - software-engineering/messaging/patterns
   - software-engineering/messaging/amqp
+  - devops/cloud/azure
 language: null
 ---
 # Azure Service Bus

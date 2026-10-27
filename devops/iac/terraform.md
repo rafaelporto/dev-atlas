@@ -6,6 +6,7 @@ tags:
   - iac
 related:
   - devops/concepts/infrastructure-as-code
+  - devops/cloud/overview
 language: null
 ---
 # Terraform

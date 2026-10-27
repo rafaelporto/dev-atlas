@@ -7,6 +7,7 @@ related:
   - software-engineering/databases/types/key-value
   - software-engineering/databases/types/document
   - software-engineering/databases/engines/redis
+  - devops/cloud/aws
 language: null
 ---
 # DynamoDB

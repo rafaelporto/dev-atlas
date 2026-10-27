@@ -32,6 +32,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `security`: use for articles whose primary subject is application security — authentication and identity, session and token handling, vulnerability classes and known CVEs, and hardening practices. Combine with the language tag and `backend`/`full-stack` as appropriate, and with `comparison`/`decision-support`/`antipattern` for those article kinds. Do **not** apply it to articles that only mention security in passing (e.g. a middleware article with a one-paragraph auth example, or protocol articles describing SSH key authentication).
 - `orm`: use for articles whose primary subject is how application code talks to a database — ORMs, query builders, raw-SQL access as an alternative to them, schema migrations, object-relational mapping patterns (Active Record, Data Mapper, Unit of Work), and their failure modes (N+1, connection exhaustion). Combine with `database` (Domain) for language-agnostic concept articles, or with `language` plus the language tag and `backend`/`full-stack` for language articles; add `decision-support`/`comparison`/`antipattern` for those article kinds. Do **not** apply it to articles that only show a `db.*` call in passing (e.g. an auth or data-fetching article), nor to database-type or engine articles whose subject is the database itself.
 - `multi-tenancy`: use for articles whose primary subject is serving several tenants (customers, organisations) from one system — tenancy models, tenant isolation in the database (e.g. PostgreSQL row-level security), passing the tenant scope, and building tenant-aware applications. Combine with `database` (Domain) for database articles, `architecture` for the language-agnostic patterns article, or `language` plus the language tag and `backend` for language articles; add `security` when isolation is the subject and `antipattern` for pitfalls articles. Do **not** apply it to articles that only mention tenants in passing (e.g. an auth provider article listing "organizations" as a feature).
+- `cloud`: use for articles whose primary subject is a public cloud provider or choosing between them (AWS, Google Cloud, Azure). Combine with `tool` for a provider article and `concept` for the overview. Do **not** apply it to articles about a single managed service (e.g. `aws-sqs`, `dynamodb`) — their subject is the service.
 
 ---
 
@@ -153,6 +154,7 @@ This file is **not** content of the wiki. Do not link to it from section `README
 - `security`
 - `orm`
 - `multi-tenancy`
+- `cloud`
 
 ---
 

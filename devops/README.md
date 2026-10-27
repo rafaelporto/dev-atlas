@@ -23,3 +23,4 @@
 | [Observability](observability/README.md) | Tracing, metrics, logging, and visualization tools |
 | [Local Development](local-dev/README.md) | Tools for reproducible local development environments |
 | [Code Quality](code-quality/README.md) | Static analysis and code quality tooling |
+| [Cloud Providers](cloud/README.md) | Public cloud platforms — AWS, Google Cloud, and Azure — and how to choose between them |
